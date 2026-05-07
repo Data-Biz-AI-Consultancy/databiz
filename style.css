@@ -267,9 +267,18 @@ nav a:hover {
 
 .credibility-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 350px 1fr;
     gap: var(--space-xl);
     align-items: center;
+}
+
+.credibility-image img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+    /* Subtle filter to match the warm off-white vibe if needed */
+    /* filter: sepia(0.2) contrast(1.1); */
 }
 
 /* CTA Footer Section */

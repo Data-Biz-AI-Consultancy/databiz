@@ -249,6 +249,29 @@ nav a:hover {
     color: var(--accent-color);
 }
 
+/* Offering Groups */
+.offer-group {
+    margin-bottom: var(--space-xl);
+}
+
+.offer-group:last-child {
+    margin-bottom: 0;
+}
+
+.offer-group-header {
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.offer-group-header h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted-text);
+    margin-bottom: 0;
+}
+
 /* Insights */
 .insights {
     background-color: white;

@@ -194,6 +194,10 @@ function initAIAssistant() {
     const container = document.createElement('div');
     container.className = 'ai-assistant-container';
     container.innerHTML = `
+        <div id="ai-teaser" class="ai-chat-teaser">
+            <span class="ai-chat-teaser-blink"></span>
+            Ciao! Talk to me about your data &amp; AI solutions 💋
+        </div>
         <button id="ai-trigger" class="ai-assistant-trigger pulse" aria-label="Open AI Assistant" style="padding: 0; overflow: hidden;">
             <img src="assets/bella.png" alt="Bella" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
         </button>
@@ -230,6 +234,7 @@ function initAIAssistant() {
     document.body.appendChild(container);
 
     const trigger = document.getElementById('ai-trigger');
+    const teaser = document.getElementById('ai-teaser');
     const chatWindow = document.getElementById('ai-chat');
     const closeBtn = document.getElementById('ai-close');
     const clearBtn = document.getElementById('ai-clear');
@@ -338,13 +343,19 @@ Tone and Communication:
     }
 
     // Toggle Chat Window
-    trigger.addEventListener('click', () => {
+    function toggleChat() {
         const isOpen = chatWindow.classList.toggle('open');
         if (isOpen) {
             trigger.classList.remove('pulse');
+            if (teaser) teaser.style.display = 'none';
             setTimeout(() => input.focus(), 150);
         }
-    });
+    }
+
+    trigger.addEventListener('click', toggleChat);
+    if (teaser) {
+        teaser.addEventListener('click', toggleChat);
+    }
 
     closeBtn.addEventListener('click', () => {
         chatWindow.classList.remove('open');

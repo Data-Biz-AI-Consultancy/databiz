@@ -259,6 +259,29 @@ Tone and Vibe:
 - Refer back to our core message: Data Biz fixes decisions, not just dashboards.`;
 
     let chatHistory = [];
+    let activeModel = 'gemma3:1b'; // Default to working model
+
+    // Dynamically detect available models
+    async function detectModel() {
+        try {
+            const response = await fetch('/api/tags');
+            const data = await response.json();
+            if (data.models && data.models.length > 0) {
+                // Prefer gemma3:4b if pulled, otherwise use whatever is pulled (e.g. gemma3:1b)
+                const has4b = data.models.some(m => m.name === 'gemma3:4b' || m.name.startsWith('gemma3:4b'));
+                if (has4b) {
+                    activeModel = 'gemma3:4b';
+                } else {
+                    activeModel = data.models[0].name;
+                }
+                console.log("AI Assistant detected model:", activeModel);
+            }
+        } catch (e) {
+            console.warn("Failed to query models, using default:", activeModel, e);
+        }
+    }
+    detectModel();
+
 
     // Load history or initialize welcome
     function resetChat() {
@@ -358,11 +381,12 @@ Tone and Vibe:
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    model: 'gemma3:4b',
+                    model: activeModel,
                     messages: chatHistory,
                     stream: true
                 })
             });
+
 
             // Remove typing indicator
             typingIndicator.remove();

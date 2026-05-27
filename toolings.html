@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Case Studies | Data Biz</title>
-    <meta name="description" content="Explore Case Studies showing how Data Biz approaches complex data infrastructure and AI challenges for rapid growth companies.">
+    <title>Toolings | Data Biz</title>
+    <meta name="description" content="Explore Data Biz's open-source in-house developer toolings designed to solve enterprise data engineering and AI collaboration problems.">
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet"/>
@@ -98,9 +98,9 @@
         </a>
         <div class="hidden md:flex items-center space-x-xl">
             <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="offers.html">Offers</a>
-            <a class="text-primary font-body-md text-body-md hover:text-primary transition-colors duration-200" href="case-study.html">Case Study</a>
+            <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="case-study.html">Case Study</a>
             <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="insights.html">Insights</a>
-            <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="toolings.html">Toolings</a>
+            <a class="text-primary font-body-md text-body-md hover:text-primary transition-colors duration-200" href="toolings.html">Toolings</a>
             <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="about.html">About</a>
         </div>
         <div class="flex items-center gap-md">
@@ -116,112 +116,79 @@
 </nav>
 
 <main class="pt-16">
-    <!-- Hero Header -->
+    <!-- Header -->
     <section class="py-20 px-container-margin border-b border-outline-variant bg-surface-container-lowest transition-colors duration-300">
         <div class="max-w-7xl mx-auto text-center" data-vibe-reveal>
             <span class="inline-block font-label-caps text-label-caps text-secondary mb-md tracking-widest border border-secondary/30 px-sm py-xs bg-secondary/5">
-                REAL WORLD IMPACT
+                IN-HOUSE SOLUTIONS
             </span>
             <h1 class="font-display-lg text-display-lg mb-lg leading-tight max-w-4xl mx-auto">
-                Decisive solutions for complex <span class="text-primary">business challenges</span>.
+                Open source dev toolings that <span class="text-primary">solve execution barriers</span>.
             </h1>
             <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-                Explore our strategic approach, technical architectures, and concrete results built for high-growth enterprises.
+                We design and build customized utility modules and libraries that speed up pipeline deployment and facilitate high-trust operations.
             </p>
         </div>
     </section>
 
-    <!-- Case Studies List -->
+    <!-- Toolings Showcase -->
     <section class="py-20 px-container-margin max-w-7xl mx-auto">
-        <div class="space-y-16">
-            <!-- Case Study 1 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center" data-vibe-reveal>
-                <div class="lg:col-span-5 space-y-md">
-                    <span class="font-label-caps text-label-caps text-primary tracking-widest block">CASE STUDY 01</span>
-                    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Scaling From Seed to Series A</h2>
-                    <p class="text-on-surface-variant font-body-sm">
-                        A fast-growing fintech startup was drowning in fragmented analytics across Mixpanel, Segment, and HubSpot. We deployed a unified warehouse stack, resulting in single-source-of-truth board reporting in under 4 weeks.
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+            <!-- Tool 1: Ravioli -->
+            <div class="glass-card p-lg rounded-xl flex flex-col justify-between" data-vibe-reveal>
+                <div>
+                    <span class="material-symbols-outlined text-primary text-4xl mb-md">restaurant</span>
+                    <h2 class="font-headline-md text-headline-md font-bold mb-sm">Ravioli</h2>
+                    <p class="text-on-surface-variant font-body-sm mb-lg">
+                        A structured state machine library designed for highly complex dbt logic mapping and pipeline status execution checkouts. It ensures robust transactional integrity in modern data warehouses.
                     </p>
-                    <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Challenge:</strong> Discrepant MRR and retention calculations.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Approach:</strong> Snowflake + dbt core implementation with strict schema validations.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Outcome:</strong> Board presentations consolidated, reporting errors reduced to 0%.</li>
-                    </ul>
-                </div>
-                <div class="lg:col-span-7 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">THE REVEALED ARCHITECTURE</h4>
-                    <div class="space-y-sm text-sm font-data-mono text-data-mono">
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">1. Ingestion:</span> Fivetran pulling SaaS APIs -> Snowflake Raw Schema.
-                        </div>
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">2. Transform:</span> dbt Core models transforming source logs into Kimball dimensional models.
-                        </div>
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">3. BI & Actions:</span> Lightdash serving operational KPIs directly to slack alerts & dashboards.
-                        </div>
+                    <div class="flex flex-wrap gap-xs mb-lg">
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">PYTHON</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">STATE MACHINE</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">DBT</span>
                     </div>
                 </div>
+                <a href="https://github.com/Data-Biz-AI-Consultancy/ravioli" target="_blank" rel="noopener" class="inline-flex items-center gap-xs text-primary font-label-caps text-label-caps hover:underline">
+                    VIEW REPOSITORY <span class="material-symbols-outlined text-sm">open_in_new</span>
+                </a>
             </div>
 
-            <hr class="border-outline-variant/30">
-
-            <!-- Case Study 2 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center" data-vibe-reveal>
-                <div class="lg:col-span-5 space-y-md">
-                    <span class="font-label-caps text-label-caps text-secondary tracking-widest block">CASE STUDY 02</span>
-                    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Warehouse Migration & Cost Reduction</h2>
-                    <p class="text-on-surface-variant font-body-sm">
-                        An enterprise e-commerce vendor suffered from runaway queries costing over $50k/month in BigQuery. We optimized materializations and cluster keys to slash compute overhead without sacrificing report speed.
+            <!-- Tool 2: MeetingMinds -->
+            <div class="glass-card p-lg rounded-xl flex flex-col justify-between" data-vibe-reveal>
+                <div>
+                    <span class="material-symbols-outlined text-secondary text-4xl mb-md">psychology</span>
+                    <h2 class="font-headline-md text-headline-md font-bold mb-sm">MeetingMinds</h2>
+                    <p class="text-on-surface-variant font-body-sm mb-lg">
+                        An AI agent orchestration package designed to sync engineering backlogs, analyze team meeting transcripts, and automatically generate clean schema specifications from natural language meetings.
                     </p>
-                    <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> <strong>Challenge:</strong> Multi-join views scanning terabytes of redundant log data.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> <strong>Approach:</strong> Partition pruning, incremental dbt builds, and warehouse cluster alignment.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> <strong>Outcome:</strong> 42% decrease in monthly cloud billing ($21k saved monthly).</li>
-                    </ul>
-                </div>
-                <div class="lg:col-span-7 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">COST METRICS BEFORE / AFTER</h4>
-                    <div class="grid grid-cols-2 gap-md text-center">
-                        <div class="glass-card p-md rounded-lg">
-                            <span class="text-secondary text-3xl font-bold font-display-lg">$53,400</span>
-                            <span class="block text-[11px] font-label-caps text-on-surface-variant mt-xs">PRE-OPTIMIZATION BILLING</span>
-                        </div>
-                        <div class="glass-card p-md rounded-lg">
-                            <span class="text-primary text-3xl font-bold font-display-lg">$31,100</span>
-                            <span class="block text-[11px] font-label-caps text-on-surface-variant mt-xs">POST-OPTIMIZATION BILLING</span>
-                        </div>
+                    <div class="flex flex-wrap gap-xs mb-lg">
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">TYPESCRIPT</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">AI AGENT</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">LLM OPS</span>
                     </div>
                 </div>
+                <a href="https://github.com/Data-Biz-AI-Consultancy/MeetingMinds" target="_blank" rel="noopener" class="inline-flex items-center gap-xs text-secondary font-label-caps text-label-caps hover:underline">
+                    VIEW REPOSITORY <span class="material-symbols-outlined text-sm">open_in_new</span>
+                </a>
             </div>
 
-            <hr class="border-outline-variant/30">
-
-            <!-- Case Study 3 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center" data-vibe-reveal>
-                <div class="lg:col-span-5 space-y-md">
-                    <span class="font-label-caps text-label-caps text-primary tracking-widest block">CASE STUDY 03</span>
-                    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Deploying Guardrailed RAG Systems</h2>
-                    <p class="text-on-surface-variant font-body-sm">
-                        A healthcare platform needed custom generative AI chatbots to serve internal operators. We architected a guardrailed RAG pipeline ensuring zero patient data exposure.
+            <!-- Tool 3: famiglia-core -->
+            <div class="glass-card p-lg rounded-xl flex flex-col justify-between" data-vibe-reveal>
+                <div>
+                    <span class="material-symbols-outlined text-primary text-4xl mb-md">diversity_3</span>
+                    <h2 class="font-headline-md text-headline-md font-bold mb-sm">famiglia-core</h2>
+                    <p class="text-on-surface-variant font-body-sm mb-lg">
+                        An enterprise-grade authorization and authentication core built to handle multi-tenant data access control, fine-grained row/column masking, and prepare applications for compliant data audits.
                     </p>
-                    <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Challenge:</strong> Risk of hallucinations and leakage of Protected Health Information (PHI).</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Approach:</strong> Vector store indexing + customized embedding isolation layers + LLM security filters.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Outcome:</strong> Chat response accuracy rated 98.4% with absolute compliance.</li>
-                    </ul>
-                </div>
-                <div class="lg:col-span-7 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">THE RAG GUARDRAILS</h4>
-                    <div class="space-y-sm text-sm font-data-mono text-data-mono">
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">Anonymizer:</span> Pre-parser scrubs all potential PII before vector lookup.
-                        </div>
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">Contextual Filter:</span> Matches query context exclusively to trusted PDF data warehouses.
-                        </div>
+                    <div class="flex flex-wrap gap-xs mb-lg">
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">RUST</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">AUTHN/AUTHZ</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">SECURITY</span>
                     </div>
                 </div>
+                <a href="https://github.com/Data-Biz-AI-Consultancy/famiglia-core" target="_blank" rel="noopener" class="inline-flex items-center gap-xs text-primary font-label-caps text-label-caps hover:underline">
+                    VIEW REPOSITORY <span class="material-symbols-outlined text-sm">open_in_new</span>
+                </a>
             </div>
         </div>
     </section>
@@ -229,7 +196,7 @@
     <!-- Final CTA -->
     <section class="py-xl bg-primary text-on-primary text-center px-container-margin transition-colors duration-300">
         <div class="max-w-3xl mx-auto" data-vibe-reveal>
-            <h2 class="font-display-lg text-display-lg mb-md">Ready to deploy institutional data command?</h2>
+            <h2 class="font-display-lg text-display-lg mb-md">Need bespoke developer toolings or pipelines?</h2>
             <p class="font-body-lg text-body-lg mb-lg opacity-90">Start with a short discovery call. No deck theatre. Just a direct conversation about where things are stuck.</p>
             <a href="https://calendar.app.google/6w9VxJ7QXjUY7W658" target="_blank" rel="noopener" class="inline-block bg-background text-primary px-xl py-md font-label-caps text-label-caps rounded-lg hover:brightness-110 transition-all shadow-xl">
                 BOOK A DISCOVERY CALL

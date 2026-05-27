@@ -1,0 +1,11 @@
+.git
+.gitignore
+node_modules
+prompts
+seeds
+stitch
+scratch
+README.md
+Dockerfile
+docker-compose.yml
+.dockerignore

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Data Biz | Modern Data Command</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;family=JetBrains+Mono:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#44e2cd",
+                    "on-secondary-container": "#004d44",
+                    "background": "#0d1515",
+                    "surface-bright": "#323b3b",
+                    "tertiary-fixed-dim": "#ffb2b7",
+                    "outline": "#859490",
+                    "on-tertiary-fixed-variant": "#92002a",
+                    "surface-tint": "#4fdbc8",
+                    "error-container": "#93000a",
+                    "surface-container-highest": "#2e3636",
+                    "secondary-fixed": "#62fae3",
+                    "inverse-primary": "#006b5f",
+                    "inverse-on-surface": "#2a3232",
+                    "on-tertiary-fixed": "#40000d",
+                    "primary": "#4fdbc8",
+                    "on-secondary-fixed": "#00201c",
+                    "on-primary-fixed": "#00201c",
+                    "tertiary-container": "#ff7b88",
+                    "surface-container-high": "#232b2b",
+                    "secondary-fixed-dim": "#3cddc7",
+                    "on-secondary-fixed-variant": "#005047",
+                    "error": "#ffb4ab",
+                    "surface-dim": "#0d1515",
+                    "surface": "#0d1515",
+                    "outline-variant": "#3c4947",
+                    "tertiary": "#ffb2b7",
+                    "surface-container": "#192121",
+                    "inverse-surface": "#dce4e4",
+                    "tertiary-fixed": "#ffdadb",
+                    "on-background": "#dce4e4",
+                    "primary-container": "#14b8a6",
+                    "on-surface-variant": "#bbcac6",
+                    "on-surface": "#dce4e4",
+                    "surface-variant": "#2e3636",
+                    "surface-container-lowest": "#081010",
+                    "on-tertiary-container": "#7a0022",
+                    "primary-fixed-dim": "#4fdbc8",
+                    "on-secondary": "#003731",
+                    "on-primary-fixed-variant": "#005048",
+                    "on-error": "#690005",
+                    "surface-container-low": "#151d1d",
+                    "primary-fixed": "#71f8e4",
+                    "on-primary-container": "#00423b",
+                    "secondary-container": "#03c6b2",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary": "#67001b",
+                    "on-primary": "#003731"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "xs": "4px",
+                    "base": "4px",
+                    "md": "16px",
+                    "gutter": "16px",
+                    "container-margin": "24px",
+                    "lg": "24px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "label-caps": ["JetBrains Mono"],
+                    "body-sm": ["Outfit"],
+                    "display-lg-mobile": ["Outfit"],
+                    "display-lg": ["Outfit"],
+                    "headline-md": ["Outfit"],
+                    "body-lg": ["Outfit"],
+                    "data-mono": ["JetBrains Mono"],
+                    "body-md": ["Outfit"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0d1515;
+            color: #dce4e4;
+        }
+        .glass-card {
+            background: rgba(30, 41, 41, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid #2d3a3a;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: #4fdbc8;
+            background: rgba(30, 41, 41, 0.6);
+            transform: translateY(-2px);
+        }
+        .data-gradient {
+            background: linear-gradient(135deg, #0d1515 0%, #151d1d 100%);
+        }
+        .glow-teal {
+            box-shadow: 0 0 20px rgba(79, 220, 200, 0.15);
+        }
+        .active-nav-border {
+            position: relative;
+        }
+        .active-nav-border::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #4fdbc8;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 dark:bg-background/80 backdrop-blur-xl border-b border-outline-variant">
+<div class="flex justify-between items-center h-16 px-container-margin max-w-7xl mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">
+                Data Biz
+            </div>
+<div class="hidden md:flex items-center space-x-xl">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md transition-colors duration-200" href="#">Services</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="#">Insights</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="#">About</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-primary text-on-primary px-lg py-sm font-label-caps text-label-caps rounded-lg hover:brightness-110 active:scale-95 transition-all">
+                    Book a call
+                </button>
+</div>
+</div>
+</nav>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex items-center px-container-margin py-xl overflow-hidden">
+<div class="absolute inset-0 z-0 opacity-40">
+<img alt="Data Grid Hero" class="w-full h-full object-cover" data-alt="A dark, cinematic view of a futuristic data visualization screen in a high-tech command center. Glowing orange and teal data lines pulse across a deep black background, reflecting off polished glass surfaces. The lighting is moody and focused, highlighting intricate network nodes and flowing information streams. The overall aesthetic is professional, technical, and premium, suggesting high-stakes financial or strategic analysis." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCquW45ceoIV9-9SXljBXgX1w1dFLK8QKDCkYPZgXv2F1Ax4vMmB5ST4qhbxda4wOTgM8fNo4xdOmG1_1gaULQgsflpQTc3ccLL1ivWCNPBAseauw82FybKdK1AkGiQYg4t2uVbv4pcTx0XjoIdptck1Z0xoKQrwf-MUCRmp3Pn8GMRyAyzxZ73OT5nrXSduLezF2cudgYnDkYAFEp19i7C0zH3oTWTwwIN2-88cxJVuGO0YwUCdy6ZncVsYBemm0WdSiqj642z0VX7"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto w-full">
+<div class="max-w-3xl">
+<span class="inline-block font-label-caps text-label-caps text-secondary mb-md tracking-widest border border-secondary/30 px-sm py-xs bg-secondary/5">
+                        OPERATIONAL EXCELLENCE
+                    </span>
+<h1 class="font-display-lg text-display-lg mb-lg leading-tight">
+                        Data &amp; AI leadership that <span class="text-primary">fixes decisions</span>, not just dashboards.
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl max-w-2xl">
+                        We deploy fractional data leadership to bridge the gap between engineering complexity and executive strategy. Turn your data lake into a decision engine.
+                    </p>
+<div class="flex flex-wrap gap-md">
+<button class="bg-primary text-on-primary px-xl py-md font-label-caps text-label-caps rounded-lg hover:brightness-110 transition-all shadow-lg shadow-primary/20">
+                            DEPLOY COMMAND
+                        </button>
+<button class="border border-outline-variant text-on-surface px-xl py-md font-label-caps text-label-caps rounded-lg hover:bg-surface-variant transition-all">
+                            VIEW METHODOLOGY
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Grid of Friction -->
+<section class="py-xl px-container-margin max-w-7xl mx-auto">
+<div class="mb-xl">
+<h2 class="font-headline-md text-headline-md mb-xs">Grid of Friction</h2>
+<p class="text-on-surface-variant font-data-mono text-data-mono">IDENTIFIED BOTTLENECKS IN DATA MATURITY</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Friction Card 1 -->
+<div class="glass-card p-lg flex flex-col h-full">
+<span class="material-symbols-outlined text-primary mb-md text-3xl">query_stats</span>
+<h3 class="font-headline-md text-body-lg font-bold mb-sm">Dashboard Fatigue</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm">Too many metrics, zero insights. We prune the noise to focus on the 3 KPIs that actually move the needle.</p>
+</div>
+<!-- Friction Card 2 -->
+<div class="glass-card p-lg flex flex-col h-full">
+<span class="material-symbols-outlined text-primary mb-md text-3xl">database</span>
+<h3 class="font-headline-md text-body-lg font-bold mb-sm">The Data Swamp</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm">Unstructured sprawl prevents scaling. We architect high-integrity schemas that survive rapid growth.</p>
+</div>
+<!-- Friction Card 3 -->
+<div class="glass-card p-lg flex flex-col h-full">
+<span class="material-symbols-outlined text-primary mb-md text-3xl">psychology</span>
+<h3 class="font-headline-md text-body-lg font-bold mb-sm">AI Hallucination</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm">Deploying LLMs without context is risky. We build RAG pipelines that ground AI in your unique business truths.</p>
+</div>
+<!-- Friction Card 4 -->
+<div class="glass-card p-lg flex flex-col h-full">
+<span class="material-symbols-outlined text-primary mb-md text-3xl">groups</span>
+<h3 class="font-headline-md text-body-lg font-bold mb-sm">Talent Gap</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm">Top data talent is expensive and hard to find. We provide the senior leadership without the full-time overhead.</p>
+</div>
+</div>
+</section>
+<!-- Strategic Partnership Models -->
+<section class="py-xl bg-surface-container-low px-container-margin border-y border-outline-variant">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
+<div>
+<h2 class="font-display-lg text-display-lg mb-lg">How We Partner</h2>
+<div class="space-y-lg">
+<div class="border-l-2 border-primary pl-lg py-sm bg-primary/5">
+<h4 class="font-label-caps text-label-caps text-primary mb-xs">FOR FOUNDERS</h4>
+<h3 class="font-headline-md text-headline-md mb-sm">The 0-to-1 Data Stack</h3>
+<p class="text-on-surface-variant">Rapid deployment of a scalable data infrastructure. We set the foundation so your first data hire inherits a masterpiece, not a mess.</p>
+</div>
+<div class="border-l-2 border-secondary pl-lg py-sm">
+<h4 class="font-label-caps text-label-caps text-secondary mb-xs">FOR EXECUTIVES</h4>
+<h3 class="font-headline-md text-headline-md mb-sm">Fractional CDO Leadership</h3>
+<p class="text-on-surface-variant">Strategic oversight for legacy transitions. We manage the high-level roadmap, vendor selection, and board reporting.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="glass-card p-md aspect-square flex flex-col justify-center items-center text-center">
+<span class="font-display-lg text-primary">14+</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">EXITS SUPPORTED</span>
+</div>
+<div class="glass-card p-md aspect-square flex flex-col justify-center items-center text-center bg-surface-container-high">
+<span class="font-display-lg text-secondary">40%</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">COST REDUCTION</span>
+</div>
+<div class="glass-card p-md aspect-square flex flex-col justify-center items-center text-center bg-surface-container-high">
+<span class="font-display-lg text-on-surface">$2B+</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">DATA UNDER MGMT</span>
+</div>
+<div class="glass-card p-md aspect-square flex flex-col justify-center items-center text-center">
+<span class="font-display-lg text-primary">0</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">DOWNTIME MIGRATIONS</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Operator Section -->
+<section class="py-xl px-container-margin max-w-7xl mx-auto">
+<div class="flex flex-col lg:flex-row gap-xl items-center">
+<div class="w-full lg:w-1/3">
+<div class="relative group">
+<div class="absolute -inset-2 bg-gradient-to-tr from-primary to-secondary rounded-xl opacity-20 blur-xl group-hover:opacity-40 transition-opacity"></div>
+<img alt="Jimmy Pang" class="relative rounded-xl w-full aspect-square object-cover border border-outline-variant grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl" src="https://lh3.googleusercontent.com/aida/ADBb0uhTu181tjoQ-qIQhQFyV0mq1CEWfGBMB76IXXC1ve7H6ivMXEYxclcyQYfDHOc_tv-WfQStm2hMpqqjkxGs8Jb3COWhvwclYOJS5YmXkHIS2ryHuFtCNz49TLmU9nbeTtI40JA0-flk80tq1tv2TqAGQFKq61-Tvv8yBXpQkptJw0kw_F7_9mXYD5wLUKqQ7WRaM0vxxhyvMjomxBPxzVaJh6r1-yS8d_1PLpLCnTiEL8p3qML0_hlTZjkD"/>
+</div>
+</div>
+<div class="w-full lg:w-2/3">
+<span class="font-label-caps text-label-caps text-primary tracking-widest mb-sm block">THE OPERATOR</span>
+<h2 class="font-display-lg text-display-lg mb-md">Jimmy Pang</h2>
+<p class="font-body-lg text-body-lg text-on-surface mb-lg italic border-l-4 border-primary pl-lg">
+                        "Data is an operational asset, not an IT expense. If your data isn't directly shortening your feedback loop, it's just digital hoarding."
+                    </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-sm border-b border-outline-variant pb-xs">TRACK RECORD</h4>
+<ul class="space-y-sm font-body-sm text-body-sm">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                                    Built 0-to-1 data stacks for 3 Unicorns
+                                </li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                                    Led Enterprise AI transformations at Fortune 500
+                                </li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                                    Reduced cloud data costs by avg 35%
+                                </li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-sm border-b border-outline-variant pb-xs">EXPERTISE</h4>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container p-xs px-sm rounded-lg text-on-surface-variant font-data-mono text-[11px] border border-outline-variant">FRACTIONAL CDO</span>
+<span class="bg-surface-container p-xs px-sm rounded-lg text-on-surface-variant font-data-mono text-[11px] border border-outline-variant">DATA WAREHOUSING</span>
+<span class="bg-surface-container p-xs px-sm rounded-lg text-on-surface-variant font-data-mono text-[11px] border border-outline-variant">ML OPS</span>
+<span class="bg-surface-container p-xs px-sm rounded-lg text-on-surface-variant font-data-mono text-[11px] border border-outline-variant">DATA GOVERNANCE</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Selected Thinking -->
+<section class="py-xl px-container-margin max-w-7xl mx-auto">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-headline-md text-headline-md">Selected Thinking</h2>
+<p class="text-on-surface-variant font-body-sm">UNFILTERED INSIGHTS ON DATA ARCHITECTURE</p>
+</div>
+<a class="font-label-caps text-label-caps text-primary hover:underline flex items-center gap-xs" href="#">
+                    READ ALL ARTICLES <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
+<!-- Article 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-video mb-md overflow-hidden rounded-lg border border-outline-variant">
+<img alt="Coding Cat Context" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ugSYgN3Oxm_CdvYcP6wj-e9x0LwazddkXM6htcZGpk8GQsB6VkcEk9m-x_oZ_hSHy5PGjXrLtQzpKxEmBvtoo3-ZkG-1fXCubohDRAbRh97QTWEJNYGT_iqDnK9AQi4Che6n-jwpqVRSXZSsnd7-YtjYQUo2uG3Ot_1vMBbDJ8sdVR2xq_PO-dnv3cEPjK5VVtJIh0ptCnETVUQbm-9CMhHeWGllYKXaCLNdGzF6AkDGGDHP_ri9GcXqfM"/>
+</div>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest block mb-xs">STRATEGY • 5 MIN READ</span>
+<h3 class="font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors">The LLM Data Fallacy: Why your models are only as good as your schema.</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm mt-sm">Exploring why foundation models fail when met with legacy data structures and how to fix it.</p>
+</div>
+<!-- Article 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-video mb-md overflow-hidden rounded-lg border border-outline-variant">
+<img alt="Server Hardware" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A macro shot of server hardware with intricate wiring and pulsing LED lights. Deep teal and cyan accents illuminate the dark metal surfaces. The image captures the sheer complexity and raw power of modern data infrastructure, presented in a clean, high-tech modernist style that emphasizes speed and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiLxdUCs7L8hlV0piQHqJnzSwkYWv8e1hGn06IgcBOjS5gtZcJNam5gae4vnmXgnuqZhAUYmt-S4c3tGl4OuxWGcG2JEf75I4NsNKIOIxzxzWAV2YSNvmiynne-QawK4G9KY371z7xBP7-4yRCb1DLSQxFa-sNLCqAGf0PvpitLd6TUnLdqaWNuF_2uV3Ey8HdPUqQP_iXVwHOdBwucC5bDZDN4uDN5vMqn27Zavn9ipdesL62vPRD4aiBDzblCL4Bf39b-mJfb06O"/>
+</div>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest block mb-xs">OPS • 8 MIN READ</span>
+<h3 class="font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors">Killing the Dashboard: Moving toward an Event-Driven decision engine.</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm mt-sm">Stop waiting for weekly reports. Learn how to build systems that alert you when a decision is needed.</p>
+</div>
+<!-- Article 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-video mb-md overflow-hidden rounded-lg border border-outline-variant">
+<img alt="Abstract Data Crystals" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A clean, minimalist 3D rendering of abstract crystal blocks floating in a dark, atmospheric void. The blocks are etched with glowing data patterns in neon teal. The lighting is soft but precise, creating elegant highlights on the sharp geometric edges. The overall mood is sophisticated, technical, and high-end, evoking the feeling of a digital command center." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQUErrtX_wJfJEuWsphoo56QTwVbEeZmN84slRqcXhvinC7okYDkF9oY9x0alHvtTzEVw-C4BosyNuGL6G5hyltROymi3G_ksI-OC4QlzzNJdu-FR83cTyzOU2xJwL-ms8OPWPMLhbfB4VwW-NcF6YzCrJvJu8MBLt5M4Z5OkX7GYpj1Qa3MEjCxkMmMgeP40qedCQWiRroJjqvVll53_KO3a6hF04dsDzaQ7I4IDnN3jUCOYOFJxx6_jslZnv_QkqPk83AZ7Nn1on"/>
+</div>
+<span class="font-label-caps text-[10px] text-secondary tracking-widest block mb-xs">ARCHITECTURE • 6 MIN READ</span>
+<h3 class="font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors">The CDO is Dead, Long Live the Operator.</h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm mt-sm">Why modern data leaders need to spend more time in spreadsheets and less time in board meetings.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant mt-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 py-xl px-container-margin max-w-7xl mx-auto">
+<div class="space-y-md">
+<div class="font-label-caps text-label-caps text-on-surface tracking-tighter">DATA BIZ</div>
+<p class="text-on-surface-variant font-body-sm text-body-sm max-w-sm">
+                    Fractional data leadership for high-growth teams. We fix the data, you fix the world.
+                </p>
+<div class="flex gap-md pt-sm">
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#"><span class="material-symbols-outlined">terminal</span></a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-xl md:justify-end">
+<div class="space-y-sm">
+<h5 class="font-label-caps text-[10px] text-primary">RESOURCES</h5>
+<ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
+<li><a class="hover:text-secondary transition-colors" href="#">Insights</a></li>
+<li><a class="hover:text-secondary transition-colors" href="#">Methodology</a></li>
+<li><a class="hover:text-secondary transition-colors" href="#">Case Studies</a></li>
+</ul>
+</div>
+<div class="space-y-sm">
+<h5 class="font-label-caps text-[10px] text-primary">LEGAL</h5>
+<ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
+<li><a class="hover:text-secondary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-secondary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-secondary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/30 py-md px-container-margin text-center">
+<p class="text-on-surface-variant font-body-sm text-body-sm">© 2024 Data Biz. All rights reserved.</p>
+</div>
+</footer>
+<script>
+        // Subtle interaction for the hero image to follow mouse slightly
+        const heroSection = document.querySelector('section');
+        const heroImg = heroSection.querySelector('img');
+        
+        heroSection.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+            heroImg.style.transform = `scale(1.1) translate(${xAxis}px, ${yAxis}px)`;
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            heroImg.style.transform = `scale(1) translate(0px, 0px)`;
+        });
+    </script>
+</body></html>

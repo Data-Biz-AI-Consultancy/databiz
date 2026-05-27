@@ -56,8 +56,8 @@ jobs:
           --exclude '.github/' \
           --exclude 'tests/' \
           --exclude 'scratch/' \
-          ./ root@${{ secrets.SERVER_IP }}:/var/www/databiz/
+          ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:/var/www/databiz/
 
     - name: Restart Docker Compose on Server
       run: |
-        ssh root@${{ secrets.SERVER_IP }} "cd /var/www/databiz && docker compose up -d --build"
+        ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "cd /var/www/databiz && docker compose up -d --build"

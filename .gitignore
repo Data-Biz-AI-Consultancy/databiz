@@ -1,7 +1,7 @@
+node_modules/
 scratch/
-
 seeds/_private
 
-test-results/.last-run.json
-playwright-report/index.html
-playwright-report/data/bfe2831241f5f714e5d11e909fd3a859c61566bb.md
+# Playwright test artifacts
+tests/test-results/
+tests/playwright-report/

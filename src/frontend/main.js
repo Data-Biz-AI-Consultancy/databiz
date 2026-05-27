@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initHeroParallax();
     fetchLatestInsights();
+    initAIAssistant();
 });
 
 /**
@@ -183,4 +184,266 @@ function initScrollReveal() {
     document.querySelectorAll('[data-vibe-reveal]').forEach(el => {
         observer.observe(el);
     });
+}
+
+/**
+ * Initialize Floating AI Assistant Chatbot
+ */
+function initAIAssistant() {
+    // 1. Create and inject HTML container
+    const container = document.createElement('div');
+    container.className = 'ai-assistant-container';
+    container.innerHTML = `
+        <button id="ai-trigger" class="ai-assistant-trigger pulse" aria-label="Open AI Assistant">
+            <span class="material-symbols-outlined">smart_toy</span>
+        </button>
+        <div id="ai-chat" class="ai-chat-window">
+            <div class="ai-chat-header">
+                <div class="ai-chat-header-title">
+                    <span class="material-symbols-outlined text-primary">smart_toy</span>
+                    <span>Data Biz Command AI</span>
+                </div>
+                <div class="ai-chat-header-actions">
+                    <button id="ai-clear" class="ai-chat-btn" title="Clear conversation">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                    <button id="ai-close" class="ai-chat-btn" title="Close chat">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+            </div>
+            <div id="ai-messages" class="ai-chat-messages"></div>
+            <div class="ai-chat-suggestions">
+                <button class="ai-chip" data-query="Who is Jimmy Pang?">Who is Jimmy?</button>
+                <button class="ai-chip" data-query="What services/offers do you have?">Offers</button>
+                <button class="ai-chip" data-query="How do you reduce cloud data costs?">Cloud Costs</button>
+                <button class="ai-chip" data-query="Can you help build a RAG pipeline?">RAG Pipeline</button>
+            </div>
+            <div class="ai-chat-input-area">
+                <input type="text" id="ai-input" class="ai-chat-input" placeholder="Type a command or ask a question..." autocomplete="off">
+                <button id="ai-send" class="ai-chat-send" aria-label="Send message">
+                    <span class="material-symbols-outlined">send</span>
+                </button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(container);
+
+    const trigger = document.getElementById('ai-trigger');
+    const chatWindow = document.getElementById('ai-chat');
+    const closeBtn = document.getElementById('ai-close');
+    const clearBtn = document.getElementById('ai-clear');
+    const sendBtn = document.getElementById('ai-send');
+    const input = document.getElementById('ai-input');
+    const messagesContainer = document.getElementById('ai-messages');
+    const suggestionChips = document.querySelectorAll('.ai-chip');
+
+    // System Prompt context grounding the AI assistant with Data Biz specifics
+    const SYSTEM_PROMPT = `You are the Data Biz Command AI assistant.
+Your creator and operator is Jimmy Pang, a veteran fractional CDO and data operator who:
+- Built 0-to-1 data stacks for 3 Unicorns.
+- Led Enterprise AI transformations at Fortune 500 companies.
+- Reduces cloud data costs by an average of 35-40%.
+- Specializes in Fractional CDO Leadership, Data Warehousing, MLOps, Data Governance, and grounded RAG pipelines.
+
+Services/Offers:
+1. "The 0-to-1 Data Stack" (for Founders) - Rapid deployment of a high-integrity data infrastructure.
+2. "Fractional CDO Leadership" (for Executives & Data Leaders) - Strategic oversight, vendor negotiation, and team alignment.
+3. "Data IC Support & Tooling" - Helping internal data engineers implement modern event-driven architectures.
+
+Tone and Vibe:
+- Senior, operator-led, editorial, blunt, and highly technical.
+- Do not write corporate fluff or generic AI intro statements.
+- Get straight to the point with actionable details.
+- Use bullet points where appropriate for readability.
+- Refer back to our core message: Data Biz fixes decisions, not just dashboards.`;
+
+    let chatHistory = [];
+
+    // Load history or initialize welcome
+    function resetChat() {
+        chatHistory = [
+            { role: 'system', content: SYSTEM_PROMPT },
+            { role: 'assistant', content: "Systems initialized. I am Data Biz Command AI, grounded in Jimmy Pang's operational blueprints. Ask me about our fractional CDO support, 0-to-1 data architecture, or how to prune cloud waste." }
+        ];
+        renderHistory();
+    }
+
+    function renderHistory() {
+        messagesContainer.innerHTML = '';
+        // Skip system prompt in rendering
+        chatHistory.forEach(msg => {
+            if (msg.role !== 'system') {
+                appendMessageToUI(msg.role, msg.content);
+            }
+        });
+        scrollToBottom();
+    }
+
+    function appendMessageToUI(role, text) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `ai-chat-message ${role}`;
+        msgDiv.innerHTML = formatMarkdown(text);
+        messagesContainer.appendChild(msgDiv);
+        return msgDiv;
+    }
+
+    function scrollToBottom() {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function formatMarkdown(text) {
+        let escaped = text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+        
+        // Bold
+        escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        
+        // Inline code
+        escaped = escaped.replace(/`(.*?)`/g, '<code>$1</code>');
+        
+        // Paragraphs / Newlines
+        escaped = escaped.replace(/\n\n/g, '</p><p>');
+        escaped = escaped.replace(/\n/g, '<br>');
+        
+        return `<p>${escaped}</p>`;
+    }
+
+    // Toggle Chat Window
+    trigger.addEventListener('click', () => {
+        const isOpen = chatWindow.classList.toggle('open');
+        if (isOpen) {
+            trigger.classList.remove('pulse');
+            setTimeout(() => input.focus(), 150);
+        }
+    });
+
+    closeBtn.addEventListener('click', () => {
+        chatWindow.classList.remove('open');
+    });
+
+    clearBtn.addEventListener('click', () => {
+        if (confirm("Reset conversation logs?")) {
+            resetChat();
+        }
+    });
+
+    // Handle user queries
+    async function handleSend(text) {
+        const query = text || input.value.trim();
+        if (!query) return;
+
+        input.value = '';
+        // Disable inputs
+        input.disabled = true;
+        sendBtn.disabled = true;
+
+        // Append user message
+        chatHistory.push({ role: 'user', content: query });
+        appendMessageToUI('user', query);
+        scrollToBottom();
+
+        // Create typing indicator
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'ai-chat-message assistant ai-chat-typing';
+        typingIndicator.innerHTML = '<span></span><span></span><span></span>';
+        messagesContainer.appendChild(typingIndicator);
+        scrollToBottom();
+
+        try {
+            // Send request to proxy endpoint
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    model: 'gemma3:4b',
+                    messages: chatHistory,
+                    stream: true
+                })
+            });
+
+            // Remove typing indicator
+            typingIndicator.remove();
+
+            if (!response.ok) {
+                throw new Error(`Server returned ${response.status}`);
+            }
+
+            // Create container for assistant response
+            const assistantMsgDiv = appendMessageToUI('assistant', '');
+            let assistantText = '';
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let partialBuffer = '';
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                partialBuffer += decoder.decode(value, { stream: true });
+                const lines = partialBuffer.split('\n');
+                
+                // Keep the last partial line in the buffer
+                partialBuffer = lines.pop();
+
+                for (const line of lines) {
+                    if (!line.trim()) continue;
+                    try {
+                        const json = JSON.parse(line);
+                        if (json.message && json.message.content) {
+                            assistantText += json.message.content;
+                            assistantMsgDiv.innerHTML = formatMarkdown(assistantText);
+                            scrollToBottom();
+                        }
+                    } catch (err) {
+                        console.warn("Failed to parse chunk:", line, err);
+                    }
+                }
+            }
+
+            // Parse final buffer if anything remains
+            if (partialBuffer.trim()) {
+                try {
+                    const json = JSON.parse(partialBuffer);
+                    if (json.message && json.message.content) {
+                        assistantText += json.message.content;
+                        assistantMsgDiv.innerHTML = formatMarkdown(assistantText);
+                    }
+                } catch (e) {}
+            }
+
+            // Save completed assistant response to history
+            chatHistory.push({ role: 'assistant', content: assistantText });
+
+        } catch (error) {
+            console.error("AI Assistant request failed:", error);
+            typingIndicator.remove();
+            appendMessageToUI('assistant', `⚠️ **Connection Error**: Failed to reach Command AI server. This usually means the Gemma3:4b model is still being pulled and loaded inside the container, or the service is initializing. Please wait 1-2 minutes and try again.`);
+            scrollToBottom();
+        } finally {
+            input.disabled = false;
+            sendBtn.disabled = false;
+            input.focus();
+        }
+    }
+
+    sendBtn.addEventListener('click', () => handleSend());
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleSend();
+        }
+    });
+
+    suggestionChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            const query = chip.getAttribute('data-query');
+            handleSend(query);
+        });
+    });
+
+    // Initialize first welcome message
+    resetChat();
 }

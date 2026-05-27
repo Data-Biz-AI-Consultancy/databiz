@@ -23,11 +23,10 @@ function initThemeToggle() {
     const themeToggleIcon = document.getElementById('theme-toggle-icon');
     if (!themeToggle || !themeToggleIcon) return;
 
-    // Check saved preference or system preference
+    // Check saved preference (defaults to light mode)
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    if (savedTheme === 'dark') {
         document.documentElement.classList.add('dark');
         themeToggleIcon.textContent = 'light_mode';
     } else {

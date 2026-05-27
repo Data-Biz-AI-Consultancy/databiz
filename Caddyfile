@@ -1,0 +1,74 @@
+# Caddyfile for Hetzner server (Famiglia / Databiz reverse proxy)
+# Path on host: /opt/famiglia/famiglia-demo/Caddyfile
+# After editing on host, run:
+#   docker exec -w /etc/caddy famiglia-demo-caddy-1 caddy reload
+
+{
+    # Global options
+    email {$ACME_EMAIL:jimmypang@databizaitech.com}
+}
+
+
+{$PRODUCTION_DOMAIN:demo.aipassione.com} {
+    # HSTS - Force browsers to only use HTTPS
+    header Strict-Transport-Security "max-age=31536000;"
+    
+    # Security Headers
+    header X-Content-Type-Options nosniff
+    header X-Frame-Options DENY
+    header Referrer-Policy strict-origin-when-cross-origin
+
+    # API Documentation
+    handle /docs* {
+        reverse_proxy app:8000
+    }
+
+    # API Backend (Resilient for SSE and WebSockets)
+    # The /api/ path is proxied to the app service
+    handle /api/* {
+        reverse_proxy app:8000 {
+            # Disable flush interval to support streaming (SSE)
+            flush_interval -1
+        }
+    }
+
+    # Gateway Health
+    handle_path /gateway-health {
+        respond "online" 200
+    }
+
+    # Frontend Routing
+    # This handles the root path and assets
+    handle {
+        reverse_proxy frontend:80
+    }
+
+    # Custom log configuration
+    log {
+        output stdout
+        format json
+    }
+}
+
+www.databizaitech.com {
+    redir https://databizaitech.com{uri}
+}
+
+databizaitech.com {
+    # HSTS - Force browsers to only use HTTPS
+    header Strict-Transport-Security "max-age=31536000;"
+    
+    # Security Headers
+    header X-Content-Type-Options nosniff
+    header X-Frame-Options DENY
+    header Referrer-Policy strict-origin-when-cross-origin
+
+    # Proxy all traffic to the databiz frontend running on host port 8080
+    reverse_proxy 172.18.0.1:8080
+
+    # Custom log configuration
+    log {
+        output stdout
+        format json
+    }
+}

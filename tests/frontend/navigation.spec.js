@@ -14,7 +14,7 @@ test.describe('Data Biz E2E Tests', () => {
     await page.goto('/');
     await page.locator('nav').getByRole('link', { name: 'Offers', exact: true }).click();
     await expect(page).toHaveURL(/\/offers.html/);
-    await expect(page.locator('h1')).toContainText(/How We Partner/i);
+    await expect(page.locator('h1')).toContainText(/Tailored solutions/i);
   });
 
   test('should navigate to case studies page and check content', async ({ page }) => {

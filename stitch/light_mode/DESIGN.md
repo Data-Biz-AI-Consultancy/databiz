@@ -1,72 +1,77 @@
 ---
-name: Data Command
+name: Executive Editorial
 colors:
-  surface: '#0d1515'
-  surface-dim: '#0d1515'
-  surface-bright: '#323b3b'
-  surface-container-lowest: '#081010'
-  surface-container-low: '#151d1d'
-  surface-container: '#192121'
-  surface-container-high: '#232b2b'
-  surface-container-highest: '#2e3636'
-  on-surface: '#dce4e4'
-  on-surface-variant: '#bbcac6'
-  inverse-surface: '#dce4e4'
-  inverse-on-surface: '#2a3232'
-  outline: '#859490'
-  outline-variant: '#3c4947'
-  surface-tint: '#4fdbc8'
-  primary: '#4fdbc8'
-  on-primary: '#003731'
-  primary-container: '#14b8a6'
-  on-primary-container: '#00423b'
-  inverse-primary: '#006b5f'
-  secondary: '#44e2cd'
-  on-secondary: '#003731'
-  secondary-container: '#03c6b2'
-  on-secondary-container: '#004d44'
-  tertiary: '#ffb2b7'
-  on-tertiary: '#67001b'
-  tertiary-container: '#ff7b88'
-  on-tertiary-container: '#7a0022'
-  error: '#ffb4ab'
-  on-error: '#690005'
-  error-container: '#93000a'
-  on-error-container: '#ffdad6'
-  primary-fixed: '#71f8e4'
-  primary-fixed-dim: '#4fdbc8'
-  on-primary-fixed: '#00201c'
-  on-primary-fixed-variant: '#005048'
-  secondary-fixed: '#62fae3'
-  secondary-fixed-dim: '#3cddc7'
-  on-secondary-fixed: '#00201c'
-  on-secondary-fixed-variant: '#005047'
-  tertiary-fixed: '#ffdadb'
-  tertiary-fixed-dim: '#ffb2b7'
-  on-tertiary-fixed: '#40000d'
-  on-tertiary-fixed-variant: '#92002a'
-  background: '#0d1515'
-  on-background: '#dce4e4'
-  surface-variant: '#2e3636'
+  surface: '#faf9f8'
+  surface-dim: '#dadad9'
+  surface-bright: '#faf9f8'
+  surface-container-lowest: '#ffffff'
+  surface-container-low: '#f4f3f2'
+  surface-container: '#eeeeed'
+  surface-container-high: '#e9e8e7'
+  surface-container-highest: '#e3e2e1'
+  on-surface: '#1a1c1c'
+  on-surface-variant: '#3f4948'
+  inverse-surface: '#2f3130'
+  inverse-on-surface: '#f1f0ef'
+  outline: '#6f7979'
+  outline-variant: '#bec9c8'
+  surface-tint: '#096969'
+  primary: '#004c4c'
+  on-primary: '#ffffff'
+  primary-container: '#006666'
+  on-primary-container: '#93e1e0'
+  inverse-primary: '#86d4d3'
+  secondary: '#645d54'
+  on-secondary: '#ffffff'
+  secondary-container: '#e9ded2'
+  on-secondary-container: '#696258'
+  tertiary: '#3b4646'
+  on-tertiary: '#ffffff'
+  tertiary-container: '#535d5d'
+  on-tertiary-container: '#cbd6d6'
+  error: '#ba1a1a'
+  on-error: '#ffffff'
+  error-container: '#ffdad6'
+  on-error-container: '#93000a'
+  primary-fixed: '#a2f0ef'
+  primary-fixed-dim: '#86d4d3'
+  on-primary-fixed: '#002020'
+  on-primary-fixed-variant: '#004f4f'
+  secondary-fixed: '#ece1d5'
+  secondary-fixed-dim: '#cfc5b9'
+  on-secondary-fixed: '#201b13'
+  on-secondary-fixed-variant: '#4c463d'
+  tertiary-fixed: '#dae5e5'
+  tertiary-fixed-dim: '#bec9c9'
+  on-tertiary-fixed: '#131d1e'
+  on-tertiary-fixed-variant: '#3e4949'
+  background: '#faf9f8'
+  on-background: '#1a1c1c'
+  surface-variant: '#e3e2e1'
 typography:
   display-lg:
     fontFamily: Outfit
     fontSize: 48px
-    fontWeight: '700'
+    fontWeight: '600'
     lineHeight: 56px
     letterSpacing: -0.02em
   display-lg-mobile:
     fontFamily: Outfit
     fontSize: 32px
-    fontWeight: '700'
+    fontWeight: '600'
     lineHeight: 40px
     letterSpacing: -0.01em
   headline-md:
     fontFamily: Outfit
     fontSize: 24px
-    fontWeight: '600'
+    fontWeight: '500'
     lineHeight: 32px
     letterSpacing: -0.01em
+  headline-sm:
+    fontFamily: Outfit
+    fontSize: 20px
+    fontWeight: '500'
+    lineHeight: 28px
   body-lg:
     fontFamily: Outfit
     fontSize: 18px
@@ -77,22 +82,18 @@ typography:
     fontSize: 16px
     fontWeight: '400'
     lineHeight: 24px
-  body-sm:
+  label-md:
     fontFamily: Outfit
-    fontSize: 14px
-    fontWeight: '400'
-    lineHeight: 20px
-  label-caps:
-    fontFamily: JetBrains Mono
-    fontSize: 12px
-    fontWeight: '600'
-    lineHeight: 16px
-    letterSpacing: 0.08em
-  data-mono:
-    fontFamily: JetBrains Mono
     fontSize: 14px
     fontWeight: '500'
     lineHeight: 20px
+    letterSpacing: 0.02em
+  label-sm:
+    fontFamily: Outfit
+    fontSize: 12px
+    fontWeight: '600'
+    lineHeight: 16px
+    letterSpacing: 0.05em
 rounded:
   sm: 0.125rem
   DEFAULT: 0.25rem
@@ -101,86 +102,71 @@ rounded:
   xl: 0.75rem
   full: 9999px
 spacing:
-  base: 4px
-  xs: 4px
-  sm: 8px
-  md: 16px
-  lg: 24px
-  xl: 32px
-  container-margin: 24px
-  gutter: 16px
+  unit: 8px
+  gutter: 24px
+  margin-desktop: 64px
+  margin-mobile: 20px
+  container-max-width: 1280px
 ---
 
 ## Brand & Style
 
-This design system is engineered for high-density data environments where clarity, speed, and precision are paramount. The "Modern Data Command" aesthetic leverages a dark-mode-first approach to reduce visual fatigue during extended monitoring and analysis.
+This design system is built for high-stakes data environments where clarity is synonymous with authority. The brand personality is poised, intellectual, and decisive, catering to an executive audience that values information density without cognitive clutter. 
 
-The brand personality is **technical, authoritative, and premium**. It draws from **Modernism** for its functional clarity and **Glassmorphism** for its sense of depth and hierarchy. The interface should feel like a sophisticated cockpit: high-contrast information layers floating over a deep, stable void. Every element is designed to minimize cognitive load while highlighting critical data signals through vibrant teal accents.
+The design style is **Minimalism with an Editorial edge**. It prioritizes high-quality typography and generous whitespace to create a sense of calm and focus. By stripping away unnecessary ornamentation, the system allows the data to command the stage. The emotional response should be one of quiet confidence—professional restraint that feels premium rather than sterile.
 
 ## Colors
 
-The palette is built on a foundation of **Deep Charcoal (#0F1717)** to provide a rich, non-fatiguing backdrop. 
+The palette is anchored by a deep, authoritative teal that serves as the primary signal for action and importance. This is grounded by a warm, off-white surface that reduces eye strain compared to pure white and adds a sophisticated, paper-like quality to the interface.
 
-- **Primary (Vibrant Teal):** Used for actionable items, active states, and success indicators. It provides high luminance against the dark background.
-- **Secondary (Mint):** Used for supporting accents and hover states to provide a subtle shift in interactive elements.
-- **Tertiary (Rose):** Reserved exclusively for alerts, errors, and critical data points that require immediate attention.
-- **Neutrals:** Systematic shades of slate and charcoal define surface tiers. Surface colors use a slightly higher luminosity than the background to create a sense of elevation.
+- **Primary (#006666):** Used for key brand moments, primary actions, and critical data highlights.
+- **Secondary (#A89F94):** A muted taupe for subtle borders, secondary text, and architectural lines.
+- **Tertiary (#D9E4E4):** A soft teal wash for background accents and large surface areas.
+- **Neutral (#FAF9F8):** The foundational surface color, providing a warm, premium backdrop.
 
 ## Typography
 
-**Outfit** is the primary typeface, chosen for its geometric precision and modern readability. It provides a clean, professional appearance that scales effectively from large dashboards to dense property panels.
+The typography uses **Outfit** across all levels to maintain a cohesive, modern geometric feel while ensuring high legibility. 
 
-To reinforce the technical nature of the system, **JetBrains Mono** is utilized for metadata, labels, and raw data values. This ensures that numerical data is perfectly aligned and easily scannable. 
-
-- Use **display-lg** for high-level metric summaries.
-- Use **label-caps** for section headers and table column titles to create a clear structural distinction.
-- Maintain a high contrast ratio (minimum 7:1) for all body text against the dark backgrounds.
+The hierarchy is strictly enforced. Display sizes use tighter letter spacing and heavier weights to mimic high-end editorial layouts. Body text is prioritized for readability with comfortable line heights. Small labels and metadata utilize increased letter spacing and uppercase styling to provide a clear visual distinction from narrative content.
 
 ## Layout & Spacing
 
-The layout utilizes a **12-column fluid grid** for desktop, transitioning to a **4-column grid** for mobile. A strict **4px baseline grid** governs all vertical rhythm and internal component padding.
+This design system employs a **Fixed Grid** model for desktop to maintain the "editorial" feel, centering content within a 1280px container to ensure lines of text do not become excessively long.
 
-- **Margins:** 24px on desktop; 16px on mobile.
-- **Gutters:** 16px fixed to maintain tight data density.
-- **Density:** The system prioritizes "Compact" density to maximize information display. Avoid excessive whitespace in data-rich areas; instead, use structural borders and tonal shifts to separate content.
+- **Desktop:** 12-column grid with 24px gutters and 64px side margins.
+- **Tablet:** 8-column grid with 24px gutters and 40px side margins.
+- **Mobile:** 4-column fluid grid with 16px gutters and 20px side margins.
+
+The spacing rhythm follows an 8px base unit. Generous "breathing room" is mandatory; avoid crowding elements. Use padding to create logical groupings rather than relying solely on lines or borders.
 
 ## Elevation & Depth
 
-Depth is achieved through **Glassmorphism** and **Tonal Layering** rather than traditional heavy shadows.
+Depth is achieved through **Tonal Layers** and **Low-Contrast Outlines** rather than heavy shadows. This maintains a flat, sophisticated profile consistent with modern editorial design.
 
-- **Layer 0 (Background):** #0F1717.
-- **Layer 1 (Cards/Containers):** #1E2929 with a 1px border (#2D3A3A).
-- **Layer 2 (Overlays/Modals):** Semi-transparent background (alpha 80%) with a `backdrop-filter: blur(12px)`. These elements should have a subtle top-down gradient and a slightly brighter border (#3D4A4A) to simulate light catching the edge of the "glass."
-- **Interactive Depth:** When an element is hovered, it should increase in luminosity rather than casting a larger shadow. This reinforces the "illuminated cockpit" feel.
+- **Base Level:** The #FAF9F8 neutral surface.
+- **Mid Level:** Elements like cards or navigation bars use a pure white (#FFFFFF) background to subtly lift from the base, paired with a 1px border in #A89F94 at 20% opacity.
+- **High Level:** Hover states or active modals may use a very soft, highly diffused ambient shadow (0px 12px 32px rgba(0, 0, 0, 0.04)) to indicate interactivity.
 
 ## Shapes
 
-The shape language is **Soft** but disciplined. 
-
-- **Primary Radius (4px):** Applied to buttons, input fields, and small UI components to maintain a crisp, technical look.
-- **Large Radius (8px):** Applied to cards and main content containers.
-- **Interactive Elements:** Use a consistent 4px radius. Avoid pill shapes unless used for status chips to ensure they are visually distinct from functional buttons.
+The shape language is **Soft**. A subtle 4px (0.25rem) radius is applied to standard components like buttons and input fields. This provides a touch of approachability without sacrificing the professional, architectural feel of the interface. Larger containers like cards may use the 8px (0.5rem) radius to define clear boundaries.
 
 ## Components
 
 ### Buttons
-- **Primary:** Solid #14B8A6 with #0F1717 text. High impact.
-- **Secondary:** Transparent background with 1px #2D3A3A border. On hover, background fills to 10% Teal opacity.
-- **Ghost:** No border or background. Use for secondary actions in dense toolbars.
+- **Primary:** Solid #006666 background with white text. High-contrast, no shadow.
+- **Secondary:** Transparent background with a 1px border in #006666 and teal text.
+- **Tertiary:** Text-only with an underline on hover, used for low-priority actions.
 
 ### Input Fields
-- **Default:** #141C1C background with a 1px #2D3A3A border.
-- **Focus:** Border changes to #14B8A6 with a subtle outer glow (0px 0px 8px rgba(20, 184, 166, 0.3)).
-- **Typography:** Use `body-sm` for input text and `label-caps` for field labels.
+Inputs use a white background with a subtle #A89F94 border. Focus states transition the border to the primary teal and add a 2px inset ring.
 
-### Cards & Containers
-- Utilize the Layer 1 specification. 
-- Headers within cards should have a subtle bottom border (#2D3A3A) to separate navigation from content.
+### Cards
+Cards are the primary data containers. They should have no shadow, a pure white background, and a 1px border in a very light neutral. Headers within cards should use `label-sm` for categorization.
 
-### Status Chips
-- Use the `data-mono` typography.
-- Statuses (Success, Warning, Error) should use a desaturated background (20% opacity) of the respective color with a fully saturated 1px border and text.
+### Chips & Tags
+Used for data categorization. These should be rectangular with the 4px radius, using a light tint of the primary color (Tertiary #D9E4E4) and deep teal text.
 
 ### Data Tables
-- Row hover state: #232E2E.
-- Striping is not required; use 1px horizontal dividers (#1E2929) to maintain a clean vertical flow.
+Tables are central to the experience. Use "invisible" borders (only horizontal separators) to keep the layout clean. Headers must be `label-sm` (uppercase) to differentiate from data rows.

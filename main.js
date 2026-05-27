@@ -23,11 +23,10 @@ function initThemeToggle() {
     const themeToggleIcon = document.getElementById('theme-toggle-icon');
     if (!themeToggle || !themeToggleIcon) return;
 
-    // Check saved preference or system preference
+    // Check saved preference (defaults to light mode)
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    if (savedTheme === 'dark') {
         document.documentElement.classList.add('dark');
         themeToggleIcon.textContent = 'light_mode';
     } else {
@@ -52,9 +51,10 @@ function initThemeToggle() {
  * Hero image parallax effect following mouse movement
  */
 function initHeroParallax() {
-    const heroSection = document.querySelector('section');
     const heroImg = document.getElementById('hero-bg-img');
-    if (!heroSection || !heroImg) return;
+    if (!heroImg) return;
+    const heroSection = heroImg.closest('section');
+    if (!heroSection) return;
 
     heroSection.addEventListener('mousemove', (e) => {
         const xAxis = (window.innerWidth / 2 - e.pageX) / 50;

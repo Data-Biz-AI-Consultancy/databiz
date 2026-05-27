@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>About | Data Biz</title>
+    <meta name="description" content="Meet Jimmy Pang, the operator behind Data Biz, and learn about our direct, zero-fluff approach to fractional data leadership.">
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9K79821DCM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9K79821DCM');
+    </script>
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "var(--secondary)",
+                    "on-secondary-container": "var(--on-secondary-container)",
+                    "background": "var(--background)",
+                    "surface-bright": "var(--surface-bright)",
+                    "outline": "var(--outline)",
+                    "surface-container-highest": "var(--surface-container-highest)",
+                    "primary": "var(--primary)",
+                    "surface-container-high": "var(--surface-container-high)",
+                    "surface-dim": "var(--surface-dim)",
+                    "surface": "var(--surface)",
+                    "outline-variant": "var(--outline-variant)",
+                    "surface-container": "var(--surface-container)",
+                    "inverse-surface": "var(--inverse-surface)",
+                    "on-background": "var(--on-background)",
+                    "primary-container": "var(--primary-container)",
+                    "on-surface-variant": "var(--on-surface-variant)",
+                    "on-surface": "var(--on-surface)",
+                    "surface-variant": "var(--surface-variant)",
+                    "surface-container-lowest": "var(--surface-container-lowest)",
+                    "surface-container-low": "var(--surface-container-low)",
+                    "on-primary": "var(--on-primary)",
+            },
+            "borderRadius": {
+                    "DEFAULT": "4px",
+                    "lg": "8px",
+                    "xl": "12px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "xs": "4px",
+                    "base": "4px",
+                    "md": "16px",
+                    "gutter": "16px",
+                    "container-margin": "24px",
+                    "lg": "24px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "label-caps": ["JetBrains Mono"],
+                    "body-sm": ["Outfit"],
+                    "display-lg-mobile": ["Outfit"],
+                    "display-lg": ["Outfit"],
+                    "headline-md": ["Outfit"],
+                    "body-lg": ["Outfit"],
+                    "data-mono": ["JetBrains Mono"],
+                    "body-md": ["Outfit"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden text-on-background bg-background">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant transition-colors duration-300">
+    <div class="flex justify-between items-center h-16 px-container-margin max-w-7xl mx-auto">
+        <a href="index.html" class="font-headline-md text-headline-md font-bold text-primary tracking-tighter hover:opacity-90">
+            Data Biz
+        </a>
+        <div class="hidden md:flex items-center space-x-xl">
+            <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="offers.html">Offers</a>
+            <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="case-study.html">Case Study</a>
+            <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="insights.html">Insights</a>
+            <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="toolings.html">Toolings</a>
+            <a class="text-primary font-body-md text-body-md hover:text-primary transition-colors duration-200" href="about.html">About</a>
+        </div>
+        <div class="flex items-center gap-md">
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" class="p-2 text-on-surface-variant hover:text-primary rounded-lg transition-colors duration-200 flex items-center justify-center" aria-label="Toggle Theme">
+                <span class="material-symbols-outlined" id="theme-toggle-icon">light_mode</span>
+            </button>
+            <a href="https://calendar.app.google/6w9VxJ7QXjUY7W658" target="_blank" rel="noopener" data-ga-event="header_cta_click" class="bg-primary text-on-primary px-lg py-sm font-label-caps text-label-caps rounded-lg hover:brightness-110 active:scale-95 transition-all">
+                Book a call
+            </a>
+        </div>
+    </div>
+</nav>
+
+<main class="pt-16">
+    <!-- Header -->
+    <section class="py-20 px-container-margin border-b border-outline-variant bg-surface-container-lowest transition-colors duration-300">
+        <div class="max-w-7xl mx-auto text-center" data-vibe-reveal>
+            <span class="inline-block font-label-caps text-label-caps text-secondary mb-md tracking-widest border border-secondary/30 px-sm py-xs bg-secondary/5">
+                THE OPERATOR
+            </span>
+            <h1 class="font-display-lg text-display-lg mb-lg leading-tight max-w-4xl mx-auto">
+                Hi, I'm <span class="text-primary">Jimmy Pang</span>.
+            </h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                I help high-growth teams build clean, scalable data systems and cut through KPI confusion.
+            </p>
+        </div>
+    </section>
+
+    <!-- Bio Section -->
+    <section class="py-20 px-container-margin max-w-7xl mx-auto">
+        <div class="flex flex-col lg:flex-row gap-xl items-center">
+            <div class="w-full lg:w-1/3" data-vibe-reveal>
+                <div class="relative group">
+                    <div class="absolute -inset-2 bg-gradient-to-tr from-primary to-secondary rounded-xl opacity-20 blur-xl group-hover:opacity-40 transition-opacity"></div>
+                    <img alt="Jimmy Pang" class="relative rounded-xl w-full aspect-square object-cover border border-outline-variant grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl" src="https://lh3.googleusercontent.com/aida/ADBb0uhTu181tjoQ-qIQhQFyV0mq1CEWfGBMB76IXXC1ve7H6ivMXEYxclcyQYfDHOc_tv-WfQStm2hMpqqjkxGs8Jb3COWhvwclYOJS5YmXkHIS2ryHuFtCNz49TLmU9nbeTtI40JA0-flk80tq1tv2TqAGQFKq61-Tvv8yBXpQkptJw0kw_F7_9mXYD5wLUKqQ7WRaM0vxxhyvMjomxBPxzVaJh6r1-yS8d_1PLpLCnTiEL8p3qML0_hlTZjkD"/>
+                </div>
+            </div>
+            <div class="w-full lg:w-2/3 space-y-lg" data-vibe-reveal>
+                <h2 class="font-display-lg text-headline-md font-bold text-on-surface">Data is an operational asset, not an IT expense.</h2>
+                <p class="font-body-lg text-body-lg text-on-surface mb-lg italic border-l-4 border-primary pl-lg">
+                    "If your data isn't directly shortening your feedback loop, it's just digital hoarding."
+                </p>
+                <p class="text-on-surface-variant font-body-sm">
+                    Throughout my career building data stacks for unicorns and leading enterprise transformations, I've observed a recurring failure pattern: organizations build dashboards for the sake of metrics, rather than to inform decisions. Data Biz was created to challenge this standard. We operate with a direct, editorial, and blunt style to get your infrastructure clean, automated, and aligned with enterprise logic.
+                </p>
+                <div class="pt-sm">
+                    <a href="https://www.linkedin.com/in/jimmy-pang-hk603/" target="_blank" rel="noopener" class="inline-flex items-center gap-xs text-primary font-label-caps text-label-caps hover:underline">
+                        CONNECT ON LINKEDIN <span class="material-symbols-outlined text-sm">open_in_new</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-lg pt-md">
+                    <div>
+                        <h4 class="font-label-caps text-label-caps text-on-surface-variant mb-sm border-b border-outline-variant pb-xs">TRACK RECORD</h4>
+                        <ul class="space-y-sm font-body-sm text-body-sm">
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                                Built 0-to-1 data stacks for 3 Unicorns
+                            </li>
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                                Led Enterprise AI transformations at Fortune 500
+                            </li>
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                                Reduced cloud data costs by avg 35%
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-label-caps text-label-caps text-on-surface-variant mb-sm border-b border-outline-variant pb-xs">EXPERTISE</h4>
+                        <div class="flex flex-wrap gap-xs">
+                            <span class="bg-surface-container p-xs px-sm rounded-lg text-on-surface-variant font-data-mono text-[11px] border border-outline-variant">FRACTIONAL CDO</span>
+                            <span class="bg-surface-container p-xs px-sm rounded-lg text-on-surface-variant font-data-mono text-[11px] border border-outline-variant">DATA WAREHOUSING</span>
+                            <span class="bg-surface-container p-xs px-sm rounded-lg text-on-surface-variant font-data-mono text-[11px] border border-outline-variant">ML OPS</span>
+                            <span class="bg-surface-container p-xs px-sm rounded-lg text-on-surface-variant font-data-mono text-[11px] border border-outline-variant">DATA GOVERNANCE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operational Philosophy Section -->
+    <section class="py-20 px-container-margin bg-surface-container-low transition-colors duration-300 border-t border-outline-variant/30">
+        <div class="max-w-7xl mx-auto space-y-xl" data-vibe-reveal>
+            <div class="text-center">
+                <span class="font-label-caps text-label-caps text-secondary tracking-widest block">HOW WE OPERATE</span>
+                <h2 class="font-display-lg text-headline-md font-bold text-on-surface">The Operating Manifesto</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+                <div class="glass-card p-lg rounded-lg">
+                    <h3 class="font-headline-md text-body-lg font-bold mb-sm">1. Focus on Decisions</h3>
+                    <p class="text-on-surface-variant font-body-sm">Every model we build and report we structure must trace back to a direct business decision. If a metric cannot alter organizational behavior, it should not be tracked.</p>
+                </div>
+                <div class="glass-card p-lg rounded-lg">
+                    <h3 class="font-headline-md text-body-lg font-bold mb-sm">2. Engineering Rigor</h3>
+                    <p class="text-on-surface-variant font-body-sm">Data analytics is software engineering. We apply strict CI/CD pipelines, modular dbt schema builds, test suites, and git version control to everything we build.</p>
+                </div>
+                <div class="glass-card p-lg rounded-lg">
+                    <h3 class="font-headline-md text-body-lg font-bold mb-sm">3. Absolute Transparency</h3>
+                    <p class="text-on-surface-variant font-body-sm">We provide blunt, operator-led feedback. No vanity statistics, slide deck theatre, or inflated retainer schedules. We build, document, and transition command to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-xl bg-primary text-on-primary text-center px-container-margin transition-colors duration-300">
+        <div class="max-w-3xl mx-auto" data-vibe-reveal>
+            <h2 class="font-display-lg text-display-lg mb-md">Need to fix the decisions behind your data?</h2>
+            <p class="font-body-lg text-body-lg mb-lg opacity-90">Start with a short discovery call. No deck theatre. Just a direct conversation about where things are stuck.</p>
+            <a href="https://calendar.app.google/6w9VxJ7QXjUY7W658" target="_blank" rel="noopener" class="inline-block bg-background text-primary px-xl py-md font-label-caps text-label-caps rounded-lg hover:brightness-110 transition-all shadow-xl">
+                BOOK A DISCOVERY CALL
+            </a>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant transition-colors duration-300">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 py-xl px-container-margin max-w-7xl mx-auto">
+        <div class="space-y-md">
+            <div class="font-label-caps text-label-caps text-on-surface tracking-tighter">DATA BIZ</div>
+            <p class="text-on-surface-variant font-body-sm text-body-sm max-w-sm">
+                Fractional data leadership for high-growth teams. We fix the data, you fix the world.
+            </p>
+            <div class="flex gap-md pt-sm">
+                <a class="text-on-surface-variant hover:text-secondary transition-colors" href="https://jimmypang.substack.com" target="_blank" rel="noopener" aria-label="Substack"><span class="material-symbols-outlined">public</span></a>
+                <a class="text-on-surface-variant hover:text-secondary transition-colors" href="https://www.linkedin.com/in/jimmy-pang-hk603" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="material-symbols-outlined">terminal</span></a>
+                <a class="text-on-surface-variant hover:text-secondary transition-colors" href="mailto:jimmypang@aipassione.com" aria-label="Email"><span class="material-symbols-outlined">share</span></a>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-xl md:justify-end">
+            <div class="space-y-sm">
+                <h5 class="font-label-caps text-[10px] text-primary">RESOURCES</h5>
+                <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
+                    <li><a class="hover:text-secondary transition-colors" href="offers.html">Offers</a></li>
+                    <li><a class="hover:text-secondary transition-colors" href="case-study.html">Case Study</a></li>
+                    <li><a class="hover:text-secondary transition-colors" href="insights.html">Insights</a></li>
+                    <li><a class="hover:text-secondary transition-colors" href="toolings.html">Toolings</a></li>
+                </ul>
+            </div>
+            <div class="space-y-sm">
+                <h5 class="font-label-caps text-[10px] text-primary">LEGAL</h5>
+                <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
+                    <li><a class="hover:text-secondary transition-colors" href="#">Privacy Policy</a></li>
+                    <li><a class="hover:text-secondary transition-colors" href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="border-t border-outline-variant/30 py-md px-container-margin text-center">
+        <p class="text-on-surface-variant font-body-sm text-body-sm">© 2026 Data Biz. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

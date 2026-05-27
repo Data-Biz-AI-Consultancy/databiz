@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 
-const mainJsContent = fs.readFileSync(path.resolve(__dirname, '../../main.js'), 'utf8');
+const mainJsContent = fs.readFileSync(path.resolve(__dirname, '../../src/frontend/main.js'), 'utf8');
 
 describe('main.js unit tests', () => {
   beforeEach(() => {
@@ -23,6 +23,7 @@ describe('main.js unit tests', () => {
         </body>
       </html>
     `;
+    
     // Mock localStorage
     const storage = {};
     global.localStorage = {

@@ -40,22 +40,43 @@ describe('main.js unit tests', () => {
       disconnect: vi.fn(),
     }));
 
-    // Mock fetch for RSS feeds
-    global.fetch = vi.fn().mockImplementation(() =>
-      Promise.resolve({
-        json: () => Promise.resolve({
-          status: 'ok',
-          items: [
-            {
-              title: 'Test Article',
-              description: 'This is a test description.',
-              link: 'https://example.com/test',
-              thumbnail: 'https://example.com/thumb.png'
-            }
-          ]
-        })
-      })
-    );
+    // Mock fetch for RSS feeds and Ollama APIs
+    global.fetch = vi.fn().mockImplementation((url) => {
+      if (url.includes('rss2json')) {
+        return Promise.resolve({
+          json: () => Promise.resolve({
+            status: 'ok',
+            items: [
+              {
+                title: 'Test Article',
+                description: 'This is a test description.',
+                link: 'https://example.com/test',
+                thumbnail: 'https://example.com/thumb.png'
+              }
+            ]
+          })
+        });
+      } else if (url.includes('/api/tags')) {
+        return Promise.resolve({
+          json: () => Promise.resolve({
+            models: [{ name: 'gemma3:1b' }]
+          })
+        });
+      } else if (url.includes('/api/chat')) {
+        const mockStream = new ReadableStream({
+          start(controller) {
+            const encoder = new TextEncoder();
+            controller.enqueue(encoder.encode(JSON.stringify({ message: { content: 'Ciao, I am Bella!' } }) + '\n'));
+            controller.close();
+          }
+        });
+        return Promise.resolve({
+          ok: true,
+          body: mockStream
+        });
+      }
+      return Promise.reject(new Error('Unknown url'));
+    });
   });
 
   it('initializes theme toggle correctly and handles click', () => {
@@ -112,4 +133,34 @@ describe('main.js unit tests', () => {
     expect(grid.innerHTML).toContain('Test Article');
     expect(grid.innerHTML).toContain('This is a test description.');
   });
+
+  it('initializes and injects AI assistant widget into DOM', () => {
+    new Function(mainJsContent)();
+    document.dispatchEvent(new Event('DOMContentLoaded'));
+
+    const trigger = document.getElementById('ai-trigger');
+    const chatWindow = document.getElementById('ai-chat');
+    expect(trigger).not.toBeNull();
+    expect(chatWindow).not.toBeNull();
+
+    const triggerImg = trigger.querySelector('img');
+    expect(triggerImg.src).toContain('assets/bella.png');
+  });
+
+  it('toggles chat window visibility on trigger click', () => {
+    new Function(mainJsContent)();
+    document.dispatchEvent(new Event('DOMContentLoaded'));
+
+    const trigger = document.getElementById('ai-trigger');
+    const chatWindow = document.getElementById('ai-chat');
+
+    expect(chatWindow.classList.contains('open')).toBe(false);
+    trigger.click();
+    expect(chatWindow.classList.contains('open')).toBe(true);
+
+    const closeBtn = document.getElementById('ai-close');
+    closeBtn.click();
+    expect(chatWindow.classList.contains('open')).toBe(false);
+  });
 });
+

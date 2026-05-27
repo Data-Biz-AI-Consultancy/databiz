@@ -66,4 +66,25 @@ test.describe('Data Biz E2E Tests', () => {
     await themeButton.click();
     await expect(htmlElement).not.toHaveClass(/dark/);
   });
+
+  test('should load Bella AI Assistant widget and toggle open/close', async ({ page }) => {
+    await page.goto('/');
+    
+    // Check trigger button is present
+    const trigger = page.locator('#ai-trigger');
+    await expect(trigger).toBeVisible();
+    
+    // Check chat drawer starts closed (not containing class 'open')
+    const chatWindow = page.locator('#ai-chat');
+    await expect(chatWindow).not.toHaveClass(/open/);
+    
+    // Click trigger and verify drawer opens
+    await trigger.click();
+    await expect(chatWindow).toHaveClass(/open/);
+    
+    // Check welcome message is loaded
+    const welcomeMsg = page.locator('#ai-messages');
+    await expect(welcomeMsg).toContainText(/Ciao!/);
+  });
 });
+

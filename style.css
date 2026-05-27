@@ -1,39 +1,39 @@
 /* 
    Data Biz: Visual Design System
    Vibe: Senior, Operator-led, Editorial, Blunt
-   Dual Theme support: Warm Neutral Light Mode & Modern Data Command Dark Mode
+   Dual Theme support: Warm Neutral Light Mode (Executive Editorial) & Modern Data Command Dark Mode
 */
 
 :root {
-    /* Light Mode Palette (Warm Neutral Editorial) */
-    --bg-color: #fdfcfb;
-    --text-color: #1a1a1a;
-    --accent-color: #008080;
-    --border-color: #e5e5e5;
+    /* Light Mode Palette (Executive Editorial) */
+    --bg-color: #faf9f8;
+    --text-color: #1a1c1c;
+    --accent-color: #004c4c;
+    --border-color: #bec9c8;
     
-    --secondary: #006666;
-    --on-secondary-container: #e6f2f2;
-    --background: #fdfcfb;
-    --surface-bright: #ffffff;
-    --outline: #737373;
-    --surface-container-highest: #e5e5e5;
-    --primary: #008080;
-    --surface-container-high: #f5f4f2;
-    --surface-dim: #f5f4f2;
-    --surface: #ffffff;
-    --outline-variant: #e5e5e5;
-    --surface-container: #faf9f6;
-    --inverse-surface: #1a1a1a;
-    --on-background: #1a1a1a;
-    --primary-container: #e6f2f2;
-    --on-surface-variant: #595959;
-    --on-surface: #1a1a1a;
-    --surface-variant: #faf9f6;
+    --secondary: #645d54;
+    --on-secondary-container: #696258;
+    --background: #faf9f8;
+    --surface-bright: #faf9f8;
+    --outline: #6f7979;
+    --surface-container-highest: #e3e2e1;
+    --primary: #004c4c;
+    --surface-container-high: #e9e8e7;
+    --surface-dim: #dadad9;
+    --surface: #faf9f8;
+    --outline-variant: #bec9c8;
+    --surface-container: #eeeeed;
+    --inverse-surface: #2f3130;
+    --on-background: #1a1c1c;
+    --primary-container: #006666;
+    --on-surface-variant: #3f4948;
+    --on-surface: #1a1c1c;
+    --surface-variant: #e3e2e1;
     --surface-container-lowest: #ffffff;
-    --surface-container-low: #fdfcfb;
+    --surface-container-low: #f4f3f2;
     --on-primary: #ffffff;
 
-    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-bg: rgba(255, 255, 255, 0.75);
     --glass-bg-hover: rgba(255, 255, 255, 0.95);
     
     /* Typography */

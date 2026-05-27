@@ -1,0 +1,17 @@
+{
+  "name": "databiz",
+  "version": "1.0.0",
+  "description": "Data Biz Consulting Website",
+  "main": "main.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test --config=tests/playwright.config.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "http-server": "^14.1.1",
+    "jsdom": "^26.0.0",
+    "vitest": "^3.0.0"
+  }
+}

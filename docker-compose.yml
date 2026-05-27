@@ -17,23 +17,5 @@ services:
       - ollama_data:/root/.ollama
     restart: unless-stopped
 
-  ollama-pull-model:
-    image: curlimages/curl:latest
-    container_name: databiz-ollama-pull-model
-    depends_on:
-      - ollama
-    restart: "no"
-    entrypoint: [ "/bin/sh", "-c" ]
-    command: >
-      "
-      echo 'Waiting for Ollama to start...';
-      until curl -s http://ollama:11434/api/tags > /dev/null; do
-        sleep 2;
-      done;
-      echo 'Ollama started! Pulling gemma3:4b model...';
-      curl -X POST http://ollama:11434/api/pull -d '{\"name\": \"gemma3:4b\"}';
-      echo 'Model gemma3:4b pulled successfully!';
-      "
-
 volumes:
   ollama_data:

@@ -2,13 +2,70 @@
  * Data Biz Website Logic
  * - GA4 Event Tracking
  * - Scroll Reveal Animations
+ * - Dark/Light Theme Switching
+ * - Substack RSS Loader
+ * - Hero Parallax Effect
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    initThemeToggle();
     initGA4Tracking();
     initScrollReveal();
+    initHeroParallax();
     fetchLatestInsights();
 });
+
+/**
+ * Initialize Dark/Light Theme Switching
+ */
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleIcon = document.getElementById('theme-toggle-icon');
+    if (!themeToggle || !themeToggleIcon) return;
+
+    // Check saved preference or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+        themeToggleIcon.textContent = 'light_mode';
+    } else {
+        document.documentElement.classList.remove('dark');
+        themeToggleIcon.textContent = 'dark_mode';
+    }
+
+    // Handle toggle action
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        if (isDark) {
+            localStorage.setItem('theme', 'dark');
+            themeToggleIcon.textContent = 'light_mode';
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeToggleIcon.textContent = 'dark_mode';
+        }
+    });
+}
+
+/**
+ * Hero image parallax effect following mouse movement
+ */
+function initHeroParallax() {
+    const heroSection = document.querySelector('section');
+    const heroImg = document.getElementById('hero-bg-img');
+    if (!heroSection || !heroImg) return;
+
+    heroSection.addEventListener('mousemove', (e) => {
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+        heroImg.style.transform = `scale(1.1) translate(${xAxis}px, ${yAxis}px)`;
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+        heroImg.style.transform = `scale(1) translate(0px, 0px)`;
+    });
+}
 
 /**
  * Fetch latest articles from Substack RSS feed
@@ -26,31 +83,27 @@ async function fetchLatestInsights() {
         const data = await response.json();
 
         if (data.status === 'ok' && data.items && data.items.length > 0) {
-            // Clear current static content (or keep it as fallback if fetch failed)
-            // But here we'll replace it with the latest 3 items
+            // Keep the latest 3 items
             const latestPosts = data.items.slice(0, 3);
             
-            // Build new HTML
             let html = '';
             latestPosts.forEach((post, index) => {
-                // Clean up the description (Substack RSS often includes full content or long snippets)
+                // Clean up the description
                 let summary = post.description.replace(/<[^>]*>?/gm, '').split('.')[0] + '.';
                 if (summary.length > 120) summary = summary.substring(0, 117) + '...';
 
                 // Use post thumbnail or a default image if not present
-                const thumbnail = post.thumbnail || post.enclosure.link || 'assets/roadmap_prioritization.png';
+                const thumbnail = post.thumbnail || post.enclosure.link || 'https://lh3.googleusercontent.com/aida/ADBb0ugSYgN3Oxm_CdvYcP6wj-e9x0LwazddkXM6htcZGpk8GQsB6VkcEk9m-x_oZ_hSHy5PGjXrLtQzpKxEmBvtoo3-ZkG-1fXCubohDRAbRh97QTWEJNYGT_iqDnK9AQi4Che6n-jwpqVRSXZSsnd7-YtjYQUo2uG3Ot_1vMBbDJ8sdVR2xq_PO-dnv3cEPjK5VVtJIh0ptCnETVUQbm-9CMhHeWGllYKXaCLNdGzF6AkDGGDHP_ri9GcXqfM';
 
                 html += `
-                    <article class="insight-card" data-vibe-reveal>
-                        <div class="insight-image">
-                            <img src="${thumbnail}" alt="${post.title}">
+                    <div class="group cursor-pointer" data-vibe-reveal onclick="window.open('${post.link}', '_blank')">
+                        <div class="relative aspect-video mb-md overflow-hidden rounded-lg border border-outline-variant">
+                            <img alt="${post.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="${thumbnail}">
                         </div>
-                        <div class="insight-content">
-                            <h4>${post.title}</h4>
-                            <p>${summary}</p>
-                            <a href="${post.link}" class="btn-text" target="_blank" rel="noopener" data-ga-event="dynamic_article_click_${index + 1}">Read the article →</a>
-                        </div>
-                    </article>
+                        <span class="font-label-caps text-[10px] text-secondary tracking-widest block mb-xs">INSIGHTS • 5 MIN READ</span>
+                        <h3 class="font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors">${post.title}</h3>
+                        <p class="text-on-surface-variant font-body-sm text-body-sm mt-sm">${summary}</p>
+                    </div>
                 `;
             });
 
@@ -61,7 +114,7 @@ async function fetchLatestInsights() {
         }
     } catch (error) {
         console.error('Failed to fetch Substack feed:', error);
-        // Fallback to static content already in HTML
+        // Fallback remains in HTML
     }
 }
 
@@ -69,7 +122,7 @@ async function fetchLatestInsights() {
  * Initialize GA4 Event Tracking
  */
 function initGA4Tracking() {
-    // 1. Click Tracking
+    // Click Tracking
     document.querySelectorAll('[data-ga-event]').forEach(element => {
         element.addEventListener('click', (e) => {
             const eventName = element.getAttribute('data-ga-event');
@@ -85,7 +138,7 @@ function initGA4Tracking() {
         });
     });
 
-    // 2. Scroll Depth Tracking
+    // Scroll Depth Tracking
     let scrollDepths = [25, 50, 75, 100];
     let trackedDepths = [];
 
@@ -122,7 +175,6 @@ function initScrollReveal() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Once it's revealed, we don't need to observe it anymore
                 observer.unobserve(entry.target);
             }
         });

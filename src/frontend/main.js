@@ -194,13 +194,13 @@ function initAIAssistant() {
     const container = document.createElement('div');
     container.className = 'ai-assistant-container';
     container.innerHTML = `
-        <button id="ai-trigger" class="ai-assistant-trigger pulse" aria-label="Open AI Assistant">
-            <span class="material-symbols-outlined">smart_toy</span>
+        <button id="ai-trigger" class="ai-assistant-trigger pulse" aria-label="Open AI Assistant" style="padding: 0; overflow: hidden;">
+            <img src="assets/bella.png" alt="Bella" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
         </button>
         <div id="ai-chat" class="ai-chat-window">
             <div class="ai-chat-header">
                 <div class="ai-chat-header-title">
-                    <span class="material-symbols-outlined text-primary">favorite</span>
+                    <img src="assets/bella.png" alt="Bella" style="width: 28px; height: 28px; object-fit: cover; border-radius: 50%; border: 1px solid var(--primary);">
                     <span>Bella | Data Biz 💋</span>
                 </div>
                 <div class="ai-chat-header-actions">

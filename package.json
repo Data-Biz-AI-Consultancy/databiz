@@ -4,8 +4,8 @@
   "description": "Data Biz Consulting Website",
   "main": "main.js",
   "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "test": "vitest run --config=tests/frontend/vitest.config.js",
+    "test:watch": "vitest --config=tests/frontend/vitest.config.js",
     "test:e2e": "playwright test --config=tests/playwright.config.js"
   },
   "devDependencies": {

@@ -1,7 +1,3 @@
 node_modules/
 scratch/
 seeds/_private
-
-# Playwright test artifacts
-tests/test-results/
-tests/playwright-report/

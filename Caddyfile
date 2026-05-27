@@ -5,8 +5,9 @@
 
 {
     # Global options
-    email {$ACME_EMAIL:jimmypang@aipassione.com}
+    email {$ACME_EMAIL:jimmypang@databizaitech.com}
 }
+
 
 {$PRODUCTION_DOMAIN:demo.aipassione.com} {
     # HSTS - Force browsers to only use HTTPS

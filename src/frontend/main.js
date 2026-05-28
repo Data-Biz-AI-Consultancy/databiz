@@ -196,7 +196,7 @@ function initAIAssistant() {
     container.innerHTML = `
         <div id="ai-teaser" class="ai-chat-teaser">
             <span class="ai-chat-teaser-blink"></span>
-            Ciao! Talk to me about your data &amp; AI solutions 💋
+            Ciao! Let's unlock business value with AI &amp; Data 💋
         </div>
         <button id="ai-trigger" class="ai-assistant-trigger pulse" aria-label="Open AI Assistant" style="padding: 0; overflow: hidden;">
             <img src="assets/bella.png" alt="Bella" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">

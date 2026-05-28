@@ -63,6 +63,7 @@ jobs:
       run: |
         ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
           cd /var/www/databiz && \
+          docker compose down -v && \
           docker compose up -d --build && \
           echo 'Waiting for Ollama container to initialize...' && \
           sleep 5 && \

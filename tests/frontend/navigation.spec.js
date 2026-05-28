@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Data Biz E2E Tests', () => {
   test('should load landing page successfully, check title, logo and favicon', async ({ page }) => {
     await page.goto('/');
-    await expect(page).toHaveTitle(/Data Biz | Modern Data Command/);
+    await expect(page).toHaveTitle(/Data Biz | AI & Data Consultancy/);
     
     // Check navigation items exist
     const offersLink = page.locator('nav').getByRole('link', { name: 'Offers', exact: true });
@@ -50,7 +50,7 @@ test.describe('Data Biz E2E Tests', () => {
 
   test('should verify hero CTA links correctly to insights page', async ({ page }) => {
     await page.goto('/');
-    const viewMethodologyBtn = page.getByRole('link', { name: 'VIEW METHODOLOGY' });
+    const viewMethodologyBtn = page.getByRole('link', { name: 'EXPLORE AI INSIGHTS' });
     await expect(viewMethodologyBtn).toHaveAttribute('href', 'insights.html');
   });
 

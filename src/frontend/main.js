@@ -196,7 +196,7 @@ function initAIAssistant() {
     container.innerHTML = `
         <div id="ai-teaser" class="ai-chat-teaser">
             <span class="ai-chat-teaser-blink"></span>
-            Ciao! Talk to me about your data &amp; AI solutions 💋
+            Ciao! Let's unlock business value with AI &amp; Data 💋
         </div>
         <button id="ai-trigger" class="ai-assistant-trigger pulse" aria-label="Open AI Assistant" style="padding: 0; overflow: hidden;">
             <img src="assets/bella.png" alt="Bella" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
@@ -218,10 +218,11 @@ function initAIAssistant() {
             </div>
             <div id="ai-messages" class="ai-chat-messages"></div>
             <div class="ai-chat-suggestions">
-                <button class="ai-chip" data-query="Who is Jimmy Pang?">Who is Jimmy?</button>
-                <button class="ai-chip" data-query="What services/offers do you have?">Offers</button>
-                <button class="ai-chip" data-query="How do you reduce cloud data costs?">Cloud Costs</button>
-                <button class="ai-chip" data-query="Can you help build a RAG pipeline?">RAG Pipeline</button>
+                <button class="ai-chip" data-query="What is Data Biz?">What is Data Biz?</button>
+                <button class="ai-chip" data-query="What services do you offer?">Our Services</button>
+                <button class="ai-chip" data-query="What is your track record of proven business value in your projects?">Track Record &amp; ROI</button>
+                <button class="ai-chip" data-query="What insights do you have about AI, data, and business?">AI &amp; Data Insights</button>
+                <button class="ai-chip" data-query="What tools do you provide?">Our Tools</button>
             </div>
             <div class="ai-chat-input-area">
                 <input type="text" id="ai-input" class="ai-chat-input" placeholder="Type a command or ask a question..." autocomplete="off">
@@ -294,7 +295,7 @@ Tone and Communication:
     function resetChat() {
         chatHistory = [
             { role: 'system', content: SYSTEM_PROMPT },
-            { role: 'assistant', content: "Ciao! ✨ I am Bella, Don Jimmy's devoted Italian secretary. I make sure everything here runs perfectly so Don Jimmy can focus on fixing big decisions. Tell me, how can I help you learn about our services, book a call with him, or prune your cloud waste today? 😉" }
+            { role: 'assistant', content: "Ciao! ✨ I am Bella, your AI & Data assistant at Data Biz. How can I help you explore our services, unlock business value, or book a discovery call today?" }
         ];
         renderHistory();
     }

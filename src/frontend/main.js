@@ -295,7 +295,7 @@ Tone and Communication:
     function resetChat() {
         chatHistory = [
             { role: 'system', content: SYSTEM_PROMPT },
-            { role: 'assistant', content: "Ciao! ✨ I am Bella, Don Jimmy's devoted Italian secretary. I make sure everything here runs perfectly so Don Jimmy can focus on fixing big decisions. Tell me, how can I help you learn about our services, book a call with him, or prune your cloud waste today? 😉" }
+            { role: 'assistant', content: "Ciao! ✨ I am Bella, your AI & Data assistant at Data Biz. How can I help you explore our services, unlock business value, or book a discovery call today?" }
         ];
         renderHistory();
     }

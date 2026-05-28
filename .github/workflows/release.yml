@@ -61,4 +61,14 @@ jobs:
 
     - name: Restart Docker Compose on Server
       run: |
-        ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "cd /var/www/databiz && docker compose up -d --build"
+        ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
+          cd /var/www/databiz && \
+          docker compose up -d --build && \
+          echo 'Waiting for Ollama container to initialize...' && \
+          sleep 5 && \
+          docker exec databiz-ollama ollama pull gemma3:4b && \
+          echo 'Verifying Ollama models...' && \
+          docker exec databiz-ollama ollama list && \
+          echo 'Running a quick test query...' && \
+          docker exec databiz-ollama ollama run gemma3:4b 'hi'
+        "

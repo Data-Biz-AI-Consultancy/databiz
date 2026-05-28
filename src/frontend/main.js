@@ -218,10 +218,11 @@ function initAIAssistant() {
             </div>
             <div id="ai-messages" class="ai-chat-messages"></div>
             <div class="ai-chat-suggestions">
-                <button class="ai-chip" data-query="Who is Jimmy Pang?">Who is Jimmy?</button>
-                <button class="ai-chip" data-query="What services/offers do you have?">Offers</button>
-                <button class="ai-chip" data-query="How do you reduce cloud data costs?">Cloud Costs</button>
-                <button class="ai-chip" data-query="Can you help build a RAG pipeline?">RAG Pipeline</button>
+                <button class="ai-chip" data-query="What is Data Biz?">What is Data Biz?</button>
+                <button class="ai-chip" data-query="What services do you offer?">Our Services</button>
+                <button class="ai-chip" data-query="What is your track record of proven business value in your projects?">Track Record &amp; ROI</button>
+                <button class="ai-chip" data-query="What insights do you have about AI, data, and business?">AI &amp; Data Insights</button>
+                <button class="ai-chip" data-query="What tools do you provide?">Our Tools</button>
             </div>
             <div class="ai-chat-input-area">
                 <input type="text" id="ai-input" class="ai-chat-input" placeholder="Type a command or ask a question..." autocomplete="off">

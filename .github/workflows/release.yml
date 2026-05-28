@@ -67,9 +67,9 @@ jobs:
           docker compose up -d --build && \
           echo 'Waiting for Ollama container to initialize...' && \
           sleep 5 && \
-          docker exec databiz-ollama ollama pull gemma3:4b && \
+          docker exec databiz-ollama ollama pull gemma3:1b && \
           echo 'Verifying Ollama models...' && \
           docker exec databiz-ollama ollama list && \
           echo 'Running a quick test query...' && \
-          docker exec databiz-ollama ollama run gemma3:4b 'hi'
+          docker exec databiz-ollama ollama run gemma3:1b 'hi'
         "

@@ -1,5 +1,3 @@
-## 📝 Description
-
 This PR is meant to:
 1. 
 2. 

@@ -297,20 +297,20 @@ window.CASE_STUDIES = [
     ],
     "scorecard": [
       {
-        "value": "↑ YoY",
-        "label": "% REFERRAL UPLIFT TARGET"
+        "value": "+25%",
+        "label": "REFERRALS OF NEW SIGN-UPS (PEAK)"
       },
       {
-        "value": "W-1/W-2",
-        "label": "# REFERRERS (COHORT WINDOW)"
+        "value": "850K+",
+        "label": "WEEKLY ACTIVE REFERRERS"
       },
       {
-        "value": "%CR1→3",
-        "label": "CONVERSION RATE (PER STAGE)"
+        "value": "~34%",
+        "label": "CR1 (REFERRAL → 1ST BOX)"
       },
       {
-        "value": "% Churn",
-        "label": "CHURN RATE (PAUSES EXCL.)"
+        "value": "~19%",
+        "label": "EARLY CHURN (PAUSES EXCL.)"
       }
     ],
     "visualType": "image-list",

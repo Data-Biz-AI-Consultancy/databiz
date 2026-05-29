@@ -2,7 +2,7 @@ window.CASE_STUDIES = [
   {
     "id": 1,
     "category": "ai",
-    "tag": "CASE STUDY 01 • AI & AUTOMATION",
+    "tag": "CASE STUDY • AI & AUTOMATION",
     "title": "Autonomous Lead Triage & Intelligent Operations",
     "description": "An innovative German ClimateTech scaleup (home insulation installer) was facing operational friction. As their inbound volume scaled to over 1,200 leads/month, manual triage became a bottleneck. With a typical project deal value of <strong>€5,000</strong>, the stakes were high: planning mistakes or mispriced quotes during the sales-to-operations handoff impacted margins.",
     "clientPhotos": [
@@ -65,7 +65,7 @@ window.CASE_STUDIES = [
   {
     "id": 2,
     "category": "architecture",
-    "tag": "CASE STUDY 02 • MODERN DATA ARCHITECTURE",
+    "tag": "CASE STUDY • MODERN DATA ARCHITECTURE",
     "title": "MeshPilot — Decentralized Data Stack & Governance",
     "description": "A leading French pre-loved luxury marketplace scaleup hit critical analytics scale limits. The required speed for analytics was far higher than what their centralized data model could support. Simultaneously, a lack of data governance led to severe data trust issues, and the cost of running unoptimized pipelines was surging out of control.",
     "howWeSolvedIt": [
@@ -134,7 +134,7 @@ window.CASE_STUDIES = [
   {
     "id": 4,
     "category": "strategy",
-    "tag": "CASE STUDY 03 • DATA STRATEGY",
+    "tag": "CASE STUDY • DATA STRATEGY",
     "title": "InsurTech New Vertical Launching Strategy",
     "description": "Germany's #1 direct-to-consumer digital insurance marketplace scaleup—operating dental and pet insurance verticals for over 110,000+ active customers with a 95%+ year-over-year GWP growth rate—sought to launch a third vertical on their state-of-the-art platform. We architected their end-to-end data platform implementation roadmap to support the launch without operational friction.",
     "howWeSolvedIt": [
@@ -230,7 +230,7 @@ window.CASE_STUDIES = [
   {
     "id": 5,
     "category": "architecture",
-    "tag": "CASE STUDY 04 • MODERN DATA ARCHITECTURE",
+    "tag": "CASE STUDY • MODERN DATA ARCHITECTURE",
     "title": "Logistics Delivery Radius & Purchase Deviation Analytics",
     "description": "An on-demand logistics company required a mechanism to analyze how changes in a city's delivery radius affect purchase patterns, sales volumes, and VAT revenues.",
     "howWeSolvedIt": [
@@ -267,7 +267,7 @@ window.CASE_STUDIES = [
   {
     "id": 6,
     "category": "analytics",
-    "tag": "CASE STUDY 05 • ANALYTICS",
+    "tag": "CASE STUDY • ANALYTICS",
     "title": "Meal-Kit Referral Conversion Funnel Diagnostics",
     "description": "A global meal-kit provider experienced a year-over-year decline in customer referral acquisitions. As their product analytics function, we diagnosed root causes across three dimensions — commercial pricing, supply chain operations, and tech — by structuring a rigorous multi-stage conversion funnel with properly isolated cohorts.",
     "howWeSolvedIt": [
@@ -332,40 +332,72 @@ window.CASE_STUDIES = [
   {
     "id": 7,
     "category": "analytics",
-    "tag": "CASE STUDY 06 • ANALYTICS",
+    "tag": "CASE STUDY • ANALYTICS",
     "title": "Commercial SaaS dbt Architecture & Analytics Strategy",
-    "description": "A high-growth B2B SaaS startup spending €50K/month on ad channels had fragmented UTM attribution, unmapped campaigns, and inaccurate cohort visibility. We re-engineered their pipeline from raw source tables to marketing marts.",
+    "description": "A high-growth B2B SaaS startup spending €50K/month across Google, LinkedIn & Facebook had no trusted view of which campaigns drove actual customers — blocked by fragmented UTM tagging, unmapped campaign strings, and a CRM lead status that didn't reflect real quality. We designed the full analytics stack from scratch: dbt architecture, business logic, mart models, and a 3-tab dashboard to give Marketing and Sales a single shared source of truth.",
     "howWeSolvedIt": [
       {
-        "title": "Unified Mart Modeling",
-        "desc": "Created fct_marketing_performance and fct_lead_lifecycle to connect multi-channel ad spend (Google/FB) to CRM opportunities and paying customers."
+        "title": "Investigation & Data Discovery",
+        "desc": "Mapped 10+ raw sources (Facebook Ads, Google Ads, CRM, Web sessions, internal cost allocation) and surfaced the key blockers: ~17% of leads missing UTM campaign, only ~40% of CRM campaign strings mapped in campaign_metadata, and lead_status ('Qualified', 'Nurture') showing near-identical conversion — making it a weak proxy for lead quality."
       },
       {
-        "title": "First-Touch UTM Attribution",
-        "desc": "Standardized multi-source raw campaign strings into canonical campaign groups using clean mapping models."
+        "title": "dbt Architecture & Unified Mart Modeling",
+        "desc": "Designed a 4-layer dbt project (stg_ → int_ → fct_ → dim_) producing two key marts: fct_marketing_performance (monthly spend → sessions → leads → opps → customers by source & campaign_group) and fct_lead_lifecycle (one row per lead with UTM, cohort, derived lead quality, and downstream outcomes). All Marketing & Sales reporting runs through these two models."
       },
       {
-        "title": "Automated Lead Quality Rules",
-        "desc": "Replaced noisy CRM status fields with programmatic rules based on opportunity value and pipeline stage."
+        "title": "Outcome-Based Lead Quality & First-Touch Attribution",
+        "desc": "Replaced noisy CRM status labels with programmatic lead_quality rules (High / Medium / Low / Too Early) based on real outcomes — opportunity stage, deal value vs. median, and customer conversion. Locked in first-touch UTM attribution as the MVP model with a clear path to multi-touch via session + form journey modeling."
+      },
+      {
+        "title": "Data Quality Monitoring as Strategic Bet",
+        "desc": "Implemented dbt tests on UTM completeness and campaign_metadata coverage, plus daily Slack alerts surfacing mapping gaps. Nominated clear ownership: Marketing owns UTM tagging & campaign_metadata; Data team owns test suites and monitoring — preventing attribution from degrading sprint-over-sprint."
+      }
+    ],
+    "businessImpact": [
+      {
+        "desc": "<strong>Full Funnel Visibility:</strong> For the first time, Marketing & Sales shared a single number: €260K spend → 830 leads → 352 opportunities → 47 customers — with CAC, CPL, and conversion rates broken out by channel and campaign group."
+      },
+      {
+        "desc": "<strong>Cohort Signal Unlocked:</strong> Revealed that October cohorts converted at ~8% lead-to-customer vs. ~5% in September — a meaningful performance signal invisible before the mart was built, enabling targeted campaign investment decisions."
+      },
+      {
+        "desc": "<strong>Trusted Lead Scoring:</strong> Replaced CRM lead_status with outcome-based lead_quality (High/Medium/Low), giving Sales a reliable prioritisation signal and eliminating debates over which leads are 'real' opportunities."
+      },
+      {
+        "desc": "<strong>Data Quality Enforcement:</strong> Established the first dbt monitoring layer with UTM completeness and campaign mapping coverage tracking — creating a self-healing feedback loop so attribution accuracy improves over time, not just for this sprint."
       }
     ],
     "scorecard": [
       {
         "value": "€260K+",
-        "label": "MEDIA SPEND ATTRIBUTED"
+        "label": "AD SPEND ATTRIBUTED"
       },
       {
-        "value": "100%",
-        "label": "UNIFIED SOURCE OF TRUTH"
+        "value": "47 Custs.",
+        "label": "CUSTOMERS TRACED TO SOURCE"
       },
       {
-        "value": "dbt-Driven",
-        "label": "DATA QUALITY RULES"
+        "value": "Oct +3%",
+        "label": "COHORT UPLIFT (SEP VS OCT)"
+      },
+      {
+        "value": "~17%",
+        "label": "UTM GAPS SURFACED & FIXED"
       }
     ],
     "visualType": "image-list",
     "visualData": {
       "images": [
+        {
+          "title": "MARKETING & SALES FUNNEL OVERVIEW",
+          "src": "assets/case_study/commercial_saas_funnel_dashboard.png",
+          "alt": "Marketing and Sales Funnel Dashboard — Spend, Leads, Opps, Customers by Channel"
+        },
+        {
+          "title": "CHANNEL PERFORMANCE BREAKDOWN",
+          "src": "assets/case_study/commercial_saas_insights.png",
+          "alt": "Channel Performance Table — Source, Leads, Opportunities, Customers, CAC"
+        },
         {
           "title": "dbt PIPELINE BLUEPRINT",
           "src": "assets/case_study/commercial_saas_diagram.svg",

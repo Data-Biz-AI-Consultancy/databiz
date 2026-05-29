@@ -228,59 +228,11 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Interactive Pipeline Simulator Widget -->
+                <!-- Triage Pipeline Diagram Widget -->
                 <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                    <div class="flex justify-between items-center mb-md border-b border-outline-variant pb-xs">
-                        <h4 class="font-label-caps text-label-caps text-secondary">THE TRIAGE PIPELINE</h4>
-                        <div class="flex gap-sm">
-                            <button class="triage-tab active text-xs font-label-caps pb-1 border-b-2 border-primary" onclick="showTriageTab('steps')">STEPS</button>
-                            <button class="triage-tab text-xs font-label-caps pb-1 border-b-2 border-transparent text-on-surface-variant" onclick="showTriageTab('diagram')">DIAGRAM</button>
-                        </div>
-                    </div>
-                    
-                    <div id="triage-content-steps" class="space-y-sm">
-                        <div class="pipeline-step cursor-pointer bg-surface-container p-sm rounded border border-primary transition-all duration-200" onclick="showStep(1)">
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold text-sm text-primary">1. Rule Engine</span>
-                                <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
-                            </div>
-                            <p class="text-xs text-on-surface-variant mt-xs" id="step-desc-1">Validates building rules deterministically based on structured CRM inputs.</p>
-                        </div>
-                        <div class="pipeline-step cursor-pointer bg-surface-container p-sm rounded border border-outline-variant/50 transition-all duration-200" onclick="showStep(2)">
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold text-sm text-on-surface">2. LLM Parser</span>
-                                <span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span>
-                            </div>
-                            <p class="text-xs text-on-surface-variant mt-xs hidden" id="step-desc-2">Analyzes German audio transcripts to spot contradictions with data forms (e.g. wall thickness, ceiling height).</p>
-                        </div>
-                        <div class="pipeline-step cursor-pointer bg-surface-container p-sm rounded border border-outline-variant/50 transition-all duration-200" onclick="showStep(3)">
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold text-sm text-on-surface">3. Memory Layer (RAG)</span>
-                                <span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span>
-                            </div>
-                            <p class="text-xs text-on-surface-variant mt-xs hidden" id="step-desc-3">Queries 1,000+ past project histories using vector embeddings to find similar building designs.</p>
-                        </div>
-                        <div class="pipeline-step cursor-pointer bg-surface-container p-sm rounded border border-outline-variant/50 transition-all duration-200" onclick="showStep(4)">
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold text-sm text-on-surface">4. Decision Synthesis</span>
-                                <span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span>
-                            </div>
-                            <p class="text-xs text-on-surface-variant mt-xs hidden" id="step-desc-4">Enforces a clear decision output (Pitch / Disqualify / Escalate) with explicit confidence scoring.</p>
-                        </div>
-                        <div class="pipeline-step cursor-pointer bg-surface-container p-sm rounded border border-outline-variant/50 transition-all duration-200" onclick="showStep(5)">
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold text-sm text-on-surface">5. Field Briefing Creator</span>
-                                <span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span>
-                            </div>
-                            <p class="text-xs text-on-surface-variant mt-xs hidden" id="step-desc-5">Generates automated bullet-points detailing cost risk factors to prepare field teams for site dispatch.</p>
-                        </div>
-                    </div>
-                    
-                    <div id="triage-content-diagram" class="hidden">
-                        <div class="overflow-hidden rounded border border-outline-variant/50 bg-surface-container p-xs">
-                            <img src="assets/ai_triage_pipeline.png" alt="Autonomous Triage Layer Pipeline Architecture" class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in" onclick="openDiagramModal()"/>
-                        </div>
+                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">THE TRIAGE PIPELINE</h4>
+                    <div class="overflow-hidden rounded border border-outline-variant/50 bg-surface-container p-xs">
+                        <img src="assets/ai_triage_pipeline.png" alt="Autonomous Triage Layer Pipeline Architecture" class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in" onclick="openDiagramModal()"/>
                     </div>
                 </div>
             </div>

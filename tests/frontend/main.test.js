@@ -180,9 +180,9 @@ describe('main.js unit tests', () => {
     expect(firstCard.dataset.gaEvent).toBe('insight_card_click');
 
     const cards = grid.querySelectorAll('a');
-    expect(cards).toHaveLength(6);
+    expect(cards).toHaveLength(7);
     expect(grid.innerHTML).toContain('Sixth Article');
-    expect(grid.innerHTML).not.toContain('Seventh Article');
+    expect(grid.innerHTML).toContain('Seventh Article');
     expect(cards[1].textContent).toContain('<img src=x onerror=alert(1)>');
     expect(cards[1].querySelectorAll('img')).toHaveLength(1);
     expect(cards[1].querySelector('h3 img')).toBeNull();

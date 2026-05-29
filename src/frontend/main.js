@@ -85,7 +85,7 @@ async function fetchLatestInsights() {
         const data = await response.json();
 
         if (data.status === 'ok' && data.items && data.items.length > 0) {
-            // Keep enough latest posts to fill two desktop rows.
+            // Keep a deeper archive on the Insights page while preserving feed order.
             const latestPosts = data.items.slice(0, MAX_INSIGHTS);
 
             grid.replaceChildren(...latestPosts.map(createInsightCard));

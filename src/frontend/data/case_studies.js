@@ -389,6 +389,16 @@ window.CASE_STUDIES = [
     "visualData": {
       "images": [
         {
+          "title": "MARKETING & SALES FUNNEL OVERVIEW",
+          "src": "assets/case_study/commercial_saas_funnel_dashboard.png",
+          "alt": "Marketing and Sales Funnel Dashboard — Spend, Leads, Opps, Customers by Channel"
+        },
+        {
+          "title": "CHANNEL PERFORMANCE BREAKDOWN",
+          "src": "assets/case_study/commercial_saas_insights.png",
+          "alt": "Channel Performance Table — Source, Leads, Opportunities, Customers, CAC"
+        },
+        {
           "title": "dbt PIPELINE BLUEPRINT",
           "src": "assets/case_study/commercial_saas_diagram.svg",
           "alt": "dbt Pipeline Lineage Diagram"

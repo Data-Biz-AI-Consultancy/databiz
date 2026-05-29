@@ -78,14 +78,15 @@ async function fetchLatestInsights() {
     const SUBSTACK_URL = 'https://jimmypang.substack.com';
     const RSS_URL = `${SUBSTACK_URL}/feed`;
     const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
+    const MAX_INSIGHTS = 30;
 
     try {
         const response = await fetch(API_URL);
         const data = await response.json();
 
         if (data.status === 'ok' && data.items && data.items.length > 0) {
-            // Keep the latest 3 items
-            const latestPosts = data.items.slice(0, 3);
+            // Keep enough latest posts to fill two desktop rows.
+            const latestPosts = data.items.slice(0, MAX_INSIGHTS);
 
             grid.replaceChildren(...latestPosts.map(createInsightCard));
 
@@ -199,7 +200,7 @@ function initGA4Tracking() {
         element.addEventListener('click', (e) => {
             const eventName = element.getAttribute('data-ga-event');
             console.log(`GA4 Event Triggered: ${eventName}`); // Debug log
-            
+
             if (typeof gtag === 'function') {
                 gtag('event', 'click', {
                     'event_category': 'conversion',
@@ -223,7 +224,7 @@ function initGA4Tracking() {
             if (scrollPercent >= depth && !trackedDepths.includes(depth)) {
                 trackedDepths.push(depth);
                 console.log(`GA4 Scroll Depth Triggered: ${depth}%`); // Debug log
-                
+
                 if (typeof gtag === 'function') {
                     gtag('event', 'scroll_depth', {
                         'depth': depth
@@ -399,17 +400,17 @@ Tone and Communication:
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;");
-        
+
         // Bold
         escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        
+
         // Inline code
         escaped = escaped.replace(/`(.*?)`/g, '<code>$1</code>');
-        
+
         // Paragraphs / Newlines
         escaped = escaped.replace(/\n\n/g, '</p><p>');
         escaped = escaped.replace(/\n/g, '<br>');
-        
+
         return `<p>${escaped}</p>`;
     }
 
@@ -494,7 +495,7 @@ Tone and Communication:
 
                 partialBuffer += decoder.decode(value, { stream: true });
                 const lines = partialBuffer.split('\n');
-                
+
                 // Keep the last partial line in the buffer
                 partialBuffer = lines.pop();
 
@@ -521,7 +522,7 @@ Tone and Communication:
                         assistantText += json.message.content;
                         assistantMsgDiv.innerHTML = formatMarkdown(assistantText);
                     }
-                } catch (e) {}
+                } catch (e) { }
             }
 
             // Save completed assistant response to history

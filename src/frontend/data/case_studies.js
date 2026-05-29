@@ -2,7 +2,7 @@ window.CASE_STUDIES = [
   {
     "id": 1,
     "category": "ai",
-    "tag": "CASE STUDY 01 • AI & AUTOMATION",
+    "tag": "CASE STUDY • AI & AUTOMATION",
     "title": "Autonomous Lead Triage & Intelligent Operations",
     "description": "An innovative German ClimateTech scaleup (home insulation installer) was facing operational friction. As their inbound volume scaled to over 1,200 leads/month, manual triage became a bottleneck. With a typical project deal value of <strong>€5,000</strong>, the stakes were high: planning mistakes or mispriced quotes during the sales-to-operations handoff impacted margins.",
     "clientPhotos": [
@@ -65,7 +65,7 @@ window.CASE_STUDIES = [
   {
     "id": 2,
     "category": "architecture",
-    "tag": "CASE STUDY 02 • MODERN DATA ARCHITECTURE",
+    "tag": "CASE STUDY • MODERN DATA ARCHITECTURE",
     "title": "MeshPilot — Decentralized Data Stack & Governance",
     "description": "A leading French pre-loved luxury marketplace scaleup hit critical analytics scale limits. The required speed for analytics was far higher than what their centralized data model could support. Simultaneously, a lack of data governance led to severe data trust issues, and the cost of running unoptimized pipelines was surging out of control.",
     "howWeSolvedIt": [
@@ -134,7 +134,7 @@ window.CASE_STUDIES = [
   {
     "id": 4,
     "category": "strategy",
-    "tag": "CASE STUDY 03 • DATA STRATEGY",
+    "tag": "CASE STUDY • DATA STRATEGY",
     "title": "InsurTech New Vertical Launching Strategy",
     "description": "Germany's #1 direct-to-consumer digital insurance marketplace scaleup—operating dental and pet insurance verticals for over 110,000+ active customers with a 95%+ year-over-year GWP growth rate—sought to launch a third vertical on their state-of-the-art platform. We architected their end-to-end data platform implementation roadmap to support the launch without operational friction.",
     "howWeSolvedIt": [
@@ -230,7 +230,7 @@ window.CASE_STUDIES = [
   {
     "id": 5,
     "category": "architecture",
-    "tag": "CASE STUDY 04 • MODERN DATA ARCHITECTURE",
+    "tag": "CASE STUDY • MODERN DATA ARCHITECTURE",
     "title": "Logistics Delivery Radius & Purchase Deviation Analytics",
     "description": "An on-demand logistics company required a mechanism to analyze how changes in a city's delivery radius affect purchase patterns, sales volumes, and VAT revenues.",
     "howWeSolvedIt": [
@@ -267,7 +267,7 @@ window.CASE_STUDIES = [
   {
     "id": 6,
     "category": "analytics",
-    "tag": "CASE STUDY 05 • ANALYTICS",
+    "tag": "CASE STUDY • ANALYTICS",
     "title": "Meal-Kit Referral Conversion Funnel Diagnostics",
     "description": "A global meal-kit provider experienced a year-over-year decline in customer referral acquisitions. As their product analytics function, we diagnosed root causes across three dimensions — commercial pricing, supply chain operations, and tech — by structuring a rigorous multi-stage conversion funnel with properly isolated cohorts.",
     "howWeSolvedIt": [
@@ -332,7 +332,7 @@ window.CASE_STUDIES = [
   {
     "id": 7,
     "category": "analytics",
-    "tag": "CASE STUDY 06 • ANALYTICS",
+    "tag": "CASE STUDY • ANALYTICS",
     "title": "Commercial SaaS dbt Architecture & Analytics Strategy",
     "description": "A high-growth B2B SaaS startup spending €50K/month across Google, LinkedIn & Facebook had no trusted view of which campaigns drove actual customers — blocked by fragmented UTM tagging, unmapped campaign strings, and a CRM lead status that didn't reflect real quality. We designed the full analytics stack from scratch: dbt architecture, business logic, mart models, and a 3-tab dashboard to give Marketing and Sales a single shared source of truth.",
     "howWeSolvedIt": [

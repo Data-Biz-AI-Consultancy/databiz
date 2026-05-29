@@ -7,11 +7,11 @@ window.CASE_STUDIES = [
     "description": "An innovative German ClimateTech scaleup (home insulation installer) was facing operational friction. As their inbound volume scaled to over 1,200 leads/month, manual triage became a bottleneck. With a typical project deal value of <strong>€5,000</strong>, the stakes were high: planning mistakes or mispriced quotes during the sales-to-operations handoff impacted margins.",
     "clientPhotos": [
       {
-        "src": "assets/case_study/storyblok-7xjhpfebwlg.jpeg",
+        "src": "assets/case_study/insulation_assessment.jpeg",
         "alt": "On-site home insulation assessment"
       },
       {
-        "src": "assets/case_study/storyblok-qivzlwj49u8.jpeg",
+        "src": "assets/case_study/insulation_facade_work.jpeg",
         "alt": "Insulated building facade work inspection"
       }
     ],

@@ -78,37 +78,17 @@ async function fetchLatestInsights() {
     const SUBSTACK_URL = 'https://jimmypang.substack.com';
     const RSS_URL = `${SUBSTACK_URL}/feed`;
     const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
+    const MAX_INSIGHTS = 30;
 
     try {
         const response = await fetch(API_URL);
         const data = await response.json();
 
         if (data.status === 'ok' && data.items && data.items.length > 0) {
-            // Keep the latest 3 items
-            const latestPosts = data.items.slice(0, 3);
-            
-            let html = '';
-            latestPosts.forEach((post, index) => {
-                // Clean up the description
-                let summary = post.description.replace(/<[^>]*>?/gm, '').split('.')[0] + '.';
-                if (summary.length > 120) summary = summary.substring(0, 117) + '...';
+            // Keep a deeper archive on the Insights page while preserving feed order.
+            const latestPosts = data.items.slice(0, MAX_INSIGHTS);
 
-                // Use post thumbnail or a default image if not present
-                const thumbnail = post.thumbnail || post.enclosure.link || 'https://lh3.googleusercontent.com/aida/ADBb0ugSYgN3Oxm_CdvYcP6wj-e9x0LwazddkXM6htcZGpk8GQsB6VkcEk9m-x_oZ_hSHy5PGjXrLtQzpKxEmBvtoo3-ZkG-1fXCubohDRAbRh97QTWEJNYGT_iqDnK9AQi4Che6n-jwpqVRSXZSsnd7-YtjYQUo2uG3Ot_1vMBbDJ8sdVR2xq_PO-dnv3cEPjK5VVtJIh0ptCnETVUQbm-9CMhHeWGllYKXaCLNdGzF6AkDGGDHP_ri9GcXqfM';
-
-                html += `
-                    <div class="group cursor-pointer" data-vibe-reveal onclick="window.open('${post.link}', '_blank')">
-                        <div class="relative aspect-video mb-md overflow-hidden rounded-lg border border-outline-variant">
-                            <img alt="${post.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="${thumbnail}">
-                        </div>
-                        <span class="font-label-caps text-[10px] text-secondary tracking-widest block mb-xs">INSIGHTS • 5 MIN READ</span>
-                        <h3 class="font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors">${post.title}</h3>
-                        <p class="text-on-surface-variant font-body-sm text-body-sm mt-sm">${summary}</p>
-                    </div>
-                `;
-            });
-
-            grid.innerHTML = html;
+            grid.replaceChildren(...latestPosts.map(createInsightCard));
 
             // Re-initialize scroll reveal for new elements
             initScrollReveal();
@@ -116,6 +96,98 @@ async function fetchLatestInsights() {
     } catch (error) {
         console.error('Failed to fetch Substack feed:', error);
         // Fallback remains in HTML
+    }
+}
+
+function createInsightCard(post) {
+    const fallbackImage = 'https://lh3.googleusercontent.com/aida/ADBb0ugSYgN3Oxm_CdvYcP6wj-e9x0LwazddkXM6htcZGpk8GQsB6VkcEk9m-x_oZ_hSHy5PGjXrLtQzpKxEmBvtoo3-ZkG-1fXCubohDRAbRh97QTWEJNYGT_iqDnK9AQi4Che6n-jwpqVRSXZSsnd7-YtjYQUo2uG3Ot_1vMBbDJ8sdVR2xq_PO-dnv3cEPjK5VVtJIh0ptCnETVUQbm-9CMhHeWGllYKXaCLNdGzF6AkDGGDHP_ri9GcXqfM';
+    const title = post.title || 'Latest Data Biz insight';
+    const link = withCampaignParams(post.link || 'https://jimmypang.substack.com', 'insights_card');
+    const imageUrl = getSafeUrl(post.thumbnail || post.enclosure?.link, fallbackImage);
+    const summary = getPostSummary(post.description || post.content || '');
+    const meta = [
+        formatPostDate(post.pubDate),
+        estimateReadingTime(post.content || post.description || '')
+    ].filter(Boolean).join(' • ');
+
+    const card = document.createElement('a');
+    card.className = 'group block cursor-pointer';
+    card.href = link;
+    card.target = '_blank';
+    card.rel = 'noopener';
+    card.dataset.vibeReveal = '';
+    card.dataset.gaEvent = 'insight_card_click';
+
+    const imageWrap = document.createElement('div');
+    imageWrap.className = 'relative aspect-video mb-md overflow-hidden rounded-lg border border-outline-variant bg-surface-container';
+
+    const image = document.createElement('img');
+    image.alt = title;
+    image.className = 'w-full h-full object-cover group-hover:scale-110 transition-transform duration-700';
+    image.src = imageUrl;
+    image.loading = 'lazy';
+    imageWrap.appendChild(image);
+
+    const metaEl = document.createElement('span');
+    metaEl.className = 'font-label-caps text-[10px] text-secondary tracking-widest block mb-xs uppercase';
+    metaEl.textContent = meta || 'INSIGHTS';
+
+    const titleEl = document.createElement('h3');
+    titleEl.className = 'font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors';
+    titleEl.textContent = title;
+
+    const summaryEl = document.createElement('p');
+    summaryEl.className = 'text-on-surface-variant font-body-sm text-body-sm mt-sm';
+    summaryEl.textContent = summary;
+
+    card.append(imageWrap, metaEl, titleEl, summaryEl);
+    return card;
+}
+
+function getPostSummary(rawDescription) {
+    const stripped = stripHtml(rawDescription).replace(/\s+/g, ' ').trim();
+    if (!stripped) return 'Read the latest Data Biz thinking on data leadership, operating models, and AI execution.';
+    const firstSentence = stripped.match(/.*?[.!?](\s|$)/)?.[0]?.trim() || stripped;
+    return firstSentence.length > 140 ? `${firstSentence.substring(0, 137).trim()}...` : firstSentence;
+}
+
+function stripHtml(html) {
+    const template = document.createElement('template');
+    template.innerHTML = html;
+    return template.content.textContent || '';
+}
+
+function estimateReadingTime(rawContent) {
+    const wordCount = stripHtml(rawContent).split(/\s+/).filter(Boolean).length;
+    if (!wordCount) return '';
+    return `${Math.max(1, Math.ceil(wordCount / 220))} min read`;
+}
+
+function formatPostDate(dateString) {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    if (Number.isNaN(date.getTime())) return '';
+    return date.toLocaleDateString('en', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function getSafeUrl(url, fallbackUrl) {
+    try {
+        const parsed = new URL(url);
+        return ['http:', 'https:'].includes(parsed.protocol) ? parsed.href : fallbackUrl;
+    } catch {
+        return fallbackUrl;
+    }
+}
+
+function withCampaignParams(url, campaign) {
+    try {
+        const parsed = new URL(url);
+        parsed.searchParams.set('utm_source', 'databiz_website');
+        parsed.searchParams.set('utm_medium', 'insights_page');
+        parsed.searchParams.set('utm_campaign', campaign);
+        return parsed.href;
+    } catch {
+        return url;
     }
 }
 
@@ -128,7 +200,7 @@ function initGA4Tracking() {
         element.addEventListener('click', (e) => {
             const eventName = element.getAttribute('data-ga-event');
             console.log(`GA4 Event Triggered: ${eventName}`); // Debug log
-            
+
             if (typeof gtag === 'function') {
                 gtag('event', 'click', {
                     'event_category': 'conversion',
@@ -152,7 +224,7 @@ function initGA4Tracking() {
             if (scrollPercent >= depth && !trackedDepths.includes(depth)) {
                 trackedDepths.push(depth);
                 console.log(`GA4 Scroll Depth Triggered: ${depth}%`); // Debug log
-                
+
                 if (typeof gtag === 'function') {
                     gtag('event', 'scroll_depth', {
                         'depth': depth
@@ -328,17 +400,17 @@ Tone and Communication:
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;");
-        
+
         // Bold
         escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        
+
         // Inline code
         escaped = escaped.replace(/`(.*?)`/g, '<code>$1</code>');
-        
+
         // Paragraphs / Newlines
         escaped = escaped.replace(/\n\n/g, '</p><p>');
         escaped = escaped.replace(/\n/g, '<br>');
-        
+
         return `<p>${escaped}</p>`;
     }
 
@@ -423,7 +495,7 @@ Tone and Communication:
 
                 partialBuffer += decoder.decode(value, { stream: true });
                 const lines = partialBuffer.split('\n');
-                
+
                 // Keep the last partial line in the buffer
                 partialBuffer = lines.pop();
 
@@ -450,7 +522,7 @@ Tone and Communication:
                         assistantText += json.message.content;
                         assistantMsgDiv.innerHTML = formatMarkdown(assistantText);
                     }
-                } catch (e) {}
+                } catch (e) { }
             }
 
             // Save completed assistant response to history

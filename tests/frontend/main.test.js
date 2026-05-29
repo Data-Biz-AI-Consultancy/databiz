@@ -49,9 +49,46 @@ describe('main.js unit tests', () => {
             items: [
               {
                 title: 'Test Article',
-                description: 'This is a test description.',
+                description: 'This is a test description. More detail follows.',
+                pubDate: 'Wed, 13 May 2026 13:01:38 GMT',
                 link: 'https://example.com/test',
                 thumbnail: 'https://example.com/thumb.png'
+              },
+              {
+                title: '<img src=x onerror=alert(1)>',
+                description: '<strong>Safe summary.</strong>',
+                pubDate: 'Thu, 14 May 2026 13:01:38 GMT',
+                link: 'https://example.com/no-enclosure'
+              },
+              {
+                title: 'Third Article',
+                description: 'Third summary.',
+                pubDate: 'Fri, 15 May 2026 13:01:38 GMT',
+                link: 'https://example.com/third'
+              },
+              {
+                title: 'Fourth Article',
+                description: 'Fourth summary.',
+                pubDate: 'Sat, 16 May 2026 13:01:38 GMT',
+                link: 'https://example.com/fourth'
+              },
+              {
+                title: 'Fifth Article',
+                description: 'Fifth summary.',
+                pubDate: 'Sun, 17 May 2026 13:01:38 GMT',
+                link: 'https://example.com/fifth'
+              },
+              {
+                title: 'Sixth Article',
+                description: 'Sixth summary.',
+                pubDate: 'Mon, 18 May 2026 13:01:38 GMT',
+                link: 'https://example.com/sixth'
+              },
+              {
+                title: 'Seventh Article',
+                description: 'Seventh summary.',
+                pubDate: 'Tue, 19 May 2026 13:01:38 GMT',
+                link: 'https://example.com/seventh'
               }
             ]
           })
@@ -132,6 +169,24 @@ describe('main.js unit tests', () => {
     const grid = document.querySelector('.insights-grid');
     expect(grid.innerHTML).toContain('Test Article');
     expect(grid.innerHTML).toContain('This is a test description.');
+    expect(grid.innerHTML).toContain('May 13, 2026');
+    expect(grid.innerHTML).toContain('1 min read');
+
+    const firstCard = grid.querySelector('a');
+    expect(firstCard.href).toContain('utm_source=databiz_website');
+    expect(firstCard.href).toContain('utm_campaign=insights_card');
+    expect(firstCard.target).toBe('_blank');
+    expect(firstCard.rel).toBe('noopener');
+    expect(firstCard.dataset.gaEvent).toBe('insight_card_click');
+
+    const cards = grid.querySelectorAll('a');
+    expect(cards).toHaveLength(7);
+    expect(grid.innerHTML).toContain('Sixth Article');
+    expect(grid.innerHTML).toContain('Seventh Article');
+    expect(cards[1].textContent).toContain('<img src=x onerror=alert(1)>');
+    expect(cards[1].querySelectorAll('img')).toHaveLength(1);
+    expect(cards[1].querySelector('h3 img')).toBeNull();
+    expect(cards[1].querySelector('img').getAttribute('onerror')).toBeNull();
   });
 
   it('initializes and injects AI assistant widget into DOM', () => {
@@ -163,4 +218,3 @@ describe('main.js unit tests', () => {
     expect(chatWindow.classList.contains('open')).toBe(false);
   });
 });
-

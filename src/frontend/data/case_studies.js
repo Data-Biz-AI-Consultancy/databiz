@@ -269,38 +269,58 @@ window.CASE_STUDIES = [
     "category": "analytics",
     "tag": "CASE STUDY 05 • ANALYTICS",
     "title": "Meal-Kit Referral Conversion Funnel Diagnostics",
-    "description": "A global meal-kit provider (HelloFresh) experienced a year-over-year decline in customer referral acquisitions. We developed a comprehensive diagnostic model to pinpoint funnel leakages.",
+    "description": "A global meal-kit provider (HelloFresh) experienced a year-over-year decline in customer referral acquisitions. As their product analyst, we diagnosed root causes across three dimensions — commercial pricing, supply chain operations, and tech — by structuring a rigorous multi-stage conversion funnel with properly isolated cohorts.",
     "howWeSolvedIt": [
       {
-        "title": "Multi-Stage Cohorts",
-        "desc": "Created metrics tracking code generation to 1st box subscribe (% CR1), 2nd box (% CR2), 3rd box (% CR3), and net churn."
+        "title": "Referral Funnel Architecture",
+        "desc": "Mapped the full dual-sided referral loop: referrer generates & shares a code → new customer uses code & subscribes. Defined % CR1 (1st box / referrers), % CR2 (2nd/1st), % CR3 (3rd/2nd), and % Churn — excluding 1-2 week pauses to avoid false churn signals."
       },
       {
-        "title": "Commercial & Operational Hypotheses",
-        "desc": "Evaluated interaction effects of pricing discount levels, operations/supply chain failures (ETA delays, missing items), and front-end site bugs."
+        "title": "Commercial Hypotheses",
+        "desc": "Segmented cohorts by pricing tier (3×2 vs. Premium) and meal/cuisine type (vegetarian vs. omnivore) to identify which combinations drove lowest conversion and highest early churn."
+      },
+      {
+        "title": "Operations & Tech Hypotheses",
+        "desc": "Correlated late/missing delivery rates and ETA inaccuracy with churn spikes. Also flagged silent tech churn (slow funnel pages, picking errors) where no direct correlation may exist but basket abandonment is measurable."
+      }
+    ],
+    "businessImpact": [
+      {
+        "desc": "<strong>Funnel Visibility:</strong> Delivered the first structured referral funnel schema with proper cohort isolation — weekly referrer denominator, 3-stage conversion, and churn excluding transient pauses."
+      },
+      {
+        "desc": "<strong>Root Cause Prioritisation:</strong> Identified 3 categories of hypotheses (Commercial, Ops/SCM, Tech) with testable data signals — empowering the Product Owner to run targeted A/B experiments instead of blanket discount increases."
+      },
+      {
+        "desc": "<strong>Actionable Growth Roadmap:</strong> Proposed primary KPIs (%CR1, %CR2, %CR3, % Churn) for ongoing tracking, giving the team a live performance baseline to measure future interventions against."
       }
     ],
     "scorecard": [
       {
         "value": "4-Stage",
-        "label": "FUNNEL TRACKING SCHEMA"
+        "label": "FUNNEL SCHEMA DEFINED"
+      },
+      {
+        "value": "3 Vectors",
+        "label": "HYPOTHESES FRAMEWORKS"
       },
       {
         "value": "100%",
         "label": "COHORT ISOLATION (PAUSES EXCLUDED)"
-      },
-      {
-        "value": "Actionable",
-        "label": "GROWTH ROADMAP DEPLOYED"
       }
     ],
     "visualType": "image-list",
     "visualData": {
       "images": [
         {
+          "title": "ACQUISITION FUNNEL WITH DROP-OFF ZONES",
+          "src": "assets/case_study/referral_acquisition_funnel_highlighted.png",
+          "alt": "Acquisition Funnel with Referral Drop-off Zones Highlighted"
+        },
+        {
           "title": "REFERRAL CONVERSIONS FUNNEL",
           "src": "assets/case_study/referral_conversions_funnel.png",
-          "alt": "Referral Funnel Details"
+          "alt": "Referral Funnel Conversion Rate Details"
         }
       ]
     }

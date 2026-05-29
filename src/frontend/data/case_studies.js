@@ -280,8 +280,26 @@ window.CASE_STUDIES = [
         "label": "DELIVERY AREAS"
       }
     ],
-    "visualType": "code-widget",
-    "visualData": {}
+    "visualType": "image-list",
+    "visualData": {
+      "images": [
+        {
+          "title": "RADIUS REDUCTION PERFORMANCE DASHBOARD",
+          "src": "assets/case_study/logistics_radius_reduction_dashboard.png",
+          "alt": "Dashboard showing delivery radius reduction hours, purchases analyzed, revenue modeled, and commercial baseline by delivery area"
+        },
+        {
+          "title": "HOURLY MART BLUEPRINT",
+          "src": "assets/case_study/logistics_hourly_mart_blueprint.png",
+          "alt": "Data warehouse blueprint from raw purchase and delivery radius logs to hourly analytics mart"
+        },
+        {
+          "title": "DEFAULT RADIUS INTERVAL LOGIC",
+          "src": "assets/case_study/logistics_radius_interval_logic.png",
+          "alt": "Timeline explaining how default delivery radius and temporary radius reductions are classified"
+        }
+      ]
+    }
   },
   {
     "id": 6,

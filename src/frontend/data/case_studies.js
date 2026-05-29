@@ -286,27 +286,27 @@ window.CASE_STUDIES = [
     ],
     "businessImpact": [
       {
-        "desc": "<strong>Funnel Visibility:</strong> Delivered the first structured referral funnel schema with proper cohort isolation — weekly referrer denominator, 3-stage conversion, and churn excluding transient pauses."
+        "desc": "<strong>Funnel Visibility:</strong> Delivered the first structured referral funnel schema — 4-stage conversion tracking (CR1 → CR2 → CR3 → Churn) with clean cohort isolation excluding transient 1-2 week pauses."
       },
       {
-        "desc": "<strong>Root Cause Prioritisation:</strong> Identified 3 categories of hypotheses (Commercial, Ops/SCM, Tech) with testable data signals — empowering the Product Owner to run targeted A/B experiments instead of blanket discount increases."
+        "desc": "<strong>Root Cause Prioritisation:</strong> Mapped 3 diagnostic vectors (Commercial, Ops/SCM, Tech) each with distinct testable hypotheses — enabling the Product Owner to run targeted experiments instead of blanket discount increases."
       },
       {
-        "desc": "<strong>Actionable Growth Roadmap:</strong> Proposed primary KPIs (%CR1, %CR2, %CR3, % Churn) for ongoing tracking, giving the team a live performance baseline to measure future interventions against."
+        "desc": "<strong>Actionable Growth Roadmap:</strong> Established 4 primary KPIs (%CR1, %CR2, %CR3, %Churn) as a live performance baseline, giving the team measurable targets for every future product intervention."
       }
     ],
     "scorecard": [
       {
         "value": "4-Stage",
-        "label": "FUNNEL SCHEMA DEFINED"
+        "label": "FUNNEL SCHEMA"
       },
       {
         "value": "3 Vectors",
-        "label": "HYPOTHESES FRAMEWORKS"
+        "label": "DIAGNOSTIC HYPOTHESES"
       },
       {
-        "value": "100%",
-        "label": "COHORT ISOLATION (PAUSES EXCLUDED)"
+        "value": "4 KPIs",
+        "label": "PRIMARY METRICS DEFINED"
       }
     ],
     "visualType": "image-list",

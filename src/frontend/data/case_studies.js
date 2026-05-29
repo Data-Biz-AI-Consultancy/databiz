@@ -297,16 +297,20 @@ window.CASE_STUDIES = [
     ],
     "scorecard": [
       {
-        "value": "4-Stage",
-        "label": "FUNNEL SCHEMA"
+        "value": "↑ YoY",
+        "label": "% REFERRAL UPLIFT TARGET"
       },
       {
-        "value": "3 Vectors",
-        "label": "DIAGNOSTIC HYPOTHESES"
+        "value": "W-1/W-2",
+        "label": "# REFERRERS (COHORT WINDOW)"
       },
       {
-        "value": "4 KPIs",
-        "label": "PRIMARY METRICS DEFINED"
+        "value": "%CR1→3",
+        "label": "CONVERSION RATE (PER STAGE)"
+      },
+      {
+        "value": "% Churn",
+        "label": "CHURN RATE (PAUSES EXCL.)"
       }
     ],
     "visualType": "image-list",

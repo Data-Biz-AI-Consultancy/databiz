@@ -269,7 +269,7 @@ window.CASE_STUDIES = [
     "category": "analytics",
     "tag": "CASE STUDY 05 • ANALYTICS",
     "title": "Meal-Kit Referral Conversion Funnel Diagnostics",
-    "description": "A global meal-kit provider (HelloFresh) experienced a year-over-year decline in customer referral acquisitions. As their product analyst, we diagnosed root causes across three dimensions — commercial pricing, supply chain operations, and tech — by structuring a rigorous multi-stage conversion funnel with properly isolated cohorts.",
+    "description": "A global meal-kit provider experienced a year-over-year decline in customer referral acquisitions. As their product analytics function, we diagnosed root causes across three dimensions — commercial pricing, supply chain operations, and tech — by structuring a rigorous multi-stage conversion funnel with properly isolated cohorts.",
     "howWeSolvedIt": [
       {
         "title": "Referral Funnel Architecture",

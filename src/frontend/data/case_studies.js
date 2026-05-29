@@ -373,8 +373,8 @@ window.CASE_STUDIES = [
         "label": "AD SPEND ATTRIBUTED"
       },
       {
-        "value": "830 → 47",
-        "label": "LEADS → CUSTOMERS FUNNEL"
+        "value": "47 Custs.",
+        "label": "CUSTOMERS TRACED TO SOURCE"
       },
       {
         "value": "Oct +3%",

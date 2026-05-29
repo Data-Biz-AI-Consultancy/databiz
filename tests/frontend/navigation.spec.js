@@ -48,10 +48,10 @@ test.describe('Data Biz E2E Tests', () => {
     await expect(aboutLinkedInLink).toHaveAttribute('href', 'https://www.linkedin.com/in/jimmy-pang-hk603');
   });
 
-  test('should verify hero CTA links correctly to insights page', async ({ page }) => {
+  test('should verify hero CTA links correctly to case studies page', async ({ page }) => {
     await page.goto('/');
-    const viewMethodologyBtn = page.getByRole('link', { name: 'EXPLORE AI INSIGHTS' });
-    await expect(viewMethodologyBtn).toHaveAttribute('href', 'insights.html');
+    const viewMethodologyBtn = page.getByRole('link', { name: 'EXPLORE CASE STUDIES' });
+    await expect(viewMethodologyBtn).toHaveAttribute('href', 'case-study.html');
   });
 
   test('should navigate to offers page and check content', async ({ page }) => {

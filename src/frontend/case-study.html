@@ -372,6 +372,29 @@
             document.getElementById('triage-content-' + tabId).classList.remove('hidden');
         }
 
+        // Blueprint tab switcher
+        function showBlueprint(csId, imgIdx) {
+            const tabs = document.querySelectorAll(`.blueprint-tab-${csId}`);
+            tabs.forEach((btn, idx) => {
+                if (idx === imgIdx) {
+                    btn.classList.add('active', 'border-primary', 'text-primary');
+                    btn.classList.remove('border-transparent', 'text-on-surface-variant');
+                } else {
+                    btn.classList.remove('active', 'border-primary', 'text-primary');
+                    btn.classList.add('border-transparent', 'text-on-surface-variant');
+                }
+            });
+
+            const contents = document.querySelectorAll(`.blueprint-content-${csId}`);
+            contents.forEach((el, idx) => {
+                if (idx === imgIdx) {
+                    el.classList.remove('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+        }
+
         // Diagram Modal helpers
         function openDiagramModal() {
             const modal = document.getElementById('diagram-modal');
@@ -518,6 +541,43 @@
                             </div>`;
                     });
                     visualPanelHtml += `</div>`;
+                } else if (cs.visualType === 'image-tabs') {
+                    visualPanelHtml = `
+                    <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-label-caps text-label-caps text-secondary mb-md">${cs.visualData.title || 'BLUEPRINT ARCHITECTURE'}</h4>
+                            <div class="flex flex-wrap gap-xs mb-md border-b border-outline-variant pb-xs">`;
+                    
+                    cs.visualData.images.forEach((img, imgIdx) => {
+                        const activeClass = imgIdx === 0 ? 'active border-primary text-primary' : 'border-transparent text-on-surface-variant hover:text-primary';
+                        visualPanelHtml += `
+                            <button class="blueprint-tab-${cs.id} px-sm py-xs text-[10px] font-label-caps border-b-2 font-semibold transition-all duration-200 ${activeClass}"
+                                onclick="showBlueprint(${cs.id}, ${imgIdx})">
+                                ${img.tabLabel || img.title.split(' ')[0]}
+                            </button>`;
+                    });
+
+                    visualPanelHtml += `
+                            </div>
+                        </div>
+                        <div class="p-xs bg-surface-container rounded border border-outline-variant/50 relative overflow-hidden flex items-center justify-center min-h-[300px]">`;
+
+                    cs.visualData.images.forEach((img, imgIdx) => {
+                        const hiddenClass = imgIdx === 0 ? '' : 'hidden';
+                        visualPanelHtml += `
+                            <div id="blueprint-img-${cs.id}-${imgIdx}" class="blueprint-content-${cs.id} w-full text-center ${hiddenClass}">
+                                <h5 class="text-[10px] font-label-caps text-on-surface-variant mb-sm">${img.title}</h5>
+                                <div class="overflow-hidden rounded border border-outline-variant/50 bg-background/50 p-xs">
+                                    <img src="${img.src}" alt="${img.alt}"
+                                        class="w-full h-auto max-h-[350px] object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                            </div>`;
+                    });
+
+                    visualPanelHtml += `
+                        </div>
+                    </div>`;
                 } else if (cs.visualType === 'operating-rhythm') {
                     visualPanelHtml = `
                     <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl">

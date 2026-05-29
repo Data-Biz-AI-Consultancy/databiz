@@ -172,52 +172,55 @@ window.CASE_STUDIES = [
         "label": "ANNUAL GWP GROWTH"
       },
       {
-        "value": "85%",
-        "label": "CLAIMS VIA PORTAL"
+        "value": "65",
+        "label": "NET PROMOTER SCORE (NPS)"
       },
       {
-        "value": "60%",
-        "label": "AUTO-PROCESSED CLAIMS"
-      },
-      {
-        "value": "70%",
-        "label": "SELF-SERVICE ADOPTION"
+        "value": "4.7/5",
+        "label": "TRUSTPILOT RATING"
       },
       {
         "value": "3 Phases",
         "label": "ROADMAP TO LAUNCH"
       }
     ],
-    "visualType": "image-list",
+    "visualType": "image-tabs",
     "visualData": {
+      "title": "DATA PLATFORM BLUEPRINTS",
       "images": [
         {
           "title": "IMPLEMENTATION ROADMAP BLUEPRINT",
+          "tabLabel": "ROADMAP",
           "src": "assets/case_study/new_vertical_roadmap.png",
           "alt": "InsurTech Implementation Roadmap"
         },
         {
           "title": "EMBEDDED DATA MODEL",
+          "tabLabel": "ORG MODEL",
           "src": "assets/case_study/new_vertical_embedded_model.png",
           "alt": "Embedded Data Org Model"
         },
         {
           "title": "VERTICAL SPECIFIC AGGREGATED TABLES",
+          "tabLabel": "DATA MODELS",
           "src": "assets/case_study/new_vertical_tables.png",
           "alt": "New Vertical Specific Aggregated Tables"
         },
         {
           "title": "METRICS & SEMANTIC LAYER",
+          "tabLabel": "METRICS LAYER",
           "src": "assets/case_study/new_vertical_metrics_layer.png",
           "alt": "Metrics and Semantic Layer Blueprint"
         },
         {
           "title": "DATA ACTIVATION LINEAGE",
+          "tabLabel": "LINEAGE",
           "src": "assets/case_study/new_vertical_activation_lineage.png",
           "alt": "Data Activation Lineage Map"
         },
         {
           "title": "MARKET POSITIONING ANALYSIS (BCG MATRIX)",
+          "tabLabel": "BCG MATRIX",
           "src": "assets/case_study/new_vertical_bcg_matrix.png",
           "alt": "Market Positioning Analysis BCG Matrix"
         }

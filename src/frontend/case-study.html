@@ -363,10 +363,11 @@
 
                     <!-- Interactive Warehouse Schema Explorer Widget -->
                     <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                        <div class="flex justify-between items-center mb-md border-b border-outline-variant pb-xs">
+                        <div class="flex justify-between items-center mb-md border-b border-outline-variant pb-xs flex-wrap gap-xs">
                             <h4 class="font-label-caps text-label-caps text-secondary">MESHPILOT ARCHITECTURE</h4>
                             <div class="flex gap-sm">
                                 <button class="mesh-tab active text-xs font-label-caps pb-1 border-b-2 border-primary" onclick="showMeshTab('layers')">LAYERS</button>
+                                <button class="mesh-tab text-xs font-label-caps pb-1 border-b-2 border-transparent text-on-surface-variant" onclick="showMeshTab('archi')">ARCHITECTURE</button>
                                 <button class="mesh-tab text-xs font-label-caps pb-1 border-b-2 border-transparent text-on-surface-variant" onclick="showMeshTab('flow')">DATA FLOW</button>
                             </div>
                         </div>
@@ -411,6 +412,12 @@
                                         • Insulates core pipelines while empowering analysts with self-service agility.
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div id="mesh-content-archi" class="hidden">
+                            <div class="overflow-hidden rounded border border-outline-variant/50 bg-surface-container p-xs">
+                                <img src="assets/mesh_pilot_architecture.png" alt="MeshPilot Data Mesh Architecture Blueprint" class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in" onclick="openDiagramModal()"/>
                             </div>
                         </div>
                         
@@ -644,6 +651,7 @@
 
             document.getElementById('mesh-content-layers').classList.add('hidden');
             document.getElementById('mesh-content-flow').classList.add('hidden');
+            document.getElementById('mesh-content-archi').classList.add('hidden');
 
             document.getElementById('mesh-content-' + tabId).classList.remove('hidden');
         }

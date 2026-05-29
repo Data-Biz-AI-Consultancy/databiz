@@ -395,6 +395,32 @@
             });
         }
 
+        // Strategy Models tab switcher
+        function showStratTab(event, tabId) {
+            document.querySelectorAll('.strat-tab').forEach(btn => {
+                btn.classList.remove('active', 'border-primary', 'text-primary');
+                btn.classList.add('border-transparent', 'text-on-surface-variant');
+            });
+            event.currentTarget.classList.add('active', 'border-primary', 'text-primary');
+            event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+            document.querySelectorAll('.strat-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('strat-' + tabId).classList.remove('hidden');
+        }
+
+        // Data Activation tab switcher
+        function showActTab(event, tabId) {
+            document.querySelectorAll('.act-tab').forEach(btn => {
+                btn.classList.remove('active', 'border-primary', 'text-primary');
+                btn.classList.add('border-transparent', 'text-on-surface-variant');
+            });
+            event.currentTarget.classList.add('active', 'border-primary', 'text-primary');
+            event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+            document.querySelectorAll('.act-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('act-' + tabId).classList.remove('hidden');
+        }
+
         // Diagram Modal helpers
         function openDiagramModal() {
             const modal = document.getElementById('diagram-modal');
@@ -576,6 +602,76 @@
                     });
 
                     visualPanelHtml += `
+                        </div>
+                    </div>`;
+                } else if (cs.visualType === 'insurtech-blocks') {
+                    visualPanelHtml = `
+                    <div class="lg:col-span-6 space-y-md">
+                        <!-- 1. Roadmap -->
+                        <div class="bg-surface-container-low border border-outline-variant p-md rounded-xl">
+                            <h4 class="font-label-caps text-label-caps text-secondary mb-sm">1. ROADMAP BLUEPRINT</h4>
+                            <div class="overflow-hidden rounded border border-outline-variant/50 bg-surface-container p-xs">
+                                <img src="assets/case_study/new_vertical_roadmap.png" alt="InsurTech Implementation Roadmap"
+                                    class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                    onclick="openDiagramModal()" />
+                            </div>
+                        </div>
+
+                        <!-- 2. Strategy Models -->
+                        <div class="bg-surface-container-low border border-outline-variant p-md rounded-xl">
+                            <div class="flex justify-between items-center mb-sm">
+                                <h4 class="font-label-caps text-label-caps text-secondary">2. STRATEGY MODELS</h4>
+                                <div class="flex gap-2">
+                                    <button class="strat-tab active text-[9px] font-label-caps border-b-2 border-primary text-primary px-sm pb-1 font-semibold"
+                                        onclick="showStratTab(event, 'org-model')">ORG MODEL</button>
+                                    <button class="strat-tab text-[9px] font-label-caps border-b-2 border-transparent text-on-surface-variant hover:text-primary px-sm pb-1 font-semibold"
+                                        onclick="showStratTab(event, 'bcg-matrix')">BCG MATRIX</button>
+                                </div>
+                            </div>
+                            <div class="p-xs bg-surface-container rounded border border-outline-variant/50 min-h-[220px] flex items-center justify-center">
+                                <div id="strat-org-model" class="strat-content w-full">
+                                    <img src="assets/case_study/new_vertical_embedded_model.png" alt="Embedded Data Org Model"
+                                        class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                                <div id="strat-bcg-matrix" class="strat-content w-full hidden">
+                                    <img src="assets/case_study/new_vertical_bcg_matrix.png" alt="Market Positioning Analysis BCG Matrix"
+                                        class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Data Activation -->
+                        <div class="bg-surface-container-low border border-outline-variant p-md rounded-xl">
+                            <div class="flex justify-between items-center mb-sm">
+                                <h4 class="font-label-caps text-label-caps text-secondary">3. DATA ACTIVATION</h4>
+                                <div class="flex gap-2 flex-wrap">
+                                    <button class="act-tab active text-[9px] font-label-caps border-b-2 border-primary text-primary px-sm pb-1 font-semibold"
+                                        onclick="showActTab(event, 'metrics')">METRICS LAYER</button>
+                                    <button class="act-tab text-[9px] font-label-caps border-b-2 border-transparent text-on-surface-variant hover:text-primary px-sm pb-1 font-semibold"
+                                        onclick="showActTab(event, 'models')">DATA MODELS</button>
+                                    <button class="act-tab text-[9px] font-label-caps border-b-2 border-transparent text-on-surface-variant hover:text-primary px-sm pb-1 font-semibold"
+                                        onclick="showActTab(event, 'lineage')">LINEAGE</button>
+                                </div>
+                            </div>
+                            <div class="p-xs bg-surface-container rounded border border-outline-variant/50 min-h-[220px] flex items-center justify-center">
+                                <div id="act-metrics" class="act-content w-full">
+                                    <img src="assets/case_study/new_vertical_metrics_layer.png" alt="Metrics and Semantic Layer Blueprint"
+                                        class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                                <div id="act-models" class="act-content w-full hidden">
+                                    <img src="assets/case_study/new_vertical_tables.png" alt="New Vertical Specific Aggregated Tables"
+                                        class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                                <div id="act-lineage" class="act-content w-full hidden">
+                                    <img src="assets/case_study/new_vertical_activation_lineage.png" alt="Data Activation Lineage Map"
+                                        class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                            </div>
                         </div>
                     </div>`;
                 } else if (cs.visualType === 'operating-rhythm') {

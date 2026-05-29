@@ -184,7 +184,7 @@ window.CASE_STUDIES = [
         "label": "ROADMAP TO LAUNCH"
       }
     ],
-    "visualType": "image-tabs",
+    "visualType": "insurtech-blocks",
     "visualData": {
       "title": "DATA PLATFORM BLUEPRINTS",
       "images": [

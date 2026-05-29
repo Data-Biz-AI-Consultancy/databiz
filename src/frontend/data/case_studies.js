@@ -136,47 +136,93 @@ window.CASE_STUDIES = [
     "category": "strategy",
     "tag": "CASE STUDY 03 • DATA STRATEGY",
     "title": "InsurTech New Vertical Launching Strategy",
-    "description": "Germany's #1 direct-to-consumer digital insurance marketplace scaleup operating in dental and pet verticals wanted to launch a 3rd vertical. We designed the data platform implementation roadmap and structural organizational model to ensure Day-1 readiness.",
+    "description": "Germany's #1 direct-to-consumer digital insurance marketplace scaleup—operating dental and pet insurance verticals for over 110,000+ active customers with a 95%+ year-over-year GWP growth rate—sought to launch a third vertical on their state-of-the-art platform. We architected their end-to-end data platform implementation roadmap to support the launch without operational friction.",
     "howWeSolvedIt": [
       {
         "title": "Embedded Org Model",
-        "desc": "Advised on adopting a central Data Platform team paired with decentralized domain analysts."
+        "desc": "Advised on adopting a central Data Platform team paired with decentralized domain analysts to handle specialized reporting."
       },
       {
         "title": "Phase-Driven Discovery",
-        "desc": "Outlined discovery metrics, tracking plans (frontend Google Analytics & backend APIs), and GDPR PII compliance rules."
+        "desc": "Outlined discovery metrics, frontend Google Analytics tracking, webhook APIs, and strict GDPR PII compliance rules."
       },
       {
-        "title": "Risk & Cost Governance",
-        "desc": "Formulated strategy for query scalability and automated data quality checks during the post-launch hypercare phase."
+        "title": "Operations & Self-Service",
+        "desc": "Established data pipeline templates to support 85% account claims submissions and 70% self-service portal analytics."
+      }
+    ],
+    "businessImpact": [
+      {
+        "desc": "<strong>SLA & Governance:</strong> Established operational routines and strict query SLAs to monitor pipeline stability and keep compute runtimes optimal."
+      },
+      {
+        "desc": "<strong>GDPR & Data Discovery:</strong> Programmatically cataloged new data entities and isolated PII fields to ensure total regulatory compliance."
+      },
+      {
+        "desc": "<strong>Cost Observability:</strong> Mitigated database surge impacts post-launch by setting up automated alerts for unexpected cost anomalies."
       }
     ],
     "scorecard": [
       {
-        "value": "100%",
-        "label": "DAY-1 DATA READINESS"
+        "value": "110K+",
+        "label": "ACTIVE CUSTOMERS"
+      },
+      {
+        "value": "95%+",
+        "label": "ANNUAL GWP GROWTH"
+      },
+      {
+        "value": "65",
+        "label": "NET PROMOTER SCORE (NPS)"
+      },
+      {
+        "value": "4.7/5",
+        "label": "TRUSTPILOT RATING"
       },
       {
         "value": "3 Phases",
-        "label": "DISCOVERY TO GO-LIVE"
-      },
-      {
-        "value": "Linear",
-        "label": "WAREHOUSE COMPUTATION SPEND"
+        "label": "ROADMAP TO LAUNCH"
       }
     ],
-    "visualType": "image-list",
+    "visualType": "insurtech-blocks",
     "visualData": {
+      "title": "DATA PLATFORM BLUEPRINTS",
       "images": [
         {
           "title": "IMPLEMENTATION ROADMAP BLUEPRINT",
+          "tabLabel": "ROADMAP",
           "src": "assets/case_study/new_vertical_roadmap.png",
           "alt": "InsurTech Implementation Roadmap"
         },
         {
           "title": "EMBEDDED DATA MODEL",
+          "tabLabel": "ORG MODEL",
           "src": "assets/case_study/new_vertical_embedded_model.png",
           "alt": "Embedded Data Org Model"
+        },
+        {
+          "title": "VERTICAL SPECIFIC AGGREGATED TABLES",
+          "tabLabel": "DATA MODELS",
+          "src": "assets/case_study/new_vertical_tables.png",
+          "alt": "New Vertical Specific Aggregated Tables"
+        },
+        {
+          "title": "METRICS & SEMANTIC LAYER",
+          "tabLabel": "METRICS LAYER",
+          "src": "assets/case_study/new_vertical_metrics_layer.png",
+          "alt": "Metrics and Semantic Layer Blueprint"
+        },
+        {
+          "title": "DATA ACTIVATION LINEAGE",
+          "tabLabel": "LINEAGE",
+          "src": "assets/case_study/new_vertical_activation_lineage.png",
+          "alt": "Data Activation Lineage Map"
+        },
+        {
+          "title": "MARKET POSITIONING ANALYSIS (BCG MATRIX)",
+          "tabLabel": "BCG MATRIX",
+          "src": "assets/case_study/new_vertical_bcg_matrix.png",
+          "alt": "Market Positioning Analysis BCG Matrix"
         }
       ]
     }

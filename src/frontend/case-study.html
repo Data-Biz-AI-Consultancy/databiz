@@ -372,6 +372,55 @@
             document.getElementById('triage-content-' + tabId).classList.remove('hidden');
         }
 
+        // Blueprint tab switcher
+        function showBlueprint(csId, imgIdx) {
+            const tabs = document.querySelectorAll(`.blueprint-tab-${csId}`);
+            tabs.forEach((btn, idx) => {
+                if (idx === imgIdx) {
+                    btn.classList.add('active', 'border-primary', 'text-primary');
+                    btn.classList.remove('border-transparent', 'text-on-surface-variant');
+                } else {
+                    btn.classList.remove('active', 'border-primary', 'text-primary');
+                    btn.classList.add('border-transparent', 'text-on-surface-variant');
+                }
+            });
+
+            const contents = document.querySelectorAll(`.blueprint-content-${csId}`);
+            contents.forEach((el, idx) => {
+                if (idx === imgIdx) {
+                    el.classList.remove('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+        }
+
+        // Strategy Models tab switcher
+        function showStratTab(event, tabId) {
+            document.querySelectorAll('.strat-tab').forEach(btn => {
+                btn.classList.remove('active', 'border-primary', 'text-primary');
+                btn.classList.add('border-transparent', 'text-on-surface-variant');
+            });
+            event.currentTarget.classList.add('active', 'border-primary', 'text-primary');
+            event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+            document.querySelectorAll('.strat-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('strat-' + tabId).classList.remove('hidden');
+        }
+
+        // Data Activation tab switcher
+        function showActTab(event, tabId) {
+            document.querySelectorAll('.act-tab').forEach(btn => {
+                btn.classList.remove('active', 'border-primary', 'text-primary');
+                btn.classList.add('border-transparent', 'text-on-surface-variant');
+            });
+            event.currentTarget.classList.add('active', 'border-primary', 'text-primary');
+            event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+            document.querySelectorAll('.act-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('act-' + tabId).classList.remove('hidden');
+        }
+
         // Diagram Modal helpers
         function openDiagramModal() {
             const modal = document.getElementById('diagram-modal');
@@ -481,9 +530,11 @@
                 let scorecardHtml = '';
                 if (cs.scorecard && cs.scorecard.length > 0) {
                     let cols = cs.scorecard.length;
-                    let gridClass = `grid-cols-${cols}`;
+                    let gridClass = `grid-cols-2 md:grid-cols-${cols}`;
                     if (cols === 5) {
                         gridClass = `grid-cols-2 md:grid-cols-5`;
+                    } else if (cols === 6) {
+                        gridClass = `grid-cols-2 md:grid-cols-3 lg:grid-cols-6`;
                     }
                     scorecardHtml = `<div class="bg-surface-container-low border border-outline-variant p-md rounded-xl grid ${gridClass} gap-sm text-center">`;
                     cs.scorecard.forEach((score, sIdx) => {
@@ -516,6 +567,113 @@
                             </div>`;
                     });
                     visualPanelHtml += `</div>`;
+                } else if (cs.visualType === 'image-tabs') {
+                    visualPanelHtml = `
+                    <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-label-caps text-label-caps text-secondary mb-md">${cs.visualData.title || 'BLUEPRINT ARCHITECTURE'}</h4>
+                            <div class="flex flex-wrap gap-xs mb-md border-b border-outline-variant pb-xs">`;
+                    
+                    cs.visualData.images.forEach((img, imgIdx) => {
+                        const activeClass = imgIdx === 0 ? 'active border-primary text-primary' : 'border-transparent text-on-surface-variant hover:text-primary';
+                        visualPanelHtml += `
+                            <button class="blueprint-tab-${cs.id} px-sm py-xs text-[10px] font-label-caps border-b-2 font-semibold transition-all duration-200 ${activeClass}"
+                                onclick="showBlueprint(${cs.id}, ${imgIdx})">
+                                ${img.tabLabel || img.title.split(' ')[0]}
+                            </button>`;
+                    });
+
+                    visualPanelHtml += `
+                            </div>
+                        </div>
+                        <div class="p-xs bg-surface-container rounded border border-outline-variant/50 relative overflow-hidden flex items-center justify-center min-h-[300px]">`;
+
+                    cs.visualData.images.forEach((img, imgIdx) => {
+                        const hiddenClass = imgIdx === 0 ? '' : 'hidden';
+                        visualPanelHtml += `
+                            <div id="blueprint-img-${cs.id}-${imgIdx}" class="blueprint-content-${cs.id} w-full text-center ${hiddenClass}">
+                                <h5 class="text-[10px] font-label-caps text-on-surface-variant mb-sm">${img.title}</h5>
+                                <div class="overflow-hidden rounded border border-outline-variant/50 bg-background/50 p-xs">
+                                    <img src="${img.src}" alt="${img.alt}"
+                                        class="w-full h-auto max-h-[350px] object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                            </div>`;
+                    });
+
+                    visualPanelHtml += `
+                        </div>
+                    </div>`;
+                } else if (cs.visualType === 'insurtech-blocks') {
+                    visualPanelHtml = `
+                    <div class="lg:col-span-6 space-y-md">
+                        <!-- 1. Roadmap -->
+                        <div class="bg-surface-container-low border border-outline-variant p-md rounded-xl">
+                            <h4 class="font-label-caps text-label-caps text-secondary mb-sm">1. ROADMAP BLUEPRINT</h4>
+                            <div class="overflow-hidden rounded border border-outline-variant/50 bg-surface-container p-xs">
+                                <img src="assets/case_study/new_vertical_roadmap.png" alt="InsurTech Implementation Roadmap"
+                                    class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                    onclick="openDiagramModal()" />
+                            </div>
+                        </div>
+
+                        <!-- 2. Strategy Models -->
+                        <div class="bg-surface-container-low border border-outline-variant p-md rounded-xl">
+                            <div class="flex justify-between items-center mb-sm">
+                                <h4 class="font-label-caps text-label-caps text-secondary">2. STRATEGY MODELS</h4>
+                                <div class="flex gap-2">
+                                    <button class="strat-tab active text-[9px] font-label-caps border-b-2 border-primary text-primary px-sm pb-1 font-semibold"
+                                        onclick="showStratTab(event, 'org-model')">ORG MODEL</button>
+                                    <button class="strat-tab text-[9px] font-label-caps border-b-2 border-transparent text-on-surface-variant hover:text-primary px-sm pb-1 font-semibold"
+                                        onclick="showStratTab(event, 'bcg-matrix')">BCG MATRIX</button>
+                                </div>
+                            </div>
+                            <div class="p-xs bg-surface-container rounded border border-outline-variant/50 min-h-[220px] flex items-center justify-center">
+                                <div id="strat-org-model" class="strat-content w-full">
+                                    <img src="assets/case_study/new_vertical_embedded_model.png" alt="Embedded Data Org Model"
+                                        class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                                <div id="strat-bcg-matrix" class="strat-content w-full hidden">
+                                    <img src="assets/case_study/new_vertical_bcg_matrix.png" alt="Market Positioning Analysis BCG Matrix"
+                                        class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Data Activation -->
+                        <div class="bg-surface-container-low border border-outline-variant p-md rounded-xl">
+                            <div class="flex justify-between items-center mb-sm">
+                                <h4 class="font-label-caps text-label-caps text-secondary">3. DATA ACTIVATION</h4>
+                                <div class="flex gap-2 flex-wrap">
+                                    <button class="act-tab active text-[9px] font-label-caps border-b-2 border-primary text-primary px-sm pb-1 font-semibold"
+                                        onclick="showActTab(event, 'metrics')">METRICS LAYER</button>
+                                    <button class="act-tab text-[9px] font-label-caps border-b-2 border-transparent text-on-surface-variant hover:text-primary px-sm pb-1 font-semibold"
+                                        onclick="showActTab(event, 'models')">DATA MODELS</button>
+                                    <button class="act-tab text-[9px] font-label-caps border-b-2 border-transparent text-on-surface-variant hover:text-primary px-sm pb-1 font-semibold"
+                                        onclick="showActTab(event, 'lineage')">LINEAGE</button>
+                                </div>
+                            </div>
+                            <div class="p-xs bg-surface-container rounded border border-outline-variant/50 min-h-[220px] flex items-center justify-center">
+                                <div id="act-metrics" class="act-content w-full">
+                                    <img src="assets/case_study/new_vertical_metrics_layer.png" alt="Metrics and Semantic Layer Blueprint"
+                                        class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                                <div id="act-models" class="act-content w-full hidden">
+                                    <img src="assets/case_study/new_vertical_tables.png" alt="New Vertical Specific Aggregated Tables"
+                                        class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                                <div id="act-lineage" class="act-content w-full hidden">
+                                    <img src="assets/case_study/new_vertical_activation_lineage.png" alt="Data Activation Lineage Map"
+                                        class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
                 } else if (cs.visualType === 'operating-rhythm') {
                     visualPanelHtml = `
                     <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl">

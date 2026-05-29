@@ -217,8 +217,15 @@
 
                 <!-- Interactive Pipeline Simulator Widget -->
                 <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">THE 5-STEP TRIAGE PIPELINE</h4>
-                    <div class="space-y-sm" id="pipeline-steps">
+                    <div class="flex justify-between items-center mb-md border-b border-outline-variant pb-xs">
+                        <h4 class="font-label-caps text-label-caps text-secondary">THE TRIAGE PIPELINE</h4>
+                        <div class="flex gap-sm">
+                            <button class="triage-tab active text-xs font-label-caps pb-1 border-b-2 border-primary" onclick="showTriageTab('steps')">STEPS</button>
+                            <button class="triage-tab text-xs font-label-caps pb-1 border-b-2 border-transparent text-on-surface-variant" onclick="showTriageTab('diagram')">DIAGRAM</button>
+                        </div>
+                    </div>
+                    
+                    <div id="triage-content-steps" class="space-y-sm">
                         <div class="pipeline-step cursor-pointer bg-surface-container p-sm rounded border border-primary transition-all duration-200" onclick="showStep(1)">
                             <div class="flex justify-between items-center">
                                 <span class="font-bold text-sm text-primary">1. Rule Engine</span>
@@ -253,6 +260,12 @@
                                 <span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span>
                             </div>
                             <p class="text-xs text-on-surface-variant mt-xs hidden" id="step-desc-5">Generates automated bullet-points detailing cost risk factors to prepare field teams for site dispatch.</p>
+                        </div>
+                    </div>
+                    
+                    <div id="triage-content-diagram" class="hidden">
+                        <div class="overflow-hidden rounded border border-outline-variant/50 bg-surface-container p-xs">
+                            <img src="assets/ai_triage_pipeline.png" alt="Autonomous Triage Layer Pipeline Architecture" class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in" onclick="openDiagramModal()"/>
                         </div>
                     </div>
                 </div>
@@ -533,11 +546,63 @@
         document.getElementById('rhythm-content-' + rhythmId).classList.remove('hidden');
     }
 
+    // Triage Tab switcher
+    function showTriageTab(tabId) {
+        document.querySelectorAll('.triage-tab').forEach(btn => {
+            btn.classList.remove('active', 'border-primary');
+            btn.classList.add('border-transparent', 'text-on-surface-variant');
+        });
+        
+        event.currentTarget.classList.add('active', 'border-primary');
+        event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+        document.getElementById('triage-content-steps').classList.add('hidden');
+        document.getElementById('triage-content-diagram').classList.add('hidden');
+
+        document.getElementById('triage-content-' + tabId).classList.remove('hidden');
+    }
+
+    // Diagram Modal helpers
+    function openDiagramModal() {
+        const modal = document.getElementById('diagram-modal');
+        const modalImg = document.getElementById('modal-img');
+        const srcImg = event.currentTarget.getAttribute('src');
+        if (modal && modalImg) {
+            modalImg.src = srcImg;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+            }, 10);
+        }
+    }
+
+    function closeDiagramModal() {
+        const modal = document.getElementById('diagram-modal');
+        if (modal) {
+            modal.classList.remove('opacity-100');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+    }
+
     // Set initial state on load
     document.addEventListener('DOMContentLoaded', () => {
         filterCases('all');
     });
 </script>
+
+<!-- Fullscreen Image Modal -->
+<div id="diagram-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-background/95 backdrop-blur-md p-md transition-opacity duration-300 opacity-0">
+    <button onclick="closeDiagramModal()" class="absolute top-md right-md text-on-background p-2 hover:bg-surface-container rounded-full" aria-label="Close modal">
+        <span class="material-symbols-outlined text-3xl">close</span>
+    </button>
+    <div class="max-w-5xl w-full h-full flex items-center justify-center p-md">
+        <img id="modal-img" src="" alt="Triage Layer Diagram" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" />
+    </div>
+</div>
 
 <!-- Footer -->
 <footer class="bg-surface-container-lowest border-t border-outline-variant transition-colors duration-300">

@@ -132,46 +132,9 @@ window.CASE_STUDIES = [
     }
   },
   {
-    "id": 3,
-    "category": "strategy",
-    "tag": "CASE STUDY 03 • DATA STRATEGY",
-    "title": "Analytics Platform & BI Squad Transformation",
-    "description": "An international e-commerce marketplace (luxury fashion) lacked centralized analytics alignment. Decision support across Operations, Sustainability, and emerging business lines was highly fragmented, leaving the data engineering team overwhelmed by manual, repetitive request tickets.",
-    "howWeSolvedIt": [
-      {
-        "title": "Squad Formation",
-        "desc": "Recruited and onboarded dedicated BI squad members aligned with key business lines."
-      },
-      {
-        "title": "Delivery Frameworks",
-        "desc": "Established 2-week Scrum sprints, MoSCoW prioritization, and a standardized request intake SLA."
-      },
-      {
-        "title": "Self-Service Marts",
-        "desc": "Deployed over 50+ Kimball-modeled clean data marts, enabling stakeholders to run reports independently."
-      }
-    ],
-    "scorecard": [
-      {
-        "value": "-40%",
-        "label": "AD-HOC TICKET VOL"
-      },
-      {
-        "value": "100%",
-        "label": "TEAM RETENTION"
-      },
-      {
-        "value": "50+",
-        "label": "DATA MARTS"
-      }
-    ],
-    "visualType": "operating-rhythm",
-    "visualData": {}
-  },
-  {
     "id": 4,
     "category": "strategy",
-    "tag": "CASE STUDY 04 • DATA STRATEGY",
+    "tag": "CASE STUDY 03 • DATA STRATEGY",
     "title": "InsurTech New Vertical Launching Strategy",
     "description": "Germany's #1 direct-to-consumer digital insurance marketplace scaleup operating in dental and pet verticals wanted to launch a 3rd vertical. We designed the data platform implementation roadmap and structural organizational model to ensure Day-1 readiness.",
     "howWeSolvedIt": [
@@ -217,6 +180,43 @@ window.CASE_STUDIES = [
         }
       ]
     }
+  },
+  {
+    "id": 3,
+    "category": "strategy",
+    "tag": "CASE STUDY 04 • DATA STRATEGY",
+    "title": "Analytics Platform & BI Squad Transformation",
+    "description": "An international e-commerce marketplace (luxury fashion) lacked centralized analytics alignment. Decision support across Operations, Sustainability, and emerging business lines was highly fragmented, leaving the data engineering team overwhelmed by manual, repetitive request tickets.",
+    "howWeSolvedIt": [
+      {
+        "title": "Squad Formation",
+        "desc": "Recruited and onboarded dedicated BI squad members aligned with key business lines."
+      },
+      {
+        "title": "Delivery Frameworks",
+        "desc": "Established 2-week Scrum sprints, MoSCoW prioritization, and a standardized request intake SLA."
+      },
+      {
+        "title": "Self-Service Marts",
+        "desc": "Deployed over 50+ Kimball-modeled clean data marts, enabling stakeholders to run reports independently."
+      }
+    ],
+    "scorecard": [
+      {
+        "value": "-40%",
+        "label": "AD-HOC TICKET VOL"
+      },
+      {
+        "value": "100%",
+        "label": "TEAM RETENTION"
+      },
+      {
+        "value": "50+",
+        "label": "DATA MARTS"
+      }
+    ],
+    "visualType": "operating-rhythm",
+    "visualData": {}
   },
   {
     "id": 5,

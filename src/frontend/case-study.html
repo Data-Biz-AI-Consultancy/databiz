@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Case Studies | Data Biz</title>
-    <meta name="description" content="Explore Case Studies showing how Data Biz approaches complex data infrastructure and AI challenges for rapid growth companies.">
+    <meta name="description"
+        content="Explore Case Studies showing how Data Biz approaches complex data infrastructure and AI challenges for rapid growth companies.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/DataBiz_logo.png" />
@@ -12,19 +14,25 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Case Studies | Data Biz" />
-    <meta property="og:description" content="Explore Case Studies showing how Data Biz approaches complex data infrastructure and AI challenges for rapid growth companies." />
+    <meta property="og:description"
+        content="Explore Case Studies showing how Data Biz approaches complex data infrastructure and AI challenges for rapid growth companies." />
     <meta property="og:image" content="https://databizaitech.com/assets/DataBiz_banner_logo.png" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content="Case Studies | Data Biz" />
-    <meta property="twitter:description" content="Explore Case Studies showing how Data Biz approaches complex data infrastructure and AI challenges for rapid growth companies." />
+    <meta property="twitter:description"
+        content="Explore Case Studies showing how Data Biz approaches complex data infrastructure and AI challenges for rapid growth companies." />
     <meta property="twitter:image" content="https://databizaitech.com/assets/DataBiz_banner_logo.png" />
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
+    <script src="data/case_studies.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9K79821DCM"></script>
@@ -36,276 +44,658 @@
     </script>
 
     <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "secondary": "var(--secondary)",
-                    "on-secondary-container": "var(--on-secondary-container)",
-                    "background": "var(--background)",
-                    "surface-bright": "var(--surface-bright)",
-                    "outline": "var(--outline)",
-                    "surface-container-highest": "var(--surface-container-highest)",
-                    "primary": "var(--primary)",
-                    "surface-container-high": "var(--surface-container-high)",
-                    "surface-dim": "var(--surface-dim)",
-                    "surface": "var(--surface)",
-                    "outline-variant": "var(--outline-variant)",
-                    "surface-container": "var(--surface-container)",
-                    "inverse-surface": "var(--inverse-surface)",
-                    "on-background": "var(--on-background)",
-                    "primary-container": "var(--primary-container)",
-                    "on-surface-variant": "var(--on-surface-variant)",
-                    "on-surface": "var(--on-surface)",
-                    "surface-variant": "var(--surface-variant)",
-                    "surface-container-lowest": "var(--surface-container-lowest)",
-                    "surface-container-low": "var(--surface-container-low)",
-                    "on-primary": "var(--on-primary)",
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "var(--secondary)",
+                        "on-secondary-container": "var(--on-secondary-container)",
+                        "background": "var(--background)",
+                        "surface-bright": "var(--surface-bright)",
+                        "outline": "var(--outline)",
+                        "surface-container-highest": "var(--surface-container-highest)",
+                        "primary": "var(--primary)",
+                        "surface-container-high": "var(--surface-container-high)",
+                        "surface-dim": "var(--surface-dim)",
+                        "surface": "var(--surface)",
+                        "outline-variant": "var(--outline-variant)",
+                        "surface-container": "var(--surface-container)",
+                        "inverse-surface": "var(--inverse-surface)",
+                        "on-background": "var(--on-background)",
+                        "primary-container": "var(--primary-container)",
+                        "on-surface-variant": "var(--on-surface-variant)",
+                        "on-surface": "var(--on-surface)",
+                        "surface-variant": "var(--surface-variant)",
+                        "surface-container-lowest": "var(--surface-container-lowest)",
+                        "surface-container-low": "var(--surface-container-low)",
+                        "on-primary": "var(--on-primary)",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "4px",
+                        "lg": "8px",
+                        "xl": "12px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "md": "16px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "lg": "24px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["JetBrains Mono"],
+                        "body-sm": ["Outfit"],
+                        "display-lg-mobile": ["Outfit"],
+                        "display-lg": ["Outfit"],
+                        "headline-md": ["Outfit"],
+                        "body-lg": ["Outfit"],
+                        "data-mono": ["JetBrains Mono"],
+                        "body-md": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
             },
-            "borderRadius": {
-                    "DEFAULT": "4px",
-                    "lg": "8px",
-                    "xl": "12px",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "xl": "32px",
-                    "xs": "4px",
-                    "base": "4px",
-                    "md": "16px",
-                    "gutter": "16px",
-                    "container-margin": "24px",
-                    "lg": "24px",
-                    "sm": "8px"
-            },
-            "fontFamily": {
-                    "label-caps": ["JetBrains Mono"],
-                    "body-sm": ["Outfit"],
-                    "display-lg-mobile": ["Outfit"],
-                    "display-lg": ["Outfit"],
-                    "headline-md": ["Outfit"],
-                    "body-lg": ["Outfit"],
-                    "data-mono": ["JetBrains Mono"],
-                    "body-md": ["Outfit"]
-            },
-            "fontSize": {
-                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600"}],
-                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
-                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
-            }
-          },
-        },
-      }
+        }
     </script>
 </head>
+
 <body class="font-body-md text-body-md overflow-x-hidden text-on-background bg-background">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant transition-colors duration-300">
-    <div class="flex justify-between items-center h-16 px-container-margin max-w-7xl mx-auto">
-        <a href="index.html" class="flex items-center gap-2 hover:opacity-90">
-            <img src="assets/DataBiz_logo.png" alt="Data Biz Logo" class="h-8 w-auto object-contain" />
-            <span class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">Data Biz</span>
-        </a>
-        <div class="hidden md:flex items-center space-x-xl">
-            <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="offers.html">Offers</a>
-            <a class="text-primary font-body-md text-body-md hover:text-primary transition-colors duration-200" href="case-study.html">Case Study</a>
-            <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="insights.html">Insights</a>
-            <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="toolings.html">Toolings</a>
-            <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="about.html">About</a>
-        </div>
-        <div class="flex items-center gap-md">
-            <!-- Theme Toggle Button -->
-            <button id="theme-toggle" class="p-2 text-on-surface-variant hover:text-primary rounded-lg transition-colors duration-200 flex items-center justify-center" aria-label="Toggle Theme">
-                <span class="material-symbols-outlined" id="theme-toggle-icon">light_mode</span>
-            </button>
-            <a href="https://calendar.app.google/6w9VxJ7QXjUY7W658" target="_blank" rel="noopener" data-ga-event="header_cta_click" class="bg-primary text-on-primary px-lg py-sm font-label-caps text-label-caps rounded-lg hover:brightness-110 active:scale-95 transition-all">
-                Book a call
+    <!-- TopNavBar -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant transition-colors duration-300">
+        <div class="flex justify-between items-center h-16 px-container-margin max-w-7xl mx-auto">
+            <a href="index.html" class="flex items-center gap-2 hover:opacity-90">
+                <img src="assets/DataBiz_logo.png" alt="Data Biz Logo" class="h-8 w-auto object-contain" />
+                <span class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">Data Biz</span>
             </a>
+            <div class="hidden md:flex items-center space-x-xl">
+                <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200"
+                    href="offers.html">Offers</a>
+                <a class="text-primary font-body-md text-body-md hover:text-primary transition-colors duration-200"
+                    href="case-study.html">Case Study</a>
+                <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200"
+                    href="insights.html">Insights</a>
+                <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200"
+                    href="toolings.html">Toolings</a>
+                <a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200"
+                    href="about.html">About</a>
+            </div>
+            <div class="flex items-center gap-md">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle"
+                    class="p-2 text-on-surface-variant hover:text-primary rounded-lg transition-colors duration-200 flex items-center justify-center"
+                    aria-label="Toggle Theme">
+                    <span class="material-symbols-outlined" id="theme-toggle-icon">light_mode</span>
+                </button>
+                <a href="https://calendar.app.google/6w9VxJ7QXjUY7W658" target="_blank" rel="noopener"
+                    data-ga-event="header_cta_click"
+                    class="bg-primary text-on-primary px-lg py-sm font-label-caps text-label-caps rounded-lg hover:brightness-110 active:scale-95 transition-all">
+                    Book a call
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16">
+        <!-- Hero Header -->
+        <section
+            class="py-20 px-container-margin border-b border-outline-variant bg-surface-container-lowest transition-colors duration-300">
+            <div class="max-w-7xl mx-auto text-center" data-vibe-reveal>
+                <span
+                    class="inline-block font-label-caps text-label-caps text-secondary mb-md tracking-widest border border-secondary/30 px-sm py-xs bg-secondary/5">
+                    PROVEN BUSINESS VALUE
+                </span>
+                <h1 class="font-display-lg text-display-lg mb-lg leading-tight max-w-4xl mx-auto">
+                    Decisive solutions for complex <span class="text-primary">data & AI challenges</span>.
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    Explore how Data Biz delivers enterprise-grade intelligence, structured modern infrastructure, and
+                    operational efficiency.
+                </p>
+            </div>
+        </section>
+
+        <!-- Case Studies Navigation Tabs -->
+        <section
+            class="py-6 border-b border-outline-variant bg-surface transition-colors duration-300 sticky top-16 z-40 backdrop-blur-md bg-opacity-95 dark:bg-opacity-95">
+            <div class="max-w-7xl mx-auto px-container-margin flex flex-wrap justify-center gap-sm">
+                <button onclick="filterCases('all')"
+                    class="tab-btn active px-lg py-sm font-label-caps text-[11px] rounded-lg border border-outline-variant hover:border-primary transition-all duration-200"
+                    id="btn-all">
+                    ALL
+                </button>
+                <button onclick="filterCases('ai')"
+                    class="tab-btn px-lg py-sm font-label-caps text-[11px] rounded-lg border border-outline-variant hover:border-primary transition-all duration-200"
+                    id="btn-ai">
+                    AI & AUTOMATION
+                </button>
+                <button onclick="filterCases('strategy')"
+                    class="tab-btn px-lg py-sm font-label-caps text-[11px] rounded-lg border border-outline-variant hover:border-primary transition-all duration-200"
+                    id="btn-strategy">
+                    DATA STRATEGY
+                </button>
+                <button onclick="filterCases('analytics')"
+                    class="tab-btn px-lg py-sm font-label-caps text-[11px] rounded-lg border border-outline-variant hover:border-primary transition-all duration-200"
+                    id="btn-analytics">
+                    ANALYTICS
+                </button>
+                <button onclick="filterCases('architecture')"
+                    class="tab-btn px-lg py-sm font-label-caps text-[11px] rounded-lg border border-outline-variant hover:border-primary transition-all duration-200"
+                    id="btn-architecture">
+                    MODERN DATA ARCHITECTURE
+                </button>
+            </div>
+        </section>
+
+        <!-- Case Studies List -->
+        <section class="py-20 px-container-margin max-w-7xl mx-auto">
+            <div id="case-studies-container" class="space-y-24">
+                <!-- Case Studies will be dynamically rendered here from data/case_studies.js -->
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section
+            class="py-xl bg-primary text-on-primary text-center px-container-margin transition-colors duration-300">
+            <div class="max-w-3xl mx-auto" data-vibe-reveal>
+                <h2 class="font-display-lg text-display-lg mb-md">Ready to deploy institutional data command?</h2>
+                <p class="font-body-lg text-body-lg mb-lg opacity-90">Start with a short discovery call. No deck
+                    theatre. Just a direct conversation about where things are stuck.</p>
+                <a href="https://calendar.app.google/6w9VxJ7QXjUY7W658" target="_blank" rel="noopener"
+                    class="inline-block bg-background text-primary px-xl py-md font-label-caps text-label-caps rounded-lg hover:brightness-110 transition-all shadow-xl">
+                    BOOK A DISCOVERY CALL
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Filtering logic for the case studies
+        function filterCases(category) {
+            // Toggle tab highlights
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-primary', 'text-on-primary', 'border-primary');
+                btn.classList.add('text-on-surface-variant', 'border-outline-variant');
+            });
+
+            const activeBtn = document.getElementById('btn-' + category);
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'bg-primary', 'text-on-primary', 'border-primary');
+                activeBtn.classList.remove('text-on-surface-variant', 'border-outline-variant');
+            }
+
+            // Show/hide cards
+            document.querySelectorAll('.case-card').forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'grid';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Manage dividers
+            document.querySelectorAll('.case-divider').forEach(div => {
+                div.style.display = (category === 'all') ? 'block' : 'none';
+            });
+        }
+
+        // Step pipeline handler
+        function showStep(stepNum) {
+            document.querySelectorAll('.pipeline-step').forEach((el, index) => {
+                const stepId = index + 1;
+                const desc = document.getElementById('step-desc-' + stepId);
+                const icon = el.querySelector('.material-symbols-outlined');
+                const title = el.querySelector('span:first-child');
+
+                if (stepId === stepNum) {
+                    el.classList.add('border-primary');
+                    el.classList.remove('border-outline-variant/50');
+                    if (desc) desc.classList.remove('hidden');
+                    if (icon) {
+                        icon.classList.add('text-primary');
+                        icon.classList.remove('text-on-surface-variant');
+                    }
+                    if (title) {
+                        title.classList.add('text-primary');
+                        title.classList.remove('text-on-surface');
+                    }
+                } else {
+                    el.classList.remove('border-primary');
+                    el.classList.add('border-outline-variant/50');
+                    if (desc) desc.classList.add('hidden');
+                    if (icon) {
+                        icon.classList.remove('text-primary');
+                        icon.classList.add('text-on-surface-variant');
+                    }
+                    if (title) {
+                        title.classList.remove('text-primary');
+                        title.classList.add('text-on-surface');
+                    }
+                }
+            });
+        }
+
+        // Stack Layer tab switcher
+        function showLayer(layerId) {
+            document.querySelectorAll('.layer-tab').forEach(btn => {
+                btn.classList.remove('active', 'border-primary');
+                btn.classList.add('border-transparent', 'text-on-surface-variant');
+            });
+
+            event.currentTarget.classList.add('active', 'border-primary');
+            event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+            document.getElementById('layer-content-raw').classList.add('hidden');
+            document.getElementById('layer-content-stg').classList.add('hidden');
+            document.getElementById('layer-content-marts').classList.add('hidden');
+            document.getElementById('layer-content-adm').classList.add('hidden');
+
+            document.getElementById('layer-content-' + layerId).classList.remove('hidden');
+        }
+
+        // Mesh Tab switcher
+        function showMeshTab(tabId) {
+            document.querySelectorAll('.mesh-tab').forEach(btn => {
+                btn.classList.remove('active', 'border-primary');
+                btn.classList.add('border-transparent', 'text-on-surface-variant');
+            });
+
+            event.currentTarget.classList.add('active', 'border-primary');
+            event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+            document.getElementById('mesh-content-layers').classList.add('hidden');
+            document.getElementById('mesh-content-flow').classList.add('hidden');
+            document.getElementById('mesh-content-archi').classList.add('hidden');
+
+            document.getElementById('mesh-content-' + tabId).classList.remove('hidden');
+        }
+
+        // Rhythms tab switcher
+        function showRhythm(rhythmId) {
+            document.querySelectorAll('.rhythm-tab').forEach(btn => {
+                btn.classList.remove('active', 'border-primary');
+                btn.classList.add('border-transparent', 'text-on-surface-variant');
+            });
+
+            event.currentTarget.classList.add('active', 'border-primary');
+            event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+            document.getElementById('rhythm-content-prior').classList.add('hidden');
+            document.getElementById('rhythm-content-cadence').classList.add('hidden');
+
+            document.getElementById('rhythm-content-' + rhythmId).classList.remove('hidden');
+        }
+
+        // Radius tab switcher
+        function showRadiusTab(tabId) {
+            document.querySelectorAll('.radius-tab').forEach(btn => {
+                btn.classList.remove('active', 'border-primary');
+                btn.classList.add('border-transparent', 'text-on-surface-variant');
+            });
+
+            event.currentTarget.classList.add('active', 'border-primary');
+            event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+            document.getElementById('radius-content-sql').classList.add('hidden');
+            document.getElementById('radius-content-dbt').classList.add('hidden');
+
+            document.getElementById('radius-content-' + tabId).classList.remove('hidden');
+        }
+
+        // Triage Tab switcher
+        function showTriageTab(tabId) {
+            document.querySelectorAll('.triage-tab').forEach(btn => {
+                btn.classList.remove('active', 'border-primary');
+                btn.classList.add('border-transparent', 'text-on-surface-variant');
+            });
+
+            event.currentTarget.classList.add('active', 'border-primary');
+            event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+            document.getElementById('triage-content-steps').classList.add('hidden');
+            document.getElementById('triage-content-diagram').classList.add('hidden');
+
+            document.getElementById('triage-content-' + tabId).classList.remove('hidden');
+        }
+
+        // Diagram Modal helpers
+        function openDiagramModal() {
+            const modal = document.getElementById('diagram-modal');
+            const modalImg = document.getElementById('modal-img');
+            const srcImg = event.currentTarget.getAttribute('src');
+            if (modal && modalImg) {
+                modalImg.src = srcImg;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    modal.classList.add('opacity-100');
+                }, 10);
+            }
+        }
+
+        function closeDiagramModal() {
+            const modal = document.getElementById('diagram-modal');
+            if (modal) {
+                modal.classList.remove('opacity-100');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300);
+            }
+        }
+
+        // Set initial state on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCaseStudies();
+            filterCases('all');
+        });
+
+        // Dynamic renderer for the case studies
+        function renderCaseStudies() {
+            const container = document.getElementById('case-studies-container');
+            if (!container || !window.CASE_STUDIES) return;
+
+            let html = '';
+            window.CASE_STUDIES.forEach((cs, index) => {
+                // Build client photos section if available
+                let clientPhotosHtml = '';
+                if (cs.clientPhotos && cs.clientPhotos.length > 0) {
+                    clientPhotosHtml = `<div class="grid grid-cols-2 gap-sm my-md">`;
+                    cs.clientPhotos.forEach(photo => {
+                        clientPhotosHtml += `
+                            <div class="overflow-hidden rounded-lg border border-outline-variant/50 aspect-[4/3] bg-surface-container group">
+                                <img src="${photo.src}" alt="${photo.alt}"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 cursor-zoom-in"
+                                    onclick="openDiagramModal()" />
+                            </div>`;
+                    });
+                    clientPhotosHtml += `</div>`;
+                }
+
+                // Build how we solved it list
+                let solvedHtml = '';
+                if (cs.howWeSolvedIt && cs.howWeSolvedIt.length > 0) {
+                    let descText = 'We restructured their internal analytics capabilities from the ground up:';
+                    if (cs.id === 1) {
+                        descText = 'We architected and deployed a stateless, multi-stage AI qualification pipeline integrated directly into their CRM:';
+                    } else if (cs.id === 2) {
+                        descText = 'We deployed our proprietary <strong>MeshPilot</strong> data mesh framework to keep the speed for analytics while introducing proper governance, data ownership, and cost control:';
+                    } else if (cs.id === 4) {
+                        descText = 'We designed a comprehensive implementation roadmap from discovery to go-live:';
+                    } else if (cs.id === 5) {
+                        descText = 'We designed a clean, programmatic data modeling solution in PostgreSQL/dbt:';
+                    } else if (cs.id === 6) {
+                        descText = 'We structured a multi-dimensional funnel analysis framework:';
+                    } else if (cs.id === 7) {
+                        descText = 'We designed a robust, modern staging-to-mart dbt pipeline:';
+                    }
+
+                    solvedHtml = `
+                        <div class="space-y-sm">
+                            <h4 class="font-label-caps text-[11px] text-secondary">HOW WE SOLVED IT</h4>
+                            <p class="text-on-surface-variant font-body-sm">${descText}</p>
+                            <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">`;
+
+                    cs.howWeSolvedIt.forEach(item => {
+                        solvedHtml += `
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span><strong>${item.title}:</strong> ${item.desc}</span>
+                            </li>`;
+                    });
+                    solvedHtml += `</ul></div>`;
+                }
+
+                // Build business impact list if available
+                let impactHtml = '';
+                if (cs.businessImpact && cs.businessImpact.length > 0) {
+                    impactHtml = `
+                        <div class="space-y-sm">
+                            <h4 class="font-label-caps text-[11px] text-secondary">BUSINESS IMPACT</h4>
+                            <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">`;
+                    cs.businessImpact.forEach(item => {
+                        impactHtml += `
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-secondary text-sm mt-0.5">check_circle</span>
+                                <span>${item.desc}</span>
+                            </li>`;
+                    });
+                    impactHtml += `</ul></div>`;
+                }
+
+                // Build scorecard card
+                let scorecardHtml = '';
+                if (cs.scorecard && cs.scorecard.length > 0) {
+                    let cols = cs.scorecard.length;
+                    let gridClass = `grid-cols-${cols}`;
+                    if (cols === 5) {
+                        gridClass = `grid-cols-2 md:grid-cols-5`;
+                    }
+                    scorecardHtml = `<div class="bg-surface-container-low border border-outline-variant p-md rounded-xl grid ${gridClass} gap-sm text-center">`;
+                    cs.scorecard.forEach((score, sIdx) => {
+                        let cellClass = "";
+                        if (cols === 5 && sIdx === 4) {
+                            cellClass = 'class="col-span-2 md:col-span-1"';
+                        }
+                        scorecardHtml += `
+                            <div ${cellClass}>
+                                <span class="text-primary text-2xl font-bold font-display-lg">${score.value}</span>
+                                <span class="block text-[8px] md:text-[9px] font-label-caps text-on-surface-variant mt-xs">${score.label}</span>
+                            </div>`;
+                    });
+                    scorecardHtml += `</div>`;
+                }
+
+                // Build visual panel
+                let visualPanelHtml = '';
+                if (cs.visualType === 'image-list') {
+                    visualPanelHtml = `<div class="lg:col-span-6 space-y-md">`;
+                    cs.visualData.images.forEach(img => {
+                        visualPanelHtml += `
+                            <div class="bg-surface-container-low border border-outline-variant p-lg rounded-xl">
+                                ${img.title ? `<h4 class="font-label-caps text-label-caps text-secondary mb-md">${img.title}</h4>` : ''}
+                                <div class="overflow-hidden rounded border border-outline-variant/50 bg-surface-container p-xs">
+                                    <img src="${img.src}" alt="${img.alt}"
+                                        class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in"
+                                        onclick="openDiagramModal()" />
+                                </div>
+                            </div>`;
+                    });
+                    visualPanelHtml += `</div>`;
+                } else if (cs.visualType === 'operating-rhythm') {
+                    visualPanelHtml = `
+                    <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
+                        <h4 class="font-label-caps text-label-caps text-secondary mb-md">THE CORE OPERATING MODEL</h4>
+                        <div class="flex gap-sm mb-md border-b border-outline-variant pb-xs">
+                            <button class="rhythm-tab active text-xs font-label-caps pb-2 border-b-2 border-primary"
+                                onclick="showRhythm('prior')">PRIORITIZATION</button>
+                            <button
+                                class="rhythm-tab text-xs font-label-caps pb-2 border-b-2 border-transparent text-on-surface-variant"
+                                onclick="showRhythm('cadence')">TEAM RHYTHMS</button>
+                        </div>
+                        <div
+                            class="p-md bg-surface-container rounded border border-outline-variant/50 min-h-[160px] flex flex-col justify-center">
+                            <div id="rhythm-content-prior"
+                                class="space-y-sm text-xs font-body-sm text-on-surface-variant">
+                                <span class="text-primary font-bold text-sm block font-label-caps">MoSCoW PRIORITIZATION
+                                    FRAMEWORK</span>
+                                • <strong>Must Have:</strong> Critical business KPIs & operational metrics (locked in
+                                current sprint).<br>
+                                • <strong>Should Have:</strong> Enhanced analytics and deeper exploratory analyses.<br>
+                                • <strong>Could Have:</strong> Experimental insights and nice-to-have data metrics.<br>
+                                • <strong>Won't Have:</strong> Out-of-scope tasks parked for subsequent quarters.
+                            </div>
+                            <div id="rhythm-content-cadence"
+                                class="space-y-sm text-xs font-body-sm text-on-surface-variant hidden">
+                                <span class="text-primary font-bold text-sm block font-label-caps">OPERATIONAL
+                                    RITUALS</span>
+                                • <strong>Weekly Stakeholder Sync:</strong> Short reviews with domain leaders to align
+                                on backlog priority.<br>
+                                • <strong>Bi-Weekly Sprints:</strong> Structured delivery windows with a clear
+                                definition-of-done.<br>
+                                • <strong>Continuous Mentorship:</strong> Pair programming and standardized code
+                                reviews.
+                            </div>
+                        </div>
+                    </div>`;
+                } else if (cs.visualType === 'code-widget') {
+                    visualPanelHtml = `
+                    <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
+                        <h4 class="font-label-caps text-label-caps text-secondary mb-md">THE DATA MODELING ENGINE</h4>
+                        <div class="flex gap-sm mb-md border-b border-outline-variant pb-xs">
+                            <button class="radius-tab active text-xs font-label-caps pb-2 border-b-2 border-primary"
+                                onclick="showRadiusTab('sql')">SQL WINDOW FUNCTION</button>
+                            <button
+                                class="radius-tab text-xs font-label-caps pb-2 border-b-2 border-transparent text-on-surface-variant"
+                                onclick="showRadiusTab('dbt')">dbt LINEAGE SCHEMA</button>
+                        </div>
+                        <div class="p-md bg-surface-container rounded border border-outline-variant/50 min-h-[220px] flex flex-col justify-center overflow-x-auto">
+                            <div id="radius-content-sql" class="space-y-sm text-xs font-mono text-on-surface-variant leading-relaxed">
+                                <pre class="text-[10px] text-primary select-all"><code>WITH default_events AS (
+  SELECT delivery_area_id,
+    event_started_timestamp AS start_ts,
+    COALESCE(LEAD(event_started_timestamp) 
+      OVER (PARTITION BY delivery_area_id 
+            ORDER BY event_started_timestamp), 
+      CURRENT_TIMESTAMP) AS end_ts,
+    delivery_radius_meters AS default_radius
+  FROM fct.delivery_radius_events
+  WHERE delivery_radius_duration_hours &gt;= 24
+)
+SELECT logs.delivery_area_id,
+  logs.event_started_timestamp,
+  (default_events.default_radius &gt; logs.delivery_radius_meters) AS is_reduction
+FROM ods.delivery_radius_log logs
+LEFT JOIN default_events ON logs.delivery_area_id = default_events.delivery_area_id
+  AND logs.event_started_timestamp BETWEEN default_events.start_ts AND default_events.end_ts;</code></pre>
+                            </div>
+                            <div id="radius-content-dbt" class="space-y-sm text-xs font-body-sm text-on-surface-variant hidden">
+                                <span class="text-primary font-bold text-sm block font-label-caps">dbt DATA PIPELINE LAYERS</span>
+                                • <strong>ods.delivery_radius_log:</strong> Raw event log streamed in near real-time.<br>
+                                • <strong>fct.delivery_areas_default_radius_events:</strong> Identifies default radiuses lasting >= 24h uninterrupted.<br>
+                                • <strong>fct.delivery_radius_events:</strong> Tracks all deviations, flags reductions, and calculates duration hours.<br>
+                                • <strong>mart.hourly_delivery_radius_performance:</strong> Pre-calculates hourly metrics and WoW % changes.
+                            </div>
+                        </div>
+                    </div>`;
+                }
+
+                // Assemble case card HTML
+                html += `
+                    <div class="case-card grid grid-cols-1 lg:grid-cols-12 gap-xl items-start" data-category="${cs.category}" data-vibe-reveal>
+                        <div class="lg:col-span-6 space-y-md">
+                            <span class="font-label-caps text-label-caps text-primary tracking-widest block">${cs.tag}</span>
+                            <h2 class="font-display-lg text-headline-md font-bold text-on-surface">${cs.title}</h2>
+                            <p class="text-on-surface-variant font-body-sm">${cs.description}</p>
+                            ${clientPhotosHtml}
+                            ${solvedHtml}
+                            ${impactHtml}
+                            ${scorecardHtml}
+                        </div>
+                        ${visualPanelHtml}
+                    </div>`;
+
+                // Add divider between cases
+                if (index < window.CASE_STUDIES.length - 1) {
+                    html += `<hr class="border-outline-variant/30 case-divider">`;
+                }
+            });
+
+            container.innerHTML = html;
+        }
+    </script>
+
+    <!-- Fullscreen Image Modal -->
+    <div id="diagram-modal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-background/95 backdrop-blur-md p-md transition-opacity duration-300 opacity-0">
+        <button onclick="closeDiagramModal()"
+            class="absolute top-md right-md text-on-background p-2 hover:bg-surface-container rounded-full"
+            aria-label="Close modal">
+            <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+        <div class="max-w-5xl w-full h-full flex items-center justify-center p-md">
+            <img id="modal-img" src="" alt="Triage Layer Diagram"
+                class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" />
         </div>
     </div>
-</nav>
 
-<main class="pt-16">
-    <!-- Hero Header -->
-    <section class="py-20 px-container-margin border-b border-outline-variant bg-surface-container-lowest transition-colors duration-300">
-        <div class="max-w-7xl mx-auto text-center" data-vibe-reveal>
-            <span class="inline-block font-label-caps text-label-caps text-secondary mb-md tracking-widest border border-secondary/30 px-sm py-xs bg-secondary/5">
-                REAL WORLD IMPACT
-            </span>
-            <h1 class="font-display-lg text-display-lg mb-lg leading-tight max-w-4xl mx-auto">
-                Decisive solutions for complex <span class="text-primary">business challenges</span>.
-            </h1>
-            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-                Explore our strategic approach, technical architectures, and concrete results built for high-growth enterprises.
-            </p>
-        </div>
-    </section>
-
-    <!-- Case Studies List -->
-    <section class="py-20 px-container-margin max-w-7xl mx-auto">
-        <div class="space-y-16">
-            <!-- Case Study 1 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center" data-vibe-reveal>
-                <div class="lg:col-span-5 space-y-md">
-                    <span class="font-label-caps text-label-caps text-primary tracking-widest block">CASE STUDY 01</span>
-                    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Scaling From Seed to Series A</h2>
-                    <p class="text-on-surface-variant font-body-sm">
-                        A fast-growing fintech startup was drowning in fragmented analytics across Mixpanel, Segment, and HubSpot. We deployed a unified warehouse stack, resulting in single-source-of-truth board reporting in under 4 weeks.
-                    </p>
+    <!-- Footer -->
+    <footer class="bg-surface-container-lowest border-t border-outline-variant transition-colors duration-300">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 py-xl px-container-margin max-w-7xl mx-auto">
+            <div class="space-y-md">
+                <div class="flex items-center gap-2 font-label-caps text-label-caps text-on-surface tracking-tighter">
+                    <img src="assets/DataBiz_logo.png" alt="Data Biz Logo" class="h-6 w-auto object-contain" />
+                    <span>DATA BIZ</span>
+                </div>
+                <p class="text-on-surface-variant font-body-sm text-body-sm max-w-sm">
+                    Fractional data leadership for high-growth teams. We fix the data, you fix the world.
+                </p>
+                <div class="flex items-center gap-md pt-sm">
+                    <a class="text-on-surface-variant hover:text-secondary transition-colors"
+                        href="https://jimmypang.substack.com" target="_blank" rel="noopener" aria-label="Substack">
+                        <span class="material-symbols-outlined text-[20px] leading-none">public</span>
+                    </a>
+                    <a class="text-on-surface-variant hover:text-secondary transition-colors flex items-center"
+                        href="https://www.linkedin.com/company/databiz-ai-tech" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">
+                        <img src="in-logo/InBug-Black.png" alt="LinkedIn"
+                            class="h-5 w-5 block dark:hidden object-contain" />
+                        <img src="in-logo/InBug-White.png" alt="LinkedIn"
+                            class="h-5 w-5 hidden dark:block object-contain" />
+                    </a>
+                    <a class="text-on-surface-variant hover:text-secondary transition-colors flex items-center"
+                        href="https://github.com/Data-Biz-AI-Consultancy" target="_blank" rel="noopener"
+                        aria-label="GitHub">
+                        <img src="assets/GitHub%20Logos/SVG/GitHub_Invertocat_Black.svg" alt="GitHub"
+                            class="h-5 w-5 block dark:hidden object-contain" />
+                        <img src="assets/GitHub%20Logos/SVG/GitHub_Invertocat_White.svg" alt="GitHub"
+                            class="h-5 w-5 hidden dark:block object-contain" />
+                    </a>
+                    <a class="text-on-surface-variant hover:text-secondary transition-colors"
+                        href="mailto:enquiry@databizaitech.com" aria-label="Email">
+                        <span class="material-symbols-outlined text-[20px] leading-none">mail</span>
+                    </a>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-xl md:justify-end">
+                <div class="space-y-sm">
+                    <h5 class="font-label-caps text-[10px] text-primary">RESOURCES</h5>
                     <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Challenge:</strong> Discrepant MRR and retention calculations.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Approach:</strong> Snowflake + dbt core implementation with strict schema validations.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Outcome:</strong> Board presentations consolidated, reporting errors reduced to 0%.</li>
+                        <li><a class="hover:text-secondary transition-colors" href="offers.html">Offers</a></li>
+                        <li><a class="hover:text-secondary transition-colors" href="case-study.html">Case Study</a></li>
+                        <li><a class="hover:text-secondary transition-colors" href="insights.html">Insights</a></li>
+                        <li><a class="hover:text-secondary transition-colors" href="toolings.html">Toolings</a></li>
                     </ul>
                 </div>
-                <div class="lg:col-span-7 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">THE REVEALED ARCHITECTURE</h4>
-                    <div class="space-y-sm text-sm font-data-mono text-data-mono">
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">1. Ingestion:</span> Fivetran pulling SaaS APIs -> Snowflake Raw Schema.
-                        </div>
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">2. Transform:</span> dbt Core models transforming source logs into Kimball dimensional models.
-                        </div>
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">3. BI & Actions:</span> Lightdash serving operational KPIs directly to slack alerts & dashboards.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <hr class="border-outline-variant/30">
-
-            <!-- Case Study 2 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center" data-vibe-reveal>
-                <div class="lg:col-span-5 space-y-md">
-                    <span class="font-label-caps text-label-caps text-secondary tracking-widest block">CASE STUDY 02</span>
-                    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Warehouse Migration & Cost Reduction</h2>
-                    <p class="text-on-surface-variant font-body-sm">
-                        An enterprise e-commerce vendor suffered from runaway queries costing over $50k/month in BigQuery. We optimized materializations and cluster keys to slash compute overhead without sacrificing report speed.
-                    </p>
+                <div class="space-y-sm">
+                    <h5 class="font-label-caps text-[10px] text-primary">LEGAL</h5>
                     <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> <strong>Challenge:</strong> Multi-join views scanning terabytes of redundant log data.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> <strong>Approach:</strong> Partition pruning, incremental dbt builds, and warehouse cluster alignment.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> <strong>Outcome:</strong> 42% decrease in monthly cloud billing ($21k saved monthly).</li>
+                        <li><a class="hover:text-secondary transition-colors" href="#">Privacy Policy</a></li>
+                        <li><a class="hover:text-secondary transition-colors" href="#">Terms of Service</a></li>
                     </ul>
                 </div>
-                <div class="lg:col-span-7 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">COST METRICS BEFORE / AFTER</h4>
-                    <div class="grid grid-cols-2 gap-md text-center">
-                        <div class="glass-card p-md rounded-lg">
-                            <span class="text-secondary text-3xl font-bold font-display-lg">$53,400</span>
-                            <span class="block text-[11px] font-label-caps text-on-surface-variant mt-xs">PRE-OPTIMIZATION BILLING</span>
-                        </div>
-                        <div class="glass-card p-md rounded-lg">
-                            <span class="text-primary text-3xl font-bold font-display-lg">$31,100</span>
-                            <span class="block text-[11px] font-label-caps text-on-surface-variant mt-xs">POST-OPTIMIZATION BILLING</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <hr class="border-outline-variant/30">
-
-            <!-- Case Study 3 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center" data-vibe-reveal>
-                <div class="lg:col-span-5 space-y-md">
-                    <span class="font-label-caps text-label-caps text-primary tracking-widest block">CASE STUDY 03</span>
-                    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Deploying Guardrailed RAG Systems</h2>
-                    <p class="text-on-surface-variant font-body-sm">
-                        A healthcare platform needed custom generative AI chatbots to serve internal operators. We architected a guardrailed RAG pipeline ensuring zero patient data exposure.
-                    </p>
-                    <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Challenge:</strong> Risk of hallucinations and leakage of Protected Health Information (PHI).</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Approach:</strong> Vector store indexing + customized embedding isolation layers + LLM security filters.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Outcome:</strong> Chat response accuracy rated 98.4% with absolute compliance.</li>
-                    </ul>
-                </div>
-                <div class="lg:col-span-7 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">THE RAG GUARDRAILS</h4>
-                    <div class="space-y-sm text-sm font-data-mono text-data-mono">
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">Anonymizer:</span> Pre-parser scrubs all potential PII before vector lookup.
-                        </div>
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">Contextual Filter:</span> Matches query context exclusively to trusted PDF data warehouses.
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="py-xl bg-primary text-on-primary text-center px-container-margin transition-colors duration-300">
-        <div class="max-w-3xl mx-auto" data-vibe-reveal>
-            <h2 class="font-display-lg text-display-lg mb-md">Ready to deploy institutional data command?</h2>
-            <p class="font-body-lg text-body-lg mb-lg opacity-90">Start with a short discovery call. No deck theatre. Just a direct conversation about where things are stuck.</p>
-            <a href="https://calendar.app.google/6w9VxJ7QXjUY7W658" target="_blank" rel="noopener" class="inline-block bg-background text-primary px-xl py-md font-label-caps text-label-caps rounded-lg hover:brightness-110 transition-all shadow-xl">
-                BOOK A DISCOVERY CALL
-            </a>
+        <div class="border-t border-outline-variant/30 py-md px-container-margin text-center">
+            <p class="text-on-surface-variant font-body-sm text-body-sm">© 2026 Data Biz. All rights reserved.</p>
         </div>
-    </section>
-</main>
+    </footer>
 
-<!-- Footer -->
-<footer class="bg-surface-container-lowest border-t border-outline-variant transition-colors duration-300">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 py-xl px-container-margin max-w-7xl mx-auto">
-        <div class="space-y-md">
-            <div class="flex items-center gap-2 font-label-caps text-label-caps text-on-surface tracking-tighter">
-                <img src="assets/DataBiz_logo.png" alt="Data Biz Logo" class="h-6 w-auto object-contain" />
-                <span>DATA BIZ</span>
-            </div>
-            <p class="text-on-surface-variant font-body-sm text-body-sm max-w-sm">
-                Fractional data leadership for high-growth teams. We fix the data, you fix the world.
-            </p>
-            <div class="flex items-center gap-md pt-sm">
-                <a class="text-on-surface-variant hover:text-secondary transition-colors" href="https://jimmypang.substack.com" target="_blank" rel="noopener" aria-label="Substack">
-                    <span class="material-symbols-outlined text-[20px] leading-none">public</span>
-                </a>
-                <a class="text-on-surface-variant hover:text-secondary transition-colors flex items-center" href="https://www.linkedin.com/company/databiz-ai-tech" target="_blank" rel="noopener" aria-label="LinkedIn">
-                    <img src="in-logo/InBug-Black.png" alt="LinkedIn" class="h-5 w-5 block dark:hidden object-contain" />
-                    <img src="in-logo/InBug-White.png" alt="LinkedIn" class="h-5 w-5 hidden dark:block object-contain" />
-                </a>
-                <a class="text-on-surface-variant hover:text-secondary transition-colors flex items-center" href="https://github.com/Data-Biz-AI-Consultancy" target="_blank" rel="noopener" aria-label="GitHub">
-                    <img src="assets/GitHub%20Logos/SVG/GitHub_Invertocat_Black.svg" alt="GitHub" class="h-5 w-5 block dark:hidden object-contain" />
-                    <img src="assets/GitHub%20Logos/SVG/GitHub_Invertocat_White.svg" alt="GitHub" class="h-5 w-5 hidden dark:block object-contain" />
-                </a>
-                <a class="text-on-surface-variant hover:text-secondary transition-colors" href="mailto:enquiry@databizaitech.com" aria-label="Email">
-                    <span class="material-symbols-outlined text-[20px] leading-none">mail</span>
-                </a>
-            </div>
-        </div>
-        <div class="grid grid-cols-2 gap-xl md:justify-end">
-            <div class="space-y-sm">
-                <h5 class="font-label-caps text-[10px] text-primary">RESOURCES</h5>
-                <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
-                    <li><a class="hover:text-secondary transition-colors" href="offers.html">Offers</a></li>
-                    <li><a class="hover:text-secondary transition-colors" href="case-study.html">Case Study</a></li>
-                    <li><a class="hover:text-secondary transition-colors" href="insights.html">Insights</a></li>
-                    <li><a class="hover:text-secondary transition-colors" href="toolings.html">Toolings</a></li>
-                </ul>
-            </div>
-            <div class="space-y-sm">
-                <h5 class="font-label-caps text-[10px] text-primary">LEGAL</h5>
-                <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
-                    <li><a class="hover:text-secondary transition-colors" href="#">Privacy Policy</a></li>
-                    <li><a class="hover:text-secondary transition-colors" href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="border-t border-outline-variant/30 py-md px-container-margin text-center">
-        <p class="text-on-surface-variant font-body-sm text-body-sm">© 2026 Data Biz. All rights reserved.</p>
-    </div>
-</footer>
-
-<script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
+
 </html>

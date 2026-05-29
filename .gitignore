@@ -4,3 +4,4 @@ seeds/_private
 node_modules/.vite/vitest/
 .env
 .DS_Store
+seeds/portfolio/

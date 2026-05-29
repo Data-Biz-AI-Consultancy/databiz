@@ -220,8 +220,8 @@ window.CASE_STUDIES = [
   },
   {
     "id": 5,
-    "category": "analytics",
-    "tag": "CASE STUDY 05 • ANALYTICS",
+    "category": "architecture",
+    "tag": "CASE STUDY 05 • MODERN DATA ARCHITECTURE",
     "title": "Logistics Delivery Radius & Purchase Deviation Analytics",
     "description": "An on-demand logistics company required a mechanism to analyze how changes in a city's delivery radius affect purchase patterns, sales volumes, and VAT revenues.",
     "howWeSolvedIt": [
@@ -298,8 +298,8 @@ window.CASE_STUDIES = [
   },
   {
     "id": 7,
-    "category": "architecture",
-    "tag": "CASE STUDY 07 • MODERN DATA ARCHITECTURE",
+    "category": "analytics",
+    "tag": "CASE STUDY 07 • ANALYTICS",
     "title": "Commercial SaaS dbt Architecture & Analytics Strategy",
     "description": "A high-growth B2B SaaS startup spending €50K/month on ad channels had fragmented UTM attribution, unmapped campaigns, and inaccurate cohort visibility. We re-engineered their pipeline from raw source tables to marketing marts.",
     "howWeSolvedIt": [

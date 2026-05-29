@@ -232,33 +232,52 @@ window.CASE_STUDIES = [
     "category": "architecture",
     "tag": "CASE STUDY • MODERN DATA ARCHITECTURE",
     "title": "Logistics Delivery Radius & Purchase Deviation Analytics",
-    "description": "An on-demand logistics company required a mechanism to analyze how changes in a city's delivery radius affect purchase patterns, sales volumes, and VAT revenues.",
+    "description": "An on-demand logistics company needed to understand how temporary delivery-radius reductions affected purchase volume and VAT-inclusive revenue across city delivery areas. We transformed 177,895 purchases and 1,316 radius-change events into an hourly analytics mart that separates default radius behavior from short-lived operational interventions.",
     "howWeSolvedIt": [
       {
-        "title": "Window Function Detection",
-        "desc": "Designed window logic (LAG/LEAD) to identify default radiuses (lasting >= 24h uninterrupted) vs temporary peak-hour reductions."
+        "title": "Default Radius Detection",
+        "desc": "Used LAG/LEAD interval logic to classify any radius lasting >= 24 uninterrupted hours as the area's default, then flagged shorter-lived reductions against that baseline."
       },
       {
-        "title": "Pre-Calculated Hourly Marts",
-        "desc": "Aggregated data directly to hourly grains showing purchase volumes, VAT amount, and deviation duration."
+        "title": "Hourly Operational Mart",
+        "desc": "Built a base-hour × delivery-area table combining purchases, VAT-inclusive revenue, radius-reduction duration, and radius-modification counts."
       },
       {
-        "title": "Week-over-Week Metrics",
-        "desc": "Built pre-calculated WoW percentage differences in the hourly marts to eliminate downstream dashboard join overhead."
+        "title": "Self-Serve WoW Analytics",
+        "desc": "Pre-calculated same-area, same-weekday, same-hour week-over-week percentage deltas so analysts could query the mart without downstream joins."
+      }
+    ],
+    "businessImpact": [
+      {
+        "desc": "<strong>Operational exposure quantified:</strong> Identified 586.85 total hours of temporary radius reduction across 645 reduction events."
+      },
+      {
+        "desc": "<strong>Commercial baseline created:</strong> Profiled €4.23M revenue across 177,895 purchases, enabling teams to compare intervention windows against normal hourly demand."
+      },
+      {
+        "desc": "<strong>Reusable warehouse pattern:</strong> Structured ODS, intermediate, fact, dimension, and summary layers so future delivery areas can be added without rewriting analytics logic."
       }
     ],
     "scorecard": [
       {
-        "value": "100%",
-        "label": "PRE-CALCULATED WoW METRICS"
-      },
-      {
-        "value": "> 177K",
+        "value": "177,895",
         "label": "PURCHASES ANALYZED"
       },
       {
-        "value": "Zero-Join",
-        "label": "QUERY EXECUTION TIME"
+        "value": "€4.23M",
+        "label": "REVENUE MODELED"
+      },
+      {
+        "value": "1,316",
+        "label": "RADIUS EVENTS"
+      },
+      {
+        "value": "586.85h",
+        "label": "REDUCTION HOURS"
+      },
+      {
+        "value": "3",
+        "label": "DELIVERY AREAS"
       }
     ],
     "visualType": "code-widget",

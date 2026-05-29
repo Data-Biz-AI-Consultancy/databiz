@@ -481,9 +481,11 @@
                 let scorecardHtml = '';
                 if (cs.scorecard && cs.scorecard.length > 0) {
                     let cols = cs.scorecard.length;
-                    let gridClass = `grid-cols-${cols}`;
+                    let gridClass = `grid-cols-2 md:grid-cols-${cols}`;
                     if (cols === 5) {
                         gridClass = `grid-cols-2 md:grid-cols-5`;
+                    } else if (cols === 6) {
+                        gridClass = `grid-cols-2 md:grid-cols-3 lg:grid-cols-6`;
                     }
                     scorecardHtml = `<div class="bg-surface-container-low border border-outline-variant p-md rounded-xl grid ${gridClass} gap-sm text-center">`;
                     cs.scorecard.forEach((score, sIdx) => {

@@ -165,15 +165,27 @@ window.CASE_STUDIES = [
     "scorecard": [
       {
         "value": "110K+",
-        "label": "ACTIVE CUSTOMERS TRUST"
+        "label": "ACTIVE CUSTOMERS"
       },
       {
         "value": "95%+",
         "label": "ANNUAL GWP GROWTH"
       },
       {
+        "value": "85%",
+        "label": "CLAIMS VIA PORTAL"
+      },
+      {
+        "value": "60%",
+        "label": "AUTO-PROCESSED CLAIMS"
+      },
+      {
+        "value": "70%",
+        "label": "SELF-SERVICE ADOPTION"
+      },
+      {
         "value": "3 Phases",
-        "label": "ROADMAP TO DAY-1 LAUNCH"
+        "label": "ROADMAP TO LAUNCH"
       }
     ],
     "visualType": "image-list",

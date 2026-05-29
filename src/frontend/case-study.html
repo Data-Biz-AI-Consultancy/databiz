@@ -136,109 +136,282 @@
     <section class="py-20 px-container-margin border-b border-outline-variant bg-surface-container-lowest transition-colors duration-300">
         <div class="max-w-7xl mx-auto text-center" data-vibe-reveal>
             <span class="inline-block font-label-caps text-label-caps text-secondary mb-md tracking-widest border border-secondary/30 px-sm py-xs bg-secondary/5">
-                REAL WORLD IMPACT
+                PROVEN BUSINESS VALUE
             </span>
             <h1 class="font-display-lg text-display-lg mb-lg leading-tight max-w-4xl mx-auto">
-                Decisive solutions for complex <span class="text-primary">business challenges</span>.
+                Decisive solutions for complex <span class="text-primary">data & AI challenges</span>.
             </h1>
             <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-                Explore our strategic approach, technical architectures, and concrete results built for high-growth enterprises.
+                Explore how Data Biz delivers enterprise-grade intelligence, structured modern infrastructure, and operational efficiency.
             </p>
+        </div>
+    </section>
+
+    <!-- Case Studies Navigation Tabs -->
+    <section class="py-6 border-b border-outline-variant bg-surface transition-colors duration-300 sticky top-16 z-40 backdrop-blur-md bg-opacity-95 dark:bg-opacity-95">
+        <div class="max-w-7xl mx-auto px-container-margin flex flex-wrap justify-center gap-sm">
+            <button onclick="filterCases('all')" class="tab-btn active px-lg py-sm font-label-caps text-[11px] rounded-lg border border-outline-variant hover:border-primary transition-all duration-200" id="btn-all">
+                ALL ENGAGEMENTS
+            </button>
+            <button onclick="filterCases('ai')" class="tab-btn px-lg py-sm font-label-caps text-[11px] rounded-lg border border-outline-variant hover:border-primary transition-all duration-200" id="btn-ai">
+                AI & AUTOMATION
+            </button>
+            <button onclick="filterCases('stack')" class="tab-btn px-lg py-sm font-label-caps text-[11px] rounded-lg border border-outline-variant hover:border-primary transition-all duration-200" id="btn-stack">
+                MODERN INFRASTRUCTURE (MESHPILOT)
+            </button>
+            <button onclick="filterCases('leadership')" class="tab-btn px-lg py-sm font-label-caps text-[11px] rounded-lg border border-outline-variant hover:border-primary transition-all duration-200" id="btn-leadership">
+                ANALYTICS LEADERSHIP
+            </button>
         </div>
     </section>
 
     <!-- Case Studies List -->
     <section class="py-20 px-container-margin max-w-7xl mx-auto">
-        <div class="space-y-16">
-            <!-- Case Study 1 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center" data-vibe-reveal>
-                <div class="lg:col-span-5 space-y-md">
-                    <span class="font-label-caps text-label-caps text-primary tracking-widest block">CASE STUDY 01</span>
-                    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Scaling From Seed to Series A</h2>
+        <div class="space-y-24">
+            
+            <!-- Case Study 1: AI-Driven Lead Triage -->
+            <div class="case-card grid grid-cols-1 lg:grid-cols-12 gap-xl items-start" data-category="ai" data-vibe-reveal>
+                <div class="lg:col-span-6 space-y-md">
+                    <span class="font-label-caps text-label-caps text-primary tracking-widest block">CASE STUDY 01 • AI & AUTOMATION</span>
+                    <h2 class="font-display-lg text-headline-md font-bold text-on-surface">Autonomous Lead Triage & Intelligent Operations</h2>
                     <p class="text-on-surface-variant font-body-sm">
-                        A fast-growing fintech startup was drowning in fragmented analytics across Mixpanel, Segment, and HubSpot. We deployed a unified warehouse stack, resulting in single-source-of-truth board reporting in under 4 weeks.
+                        An innovative German ClimateTech scaleup (home insulation installer) was facing operational friction. As their inbound volume scaled to over 1,200 leads/month, manual triage became a bottleneck. Worse, 20% of projects suffered from planning errors or mispriced quotes during the sales-to-operations handoff.
                     </p>
-                    <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Challenge:</strong> Discrepant MRR and retention calculations.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Approach:</strong> Snowflake + dbt core implementation with strict schema validations.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Outcome:</strong> Board presentations consolidated, reporting errors reduced to 0%.</li>
-                    </ul>
+                    <div class="space-y-sm">
+                        <h4 class="font-label-caps text-[11px] text-secondary">HOW WE SOLVED IT</h4>
+                        <p class="text-on-surface-variant font-body-sm">
+                            We architected and deployed a stateless, multi-stage AI qualification pipeline integrated directly into their CRM:
+                        </p>
+                        <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span><strong>Rule Engine:</strong> Instant verification of strict municipal and structural criteria.</span>
+                            </li>
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span><strong>LLM Parser:</strong> Cross-checks structured intake forms against raw sales call transcripts to flags contradictions.</span>
+                            </li>
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span><strong>RAG Memory:</strong> Semantic lookup against 1,000+ past projects to identify identical property profiles and flag historical risks.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Actionable Results Card -->
+                    <div class="bg-surface-container-low border border-outline-variant p-md rounded-xl grid grid-cols-3 gap-sm text-center">
+                        <div>
+                            <span class="text-primary text-2xl font-bold font-display-lg">0s</span>
+                            <span class="block text-[10px] font-label-caps text-on-surface-variant mt-xs">TRIAGE DELAY</span>
+                        </div>
+                        <div>
+                            <span class="text-primary text-2xl font-bold font-display-lg">98.4%</span>
+                            <span class="block text-[10px] font-label-caps text-on-surface-variant mt-xs">ACCURACY</span>
+                        </div>
+                        <div>
+                            <span class="text-primary text-2xl font-bold font-display-lg">&lt;5%</span>
+                            <span class="block text-[10px] font-label-caps text-on-surface-variant mt-xs">PLANNING ERRORS</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="lg:col-span-7 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">THE REVEALED ARCHITECTURE</h4>
-                    <div class="space-y-sm text-sm font-data-mono text-data-mono">
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">1. Ingestion:</span> Fivetran pulling SaaS APIs -> Snowflake Raw Schema.
+
+                <!-- Interactive Pipeline Simulator Widget -->
+                <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
+                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">THE 5-STEP TRIAGE PIPELINE</h4>
+                    <div class="space-y-sm" id="pipeline-steps">
+                        <div class="pipeline-step cursor-pointer bg-surface-container p-sm rounded border border-primary transition-all duration-200" onclick="showStep(1)">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-sm text-primary">1. Rule Engine</span>
+                                <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
+                            </div>
+                            <p class="text-xs text-on-surface-variant mt-xs" id="step-desc-1">Validates building rules deterministically based on structured CRM inputs.</p>
                         </div>
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">2. Transform:</span> dbt Core models transforming source logs into Kimball dimensional models.
+                        <div class="pipeline-step cursor-pointer bg-surface-container p-sm rounded border border-outline-variant/50 transition-all duration-200" onclick="showStep(2)">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-sm text-on-surface">2. LLM Parser</span>
+                                <span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span>
+                            </div>
+                            <p class="text-xs text-on-surface-variant mt-xs hidden" id="step-desc-2">Analyzes German audio transcripts to spot contradictions with data forms (e.g. wall thickness, ceiling height).</p>
                         </div>
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">3. BI & Actions:</span> Lightdash serving operational KPIs directly to slack alerts & dashboards.
+                        <div class="pipeline-step cursor-pointer bg-surface-container p-sm rounded border border-outline-variant/50 transition-all duration-200" onclick="showStep(3)">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-sm text-on-surface">3. Memory Layer (RAG)</span>
+                                <span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span>
+                            </div>
+                            <p class="text-xs text-on-surface-variant mt-xs hidden" id="step-desc-3">Queries 1,000+ past project histories using vector embeddings to find similar building designs.</p>
+                        </div>
+                        <div class="pipeline-step cursor-pointer bg-surface-container p-sm rounded border border-outline-variant/50 transition-all duration-200" onclick="showStep(4)">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-sm text-on-surface">4. Decision Synthesis</span>
+                                <span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span>
+                            </div>
+                            <p class="text-xs text-on-surface-variant mt-xs hidden" id="step-desc-4">Enforces a clear decision output (Pitch / Disqualify / Escalate) with explicit confidence scoring.</p>
+                        </div>
+                        <div class="pipeline-step cursor-pointer bg-surface-container p-sm rounded border border-outline-variant/50 transition-all duration-200" onclick="showStep(5)">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-sm text-on-surface">5. Field Briefing Creator</span>
+                                <span class="material-symbols-outlined text-sm text-on-surface-variant">arrow_forward</span>
+                            </div>
+                            <p class="text-xs text-on-surface-variant mt-xs hidden" id="step-desc-5">Generates automated bullet-points detailing cost risk factors to prepare field teams for site dispatch.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <hr class="border-outline-variant/30">
+            <hr class="border-outline-variant/30 divider-ai">
 
-            <!-- Case Study 2 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center" data-vibe-reveal>
-                <div class="lg:col-span-5 space-y-md">
-                    <span class="font-label-caps text-label-caps text-secondary tracking-widest block">CASE STUDY 02</span>
-                    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Warehouse Migration & Cost Reduction</h2>
+            <!-- Case Study 2: MeshPilot -->
+            <div class="case-card grid grid-cols-1 lg:grid-cols-12 gap-xl items-start" data-category="stack" data-vibe-reveal>
+                <div class="lg:col-span-6 space-y-md">
+                    <span class="font-label-caps text-label-caps text-secondary tracking-widest block">CASE STUDY 02 • MODERN INFRASTRUCTURE</span>
+                    <h2 class="font-display-lg text-headline-md font-bold text-on-surface">MeshPilot — Enterprise Data Stack & Cost Control</h2>
                     <p class="text-on-surface-variant font-body-sm">
-                        An enterprise e-commerce vendor suffered from runaway queries costing over $50k/month in BigQuery. We optimized materializations and cluster keys to slash compute overhead without sacrificing report speed.
+                        An enterprise organization experienced critical data scaling pains. Compute costs on Snowflake were rising unpredictably, query execution was slowing down, and duplicate metrics across departments destroyed decision alignment.
                     </p>
-                    <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> <strong>Challenge:</strong> Multi-join views scanning terabytes of redundant log data.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> <strong>Approach:</strong> Partition pruning, incremental dbt builds, and warehouse cluster alignment.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span> <strong>Outcome:</strong> 42% decrease in monthly cloud billing ($21k saved monthly).</li>
-                    </ul>
-                </div>
-                <div class="lg:col-span-7 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">COST METRICS BEFORE / AFTER</h4>
-                    <div class="grid grid-cols-2 gap-md text-center">
-                        <div class="glass-card p-md rounded-lg">
-                            <span class="text-secondary text-3xl font-bold font-display-lg">$53,400</span>
-                            <span class="block text-[11px] font-label-caps text-on-surface-variant mt-xs">PRE-OPTIMIZATION BILLING</span>
+                    <div class="space-y-sm">
+                        <h4 class="font-label-caps text-[11px] text-secondary">HOW WE SOLVED IT</h4>
+                        <p class="text-on-surface-variant font-body-sm">
+                            We implemented our proprietary **MeshPilot** enterprise data architecture framework:
+                        </p>
+                        <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-secondary text-sm mt-0.5">check_circle</span>
+                                <span><strong>Optimized Materialization:</strong> Configured incremental dbt models and partition keys to eliminate redundant cloud compute reads.</span>
+                            </li>
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-secondary text-sm mt-0.5">check_circle</span>
+                                <span><strong>Quality Pyramid:</strong> Enforced foundational checks, referential integrity rules, and anomaly-detection alerts via Elementary.</span>
+                            </li>
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-secondary text-sm mt-0.5">check_circle</span>
+                                <span><strong>Governance Alignment:</strong> Built clean role-based access control (RBAC) structures for safe data sharing across business domains.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Cost Metrics scorecard -->
+                    <div class="bg-surface-container-low border border-outline-variant p-md rounded-xl grid grid-cols-2 gap-md text-center">
+                        <div class="glass-card p-sm rounded-lg">
+                            <span class="text-secondary text-2xl font-bold font-display-lg">$53,400</span>
+                            <span class="block text-[10px] font-label-caps text-on-surface-variant mt-xs">PRE-MESHPILOT COSTS</span>
                         </div>
-                        <div class="glass-card p-md rounded-lg">
-                            <span class="text-primary text-3xl font-bold font-display-lg">$31,100</span>
-                            <span class="block text-[11px] font-label-caps text-on-surface-variant mt-xs">POST-OPTIMIZATION BILLING</span>
+                        <div class="glass-card p-sm rounded-lg border-primary/20">
+                            <span class="text-primary text-2xl font-bold font-display-lg">$31,100</span>
+                            <span class="block text-[10px] font-label-caps text-on-surface-variant mt-xs">POST-MESHPILOT COSTS (42% SAVED)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Warehouse Schema Explorer Widget -->
+                <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
+                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">MESHPILOT DATA LAYERS EXPLORER</h4>
+                    <div class="flex gap-sm mb-md border-b border-outline-variant pb-xs">
+                        <button class="layer-tab active text-xs font-label-caps pb-2 border-b-2 border-primary" onclick="showLayer('raw')">RAW LAYER</button>
+                        <button class="layer-tab text-xs font-label-caps pb-2 border-b-2 border-transparent text-on-surface-variant" onclick="showLayer('stg')">STAGING LAYER</button>
+                        <button class="layer-tab text-xs font-label-caps pb-2 border-b-2 border-transparent text-on-surface-variant" onclick="showLayer('marts')">MARTS LAYER</button>
+                    </div>
+                    <div class="space-y-sm text-sm font-data-mono text-data-mono bg-surface-container p-md rounded border border-outline-variant/50">
+                        <div id="layer-content-raw" class="space-y-xs">
+                            <div class="text-primary font-bold">raw_stripe_invoices / raw_salesforce_accounts</div>
+                            <div class="text-xs text-on-surface-variant mt-sm">
+                                • Immutable raw data ingested directly from source APIs.<br>
+                                • Naming conventions mirror sources directly.<br>
+                                • No business logic or type transformations applied.
+                            </div>
+                        </div>
+                        <div id="layer-content-stg" class="space-y-xs hidden">
+                            <div class="text-primary font-bold">stg_stripe__invoices / stg_salesforce__accounts</div>
+                            <div class="text-xs text-on-surface-variant mt-sm">
+                                • Standardized typing, column renaming, and cleaning.<br>
+                                • Deduplication logic applied at ingestion.<br>
+                                • Foundational dbt tests (unique, not null) executed here.
+                            </div>
+                        </div>
+                        <div id="layer-content-marts" class="space-y-xs hidden">
+                            <div class="text-primary font-bold">finance__revenue_by_month / marketing__attribution</div>
+                            <div class="text-xs text-on-surface-variant mt-sm">
+                                • Denormalized, business-ready dimensional models.<br>
+                                • Strict SLAs and ownership mappings defined.<br>
+                                • Elementary anomaly detection watches volume and variance.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <hr class="border-outline-variant/30">
+            <hr class="border-outline-variant/30 divider-stack">
 
-            <!-- Case Study 3 -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center" data-vibe-reveal>
-                <div class="lg:col-span-5 space-y-md">
-                    <span class="font-label-caps text-label-caps text-primary tracking-widest block">CASE STUDY 03</span>
-                    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Deploying Guardrailed RAG Systems</h2>
+            <!-- Case Study 3: Analytics Leadership -->
+            <div class="case-card grid grid-cols-1 lg:grid-cols-12 gap-xl items-start" data-category="leadership" data-vibe-reveal>
+                <div class="lg:col-span-6 space-y-md">
+                    <span class="font-label-caps text-label-caps text-primary tracking-widest block">CASE STUDY 03 • ANALYTICS LEADERSHIP</span>
+                    <h2 class="font-display-lg text-headline-md font-bold text-on-surface">Analytics Platform & BI Squad Transformation</h2>
                     <p class="text-on-surface-variant font-body-sm">
-                        A healthcare platform needed custom generative AI chatbots to serve internal operators. We architected a guardrailed RAG pipeline ensuring zero patient data exposure.
+                        An international e-commerce marketplace (luxury fashion) lacked centralized analytics alignment. Decision support across Operations, Sustainability, and emerging business lines was highly fragmented, leaving the data engineering team overwhelmed by manual, repetitive request tickets.
                     </p>
-                    <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Challenge:</strong> Risk of hallucinations and leakage of Protected Health Information (PHI).</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Approach:</strong> Vector store indexing + customized embedding isolation layers + LLM security filters.</li>
-                        <li class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> <strong>Outcome:</strong> Chat response accuracy rated 98.4% with absolute compliance.</li>
-                    </ul>
-                </div>
-                <div class="lg:col-span-7 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">THE RAG GUARDRAILS</h4>
-                    <div class="space-y-sm text-sm font-data-mono text-data-mono">
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">Anonymizer:</span> Pre-parser scrubs all potential PII before vector lookup.
+                    <div class="space-y-sm">
+                        <h4 class="font-label-caps text-[11px] text-secondary">HOW WE SOLVED IT</h4>
+                        <p class="text-on-surface-variant font-body-sm">
+                            We restructured their internal analytics capabilities from the ground up:
+                        </p>
+                        <ul class="space-y-xs font-body-sm text-body-sm text-on-surface-variant">
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span><strong>Squad Formation:</strong> Recruited and onboarded dedicated BI squad members aligned with key business lines.</span>
+                            </li>
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span><strong>Delivery Frameworks:</strong> Established 2-week Scrum sprints, MoSCoW prioritization, and a standardized request intake SLA.</span>
+                            </li>
+                            <li class="flex items-start gap-sm">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span><strong>Self-Service Marts:</strong> Deployed over 50+ Kimball-modeled clean data marts, enabling stakeholders to run reports independently.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Impact Card -->
+                    <div class="bg-surface-container-low border border-outline-variant p-md rounded-xl grid grid-cols-3 gap-sm text-center">
+                        <div>
+                            <span class="text-primary text-2xl font-bold font-display-lg">-40%</span>
+                            <span class="block text-[10px] font-label-caps text-on-surface-variant mt-xs">AD-HOC TICKET VOL</span>
                         </div>
-                        <div class="bg-surface-container p-sm rounded border border-outline-variant/50">
-                            <span class="text-primary font-bold">Contextual Filter:</span> Matches query context exclusively to trusted PDF data warehouses.
+                        <div>
+                            <span class="text-primary text-2xl font-bold font-display-lg">100%</span>
+                            <span class="block text-[10px] font-label-caps text-on-surface-variant mt-xs">TEAM RETENTION</span>
+                        </div>
+                        <div>
+                            <span class="text-primary text-2xl font-bold font-display-lg">50+</span>
+                            <span class="block text-[10px] font-label-caps text-on-surface-variant mt-xs">DATA MARTS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Operating Rhythm Explorer -->
+                <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
+                    <h4 class="font-label-caps text-label-caps text-secondary mb-md">THE CORE OPERATING MODEL</h4>
+                    <div class="flex gap-sm mb-md border-b border-outline-variant pb-xs">
+                        <button class="rhythm-tab active text-xs font-label-caps pb-2 border-b-2 border-primary" onclick="showRhythm('prior')">PRIORITIZATION</button>
+                        <button class="rhythm-tab text-xs font-label-caps pb-2 border-b-2 border-transparent text-on-surface-variant" onclick="showRhythm('cadence')">TEAM RHYTHMS</button>
+                    </div>
+                    <div class="p-md bg-surface-container rounded border border-outline-variant/50 min-h-[160px] flex flex-col justify-center">
+                        <div id="rhythm-content-prior" class="space-y-sm text-xs font-body-sm text-on-surface-variant">
+                            <span class="text-primary font-bold text-sm block font-label-caps">MoSCoW PRIORITIZATION FRAMEWORK</span>
+                            • <strong>Must Have:</strong> Critical business KPIs & operational metrics (locked in current sprint).<br>
+                            • <strong>Should Have:</strong> Enhanced analytics and deeper exploratory analyses.<br>
+                            • <strong>Could Have:</strong> Experimental insights and nice-to-have data metrics.<br>
+                            • <strong>Won't Have:</strong> Out-of-scope tasks parked for subsequent quarters.
+                        </div>
+                        <div id="rhythm-content-cadence" class="space-y-sm text-xs font-body-sm text-on-surface-variant hidden">
+                            <span class="text-primary font-bold text-sm block font-label-caps">OPERATIONAL RITUALS</span>
+                            • <strong>Weekly Stakeholder Sync:</strong> Short reviews with domain leaders to align on backlog priority.<br>
+                            • <strong>Bi-Weekly Sprints:</strong> Structured delivery windows with a clear definition-of-done.<br>
+                            • <strong>Continuous Mentorship:</strong> Pair programming and standardized code reviews.
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </section>
 
@@ -253,6 +426,118 @@
         </div>
     </section>
 </main>
+
+<script>
+    // Filtering logic for the case studies
+    function filterCases(category) {
+        // Toggle tab highlights
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active', 'bg-primary', 'text-on-primary', 'border-primary');
+            btn.classList.add('text-on-surface-variant', 'border-outline-variant');
+        });
+        
+        const activeBtn = document.getElementById('btn-' + category);
+        if (activeBtn) {
+            activeBtn.classList.add('active', 'bg-primary', 'text-on-primary', 'border-primary');
+            activeBtn.classList.remove('text-on-surface-variant', 'border-outline-variant');
+        }
+
+        // Show/hide cards
+        document.querySelectorAll('.case-card').forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+                card.style.display = 'grid';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Manage dividers
+        const divAi = document.querySelector('.divider-ai');
+        const divStack = document.querySelector('.divider-stack');
+        
+        if (category === 'all') {
+            if (divAi) divAi.style.display = 'block';
+            if (divStack) divStack.style.display = 'block';
+        } else {
+            if (divAi) divAi.style.display = 'none';
+            if (divStack) divStack.style.display = 'none';
+        }
+    }
+
+    // Step pipeline handler
+    function showStep(stepNum) {
+        document.querySelectorAll('.pipeline-step').forEach((el, index) => {
+            const stepId = index + 1;
+            const desc = document.getElementById('step-desc-' + stepId);
+            const icon = el.querySelector('.material-symbols-outlined');
+            const title = el.querySelector('span:first-child');
+            
+            if (stepId === stepNum) {
+                el.classList.add('border-primary');
+                el.classList.remove('border-outline-variant/50');
+                if (desc) desc.classList.remove('hidden');
+                if (icon) {
+                    icon.classList.add('text-primary');
+                    icon.classList.remove('text-on-surface-variant');
+                }
+                if (title) {
+                    title.classList.add('text-primary');
+                    title.classList.remove('text-on-surface');
+                }
+            } else {
+                el.classList.remove('border-primary');
+                el.classList.add('border-outline-variant/50');
+                if (desc) desc.classList.add('hidden');
+                if (icon) {
+                    icon.classList.remove('text-primary');
+                    icon.classList.add('text-on-surface-variant');
+                }
+                if (title) {
+                    title.classList.remove('text-primary');
+                    title.classList.add('text-on-surface');
+                }
+            }
+        });
+    }
+
+    // Stack Layer tab switcher
+    function showLayer(layerId) {
+        document.querySelectorAll('.layer-tab').forEach(btn => {
+            btn.classList.remove('active', 'border-primary');
+            btn.classList.add('border-transparent', 'text-on-surface-variant');
+        });
+        
+        event.currentTarget.classList.add('active', 'border-primary');
+        event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+        document.getElementById('layer-content-raw').classList.add('hidden');
+        document.getElementById('layer-content-stg').classList.add('hidden');
+        document.getElementById('layer-content-marts').classList.add('hidden');
+
+        document.getElementById('layer-content-' + layerId).classList.remove('hidden');
+    }
+
+    // Rhythms tab switcher
+    function showRhythm(rhythmId) {
+        document.querySelectorAll('.rhythm-tab').forEach(btn => {
+            btn.classList.remove('active', 'border-primary');
+            btn.classList.add('border-transparent', 'text-on-surface-variant');
+        });
+        
+        event.currentTarget.classList.add('active', 'border-primary');
+        event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+        document.getElementById('rhythm-content-prior').classList.add('hidden');
+        document.getElementById('rhythm-content-cadence').classList.add('hidden');
+
+        document.getElementById('rhythm-content-' + rhythmId).classList.remove('hidden');
+    }
+
+    // Set initial state on load
+    document.addEventListener('DOMContentLoaded', () => {
+        filterCases('all');
+    });
+</script>
 
 <!-- Footer -->
 <footer class="bg-surface-container-lowest border-t border-outline-variant transition-colors duration-300">

@@ -363,45 +363,60 @@
 
                     <!-- Interactive Warehouse Schema Explorer Widget -->
                     <div class="lg:col-span-6 bg-surface-container-low border border-outline-variant p-lg rounded-xl">
-                        <h4 class="font-label-caps text-label-caps text-secondary mb-md">MESHPILOT DATA LAYERS EXPLORER
-                        </h4>
-                        <div class="flex gap-sm mb-md border-b border-outline-variant pb-xs">
-                            <button class="layer-tab active text-xs font-label-caps pb-2 border-b-2 border-primary"
-                                onclick="showLayer('raw')">RAW LAYER</button>
-                            <button
-                                class="layer-tab text-xs font-label-caps pb-2 border-b-2 border-transparent text-on-surface-variant"
-                                onclick="showLayer('stg')">STAGING LAYER</button>
-                            <button
-                                class="layer-tab text-xs font-label-caps pb-2 border-b-2 border-transparent text-on-surface-variant"
-                                onclick="showLayer('marts')">MARTS LAYER</button>
+                        <div class="flex justify-between items-center mb-md border-b border-outline-variant pb-xs">
+                            <h4 class="font-label-caps text-label-caps text-secondary">MESHPILOT ARCHITECTURE</h4>
+                            <div class="flex gap-sm">
+                                <button class="mesh-tab active text-xs font-label-caps pb-1 border-b-2 border-primary" onclick="showMeshTab('layers')">LAYERS</button>
+                                <button class="mesh-tab text-xs font-label-caps pb-1 border-b-2 border-transparent text-on-surface-variant" onclick="showMeshTab('flow')">DATA FLOW</button>
+                            </div>
                         </div>
-                        <div
-                            class="space-y-sm text-sm font-data-mono text-data-mono bg-surface-container p-md rounded border border-outline-variant/50">
-                            <div id="layer-content-raw" class="space-y-xs">
-                                <div class="text-primary font-bold">raw_stripe_invoices / raw_salesforce_accounts</div>
-                                <div class="text-xs text-on-surface-variant mt-sm">
-                                    • Immutable raw data ingested directly from source APIs.<br>
-                                    • Naming conventions mirror sources directly.<br>
-                                    • No business logic or type transformations applied.
+                        
+                        <div id="mesh-content-layers" class="space-y-sm">
+                            <div class="flex gap-sm mb-md border-b border-outline-variant pb-xs flex-wrap">
+                                <button class="layer-tab active text-xs font-label-caps pb-2 border-b-2 border-primary" onclick="showLayer('raw')">RAW</button>
+                                <button class="layer-tab text-xs font-label-caps pb-2 border-b-2 border-transparent text-on-surface-variant" onclick="showLayer('stg')">STAGING</button>
+                                <button class="layer-tab text-xs font-label-caps pb-2 border-b-2 border-transparent text-on-surface-variant" onclick="showLayer('marts')">CORE MARTS</button>
+                                <button class="layer-tab text-xs font-label-caps pb-2 border-b-2 border-transparent text-on-surface-variant" onclick="showLayer('adm')">ADM LAYER</button>
+                            </div>
+                            <div class="space-y-sm text-sm font-data-mono text-data-mono bg-surface-container p-md rounded border border-outline-variant/50">
+                                <div id="layer-content-raw" class="space-y-xs">
+                                    <div class="text-primary font-bold">raw_stripe_invoices / raw_salesforce_accounts</div>
+                                    <div class="text-xs text-on-surface-variant mt-sm">
+                                        • Immutable raw data ingested directly from source APIs.<br>
+                                        • Naming conventions mirror sources directly.<br>
+                                        • No business logic or type transformations applied.
+                                    </div>
+                                </div>
+                                <div id="layer-content-stg" class="space-y-xs hidden">
+                                    <div class="text-primary font-bold">stg_stripe__invoices / stg_salesforce__accounts</div>
+                                    <div class="text-xs text-on-surface-variant mt-sm">
+                                        • Standardized typing, column renaming, and cleaning.<br>
+                                        • Deduplication logic applied at ingestion.<br>
+                                        • Foundational dbt tests (unique, not null) executed here.
+                                    </div>
+                                </div>
+                                <div id="layer-content-marts" class="space-y-xs hidden">
+                                    <div class="text-primary font-bold">finance__revenue_by_month / marketing__attribution</div>
+                                    <div class="text-xs text-on-surface-variant mt-sm">
+                                        • Denormalized, business-ready dimensional models.<br>
+                                        • Strict SLAs and ownership mappings defined.<br>
+                                        • Elementary anomaly detection watches volume and variance.
+                                    </div>
+                                </div>
+                                <div id="layer-content-adm" class="space-y-xs hidden">
+                                    <div class="text-primary font-bold">adm_marketing__lead_cohorts / adm_ops__performance</div>
+                                    <div class="text-xs text-on-surface-variant mt-sm">
+                                        • Analytical Data Mart (ADM) framework for decentralized ownership.<br>
+                                        • Domain analysts build custom marts directly on top of vetted Core Marts.<br>
+                                        • Insulates core pipelines while empowering analysts with self-service agility.
+                                    </div>
                                 </div>
                             </div>
-                            <div id="layer-content-stg" class="space-y-xs hidden">
-                                <div class="text-primary font-bold">stg_stripe__invoices / stg_salesforce__accounts
-                                </div>
-                                <div class="text-xs text-on-surface-variant mt-sm">
-                                    • Standardized typing, column renaming, and cleaning.<br>
-                                    • Deduplication logic applied at ingestion.<br>
-                                    • Foundational dbt tests (unique, not null) executed here.
-                                </div>
-                            </div>
-                            <div id="layer-content-marts" class="space-y-xs hidden">
-                                <div class="text-primary font-bold">finance__revenue_by_month / marketing__attribution
-                                </div>
-                                <div class="text-xs text-on-surface-variant mt-sm">
-                                    • Denormalized, business-ready dimensional models.<br>
-                                    • Strict SLAs and ownership mappings defined.<br>
-                                    • Elementary anomaly detection watches volume and variance.
-                                </div>
+                        </div>
+                        
+                        <div id="mesh-content-flow" class="hidden">
+                            <div class="overflow-hidden rounded border border-outline-variant/50 bg-surface-container p-xs">
+                                <img src="assets/mesh_pilot_data_flow.png" alt="MeshPilot Data Mesh Architecture Data Flow" class="w-full h-auto object-contain hover:scale-[1.03] transition-transform duration-300 cursor-zoom-in" onclick="openDiagramModal()"/>
                             </div>
                         </div>
                     </div>
@@ -612,8 +627,25 @@
             document.getElementById('layer-content-raw').classList.add('hidden');
             document.getElementById('layer-content-stg').classList.add('hidden');
             document.getElementById('layer-content-marts').classList.add('hidden');
+            document.getElementById('layer-content-adm').classList.add('hidden');
 
             document.getElementById('layer-content-' + layerId).classList.remove('hidden');
+        }
+
+        // Mesh Tab switcher
+        function showMeshTab(tabId) {
+            document.querySelectorAll('.mesh-tab').forEach(btn => {
+                btn.classList.remove('active', 'border-primary');
+                btn.classList.add('border-transparent', 'text-on-surface-variant');
+            });
+            
+            event.currentTarget.classList.add('active', 'border-primary');
+            event.currentTarget.classList.remove('border-transparent', 'text-on-surface-variant');
+
+            document.getElementById('mesh-content-layers').classList.add('hidden');
+            document.getElementById('mesh-content-flow').classList.add('hidden');
+
+            document.getElementById('mesh-content-' + tabId).classList.remove('hidden');
         }
 
         // Rhythms tab switcher

@@ -64,8 +64,8 @@ window.CASE_STUDIES = [
   },
   {
     "id": 2,
-    "category": "stack",
-    "tag": "CASE STUDY 02 • MODERN INFRASTRUCTURE",
+    "category": "architecture",
+    "tag": "CASE STUDY 02 • MODERN DATA ARCHITECTURE",
     "title": "MeshPilot — Decentralized Data Stack & Governance",
     "description": "A leading French pre-loved luxury marketplace scaleup hit critical analytics scale limits. The required speed for analytics was far higher than what their centralized data model could support. Simultaneously, a lack of data governance led to severe data trust issues, and the cost of running unoptimized pipelines was surging out of control.",
     "howWeSolvedIt": [
@@ -133,8 +133,8 @@ window.CASE_STUDIES = [
   },
   {
     "id": 3,
-    "category": "leadership",
-    "tag": "CASE STUDY 03 • ANALYTICS LEADERSHIP",
+    "category": "strategy",
+    "tag": "CASE STUDY 03 • DATA STRATEGY",
     "title": "Analytics Platform & BI Squad Transformation",
     "description": "An international e-commerce marketplace (luxury fashion) lacked centralized analytics alignment. Decision support across Operations, Sustainability, and emerging business lines was highly fragmented, leaving the data engineering team overwhelmed by manual, repetitive request tickets.",
     "howWeSolvedIt": [
@@ -170,8 +170,8 @@ window.CASE_STUDIES = [
   },
   {
     "id": 4,
-    "category": "leadership",
-    "tag": "CASE STUDY 04 • STRATEGY & ROADMAPPING",
+    "category": "strategy",
+    "tag": "CASE STUDY 04 • DATA STRATEGY",
     "title": "InsurTech New Vertical Launching Strategy",
     "description": "Germany's #1 direct-to-consumer digital insurance marketplace scaleup operating in dental and pet verticals wanted to launch a 3rd vertical. We designed the data platform implementation roadmap and structural organizational model to ensure Day-1 readiness.",
     "howWeSolvedIt": [
@@ -220,8 +220,8 @@ window.CASE_STUDIES = [
   },
   {
     "id": 5,
-    "category": "stack",
-    "tag": "CASE STUDY 05 • MODERN INFRASTRUCTURE & MODELING",
+    "category": "analytics",
+    "tag": "CASE STUDY 05 • ANALYTICS",
     "title": "Logistics Delivery Radius & Purchase Deviation Analytics",
     "description": "An on-demand logistics company required a mechanism to analyze how changes in a city's delivery radius affect purchase patterns, sales volumes, and VAT revenues.",
     "howWeSolvedIt": [
@@ -257,8 +257,8 @@ window.CASE_STUDIES = [
   },
   {
     "id": 6,
-    "category": "leadership",
-    "tag": "CASE STUDY 06 • PRODUCT ANALYTICS & DIAGNOSTICS",
+    "category": "analytics",
+    "tag": "CASE STUDY 06 • ANALYTICS",
     "title": "Meal-Kit Referral Conversion Funnel Diagnostics",
     "description": "A global meal-kit provider (HelloFresh) experienced a year-over-year decline in customer referral acquisitions. We developed a comprehensive diagnostic model to pinpoint funnel leakages.",
     "howWeSolvedIt": [
@@ -298,8 +298,8 @@ window.CASE_STUDIES = [
   },
   {
     "id": 7,
-    "category": "stack",
-    "tag": "CASE STUDY 07 • ANALYTICS ENGINEERING",
+    "category": "architecture",
+    "tag": "CASE STUDY 07 • MODERN DATA ARCHITECTURE",
     "title": "Commercial SaaS dbt Architecture & Analytics Strategy",
     "description": "A high-growth B2B SaaS startup spending €50K/month on ad channels had fragmented UTM attribution, unmapped campaigns, and inaccurate cohort visibility. We re-engineered their pipeline from raw source tables to marketing marts.",
     "howWeSolvedIt": [

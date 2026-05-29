@@ -228,46 +228,9 @@ window.CASE_STUDIES = [
     }
   },
   {
-    "id": 3,
-    "category": "strategy",
-    "tag": "CASE STUDY 04 • DATA STRATEGY",
-    "title": "Analytics Platform & BI Squad Transformation",
-    "description": "An international e-commerce marketplace (luxury fashion) lacked centralized analytics alignment. Decision support across Operations, Sustainability, and emerging business lines was highly fragmented, leaving the data engineering team overwhelmed by manual, repetitive request tickets.",
-    "howWeSolvedIt": [
-      {
-        "title": "Squad Formation",
-        "desc": "Recruited and onboarded dedicated BI squad members aligned with key business lines."
-      },
-      {
-        "title": "Delivery Frameworks",
-        "desc": "Established 2-week Scrum sprints, MoSCoW prioritization, and a standardized request intake SLA."
-      },
-      {
-        "title": "Self-Service Marts",
-        "desc": "Deployed over 50+ Kimball-modeled clean data marts, enabling stakeholders to run reports independently."
-      }
-    ],
-    "scorecard": [
-      {
-        "value": "-40%",
-        "label": "AD-HOC TICKET VOL"
-      },
-      {
-        "value": "100%",
-        "label": "TEAM RETENTION"
-      },
-      {
-        "value": "50+",
-        "label": "DATA MARTS"
-      }
-    ],
-    "visualType": "operating-rhythm",
-    "visualData": {}
-  },
-  {
     "id": 5,
     "category": "architecture",
-    "tag": "CASE STUDY 05 • MODERN DATA ARCHITECTURE",
+    "tag": "CASE STUDY 04 • MODERN DATA ARCHITECTURE",
     "title": "Logistics Delivery Radius & Purchase Deviation Analytics",
     "description": "An on-demand logistics company required a mechanism to analyze how changes in a city's delivery radius affect purchase patterns, sales volumes, and VAT revenues.",
     "howWeSolvedIt": [
@@ -304,40 +267,64 @@ window.CASE_STUDIES = [
   {
     "id": 6,
     "category": "analytics",
-    "tag": "CASE STUDY 06 • ANALYTICS",
+    "tag": "CASE STUDY 05 • ANALYTICS",
     "title": "Meal-Kit Referral Conversion Funnel Diagnostics",
-    "description": "A global meal-kit provider (HelloFresh) experienced a year-over-year decline in customer referral acquisitions. We developed a comprehensive diagnostic model to pinpoint funnel leakages.",
+    "description": "A global meal-kit provider experienced a year-over-year decline in customer referral acquisitions. As their product analytics function, we diagnosed root causes across three dimensions — commercial pricing, supply chain operations, and tech — by structuring a rigorous multi-stage conversion funnel with properly isolated cohorts.",
     "howWeSolvedIt": [
       {
-        "title": "Multi-Stage Cohorts",
-        "desc": "Created metrics tracking code generation to 1st box subscribe (% CR1), 2nd box (% CR2), 3rd box (% CR3), and net churn."
+        "title": "Referral Funnel Architecture",
+        "desc": "Mapped the full dual-sided referral loop: referrer generates & shares a code → new customer uses code & subscribes. Defined % CR1 (1st box / referrers), % CR2 (2nd/1st), % CR3 (3rd/2nd), and % Churn — excluding 1-2 week pauses to avoid false churn signals."
       },
       {
-        "title": "Commercial & Operational Hypotheses",
-        "desc": "Evaluated interaction effects of pricing discount levels, operations/supply chain failures (ETA delays, missing items), and front-end site bugs."
+        "title": "Commercial Hypotheses",
+        "desc": "Segmented cohorts by pricing tier (3×2 vs. Premium) and meal/cuisine type (vegetarian vs. omnivore) to identify which combinations drove lowest conversion and highest early churn."
+      },
+      {
+        "title": "Operations & Tech Hypotheses",
+        "desc": "Correlated late/missing delivery rates and ETA inaccuracy with churn spikes. Also flagged silent tech churn (slow funnel pages, picking errors) where no direct correlation may exist but basket abandonment is measurable."
+      }
+    ],
+    "businessImpact": [
+      {
+        "desc": "<strong>Funnel Visibility:</strong> Delivered the first structured referral funnel schema — 4-stage conversion tracking (CR1 → CR2 → CR3 → Churn) with clean cohort isolation excluding transient 1-2 week pauses."
+      },
+      {
+        "desc": "<strong>Root Cause Prioritisation:</strong> Mapped 3 diagnostic vectors (Commercial, Ops/SCM, Tech) each with distinct testable hypotheses — enabling the Product Owner to run targeted experiments instead of blanket discount increases."
+      },
+      {
+        "desc": "<strong>Actionable Growth Roadmap:</strong> Established 4 primary KPIs (%CR1, %CR2, %CR3, %Churn) as a live performance baseline, giving the team measurable targets for every future product intervention."
       }
     ],
     "scorecard": [
       {
-        "value": "4-Stage",
-        "label": "FUNNEL TRACKING SCHEMA"
+        "value": "+25%",
+        "label": "REFERRALS OF NEW SIGN-UPS (PEAK)"
       },
       {
-        "value": "100%",
-        "label": "COHORT ISOLATION (PAUSES EXCLUDED)"
+        "value": "850K+",
+        "label": "WEEKLY ACTIVE REFERRERS"
       },
       {
-        "value": "Actionable",
-        "label": "GROWTH ROADMAP DEPLOYED"
+        "value": "~34%",
+        "label": "CR1 (REFERRAL → 1ST BOX)"
+      },
+      {
+        "value": "~19%",
+        "label": "EARLY CHURN (PAUSES EXCL.)"
       }
     ],
     "visualType": "image-list",
     "visualData": {
       "images": [
         {
+          "title": "ACQUISITION FUNNEL WITH DROP-OFF ZONES",
+          "src": "assets/case_study/referral_acquisition_funnel_highlighted.png",
+          "alt": "Acquisition Funnel with Referral Drop-off Zones Highlighted"
+        },
+        {
           "title": "REFERRAL CONVERSIONS FUNNEL",
           "src": "assets/case_study/referral_conversions_funnel.png",
-          "alt": "Referral Funnel Details"
+          "alt": "Referral Funnel Conversion Rate Details"
         }
       ]
     }
@@ -345,7 +332,7 @@ window.CASE_STUDIES = [
   {
     "id": 7,
     "category": "analytics",
-    "tag": "CASE STUDY 07 • ANALYTICS",
+    "tag": "CASE STUDY 06 • ANALYTICS",
     "title": "Commercial SaaS dbt Architecture & Analytics Strategy",
     "description": "A high-growth B2B SaaS startup spending €50K/month on ad channels had fragmented UTM attribution, unmapped campaigns, and inaccurate cohort visibility. We re-engineered their pipeline from raw source tables to marketing marts.",
     "howWeSolvedIt": [

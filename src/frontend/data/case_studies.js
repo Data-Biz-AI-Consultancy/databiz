@@ -228,46 +228,9 @@ window.CASE_STUDIES = [
     }
   },
   {
-    "id": 3,
-    "category": "strategy",
-    "tag": "CASE STUDY 04 • DATA STRATEGY",
-    "title": "Analytics Platform & BI Squad Transformation",
-    "description": "An international e-commerce marketplace (luxury fashion) lacked centralized analytics alignment. Decision support across Operations, Sustainability, and emerging business lines was highly fragmented, leaving the data engineering team overwhelmed by manual, repetitive request tickets.",
-    "howWeSolvedIt": [
-      {
-        "title": "Squad Formation",
-        "desc": "Recruited and onboarded dedicated BI squad members aligned with key business lines."
-      },
-      {
-        "title": "Delivery Frameworks",
-        "desc": "Established 2-week Scrum sprints, MoSCoW prioritization, and a standardized request intake SLA."
-      },
-      {
-        "title": "Self-Service Marts",
-        "desc": "Deployed over 50+ Kimball-modeled clean data marts, enabling stakeholders to run reports independently."
-      }
-    ],
-    "scorecard": [
-      {
-        "value": "-40%",
-        "label": "AD-HOC TICKET VOL"
-      },
-      {
-        "value": "100%",
-        "label": "TEAM RETENTION"
-      },
-      {
-        "value": "50+",
-        "label": "DATA MARTS"
-      }
-    ],
-    "visualType": "operating-rhythm",
-    "visualData": {}
-  },
-  {
     "id": 5,
     "category": "architecture",
-    "tag": "CASE STUDY 05 • MODERN DATA ARCHITECTURE",
+    "tag": "CASE STUDY 04 • MODERN DATA ARCHITECTURE",
     "title": "Logistics Delivery Radius & Purchase Deviation Analytics",
     "description": "An on-demand logistics company required a mechanism to analyze how changes in a city's delivery radius affect purchase patterns, sales volumes, and VAT revenues.",
     "howWeSolvedIt": [
@@ -304,7 +267,7 @@ window.CASE_STUDIES = [
   {
     "id": 6,
     "category": "analytics",
-    "tag": "CASE STUDY 06 • ANALYTICS",
+    "tag": "CASE STUDY 05 • ANALYTICS",
     "title": "Meal-Kit Referral Conversion Funnel Diagnostics",
     "description": "A global meal-kit provider (HelloFresh) experienced a year-over-year decline in customer referral acquisitions. We developed a comprehensive diagnostic model to pinpoint funnel leakages.",
     "howWeSolvedIt": [
@@ -345,7 +308,7 @@ window.CASE_STUDIES = [
   {
     "id": 7,
     "category": "analytics",
-    "tag": "CASE STUDY 07 • ANALYTICS",
+    "tag": "CASE STUDY 06 • ANALYTICS",
     "title": "Commercial SaaS dbt Architecture & Analytics Strategy",
     "description": "A high-growth B2B SaaS startup spending €50K/month on ad channels had fragmented UTM attribution, unmapped campaigns, and inaccurate cohort visibility. We re-engineered their pipeline from raw source tables to marketing marts.",
     "howWeSolvedIt": [

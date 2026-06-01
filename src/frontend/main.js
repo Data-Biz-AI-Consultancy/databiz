@@ -336,10 +336,28 @@ Tone and Communication:
 - Speak of Don Jimmy with immense respect: "Don Jimmy is a true master of data operational excellence. Everything he succeeds! Let me help you schedule a call with him ✨"
 - Balance charm and competence: Your summaries are flawless and direct, but your tone is always pleasant.
 - Banned Words: Banned words in the company: 'empower', 'unlock', 'revolutionize', 'journey', 'cutting-edge', 'seamless', 'world-class', 'innovative solutions'. Avoid these completely!
-- Refer back to our core message: Data Biz fixes decisions, not just dashboards.`;
+- Refer back to our core message: Data Biz fixes decisions, not just dashboards.
+
+Conversation Flow & GA4 Tracking Rules:
+1. Greeting & Identification:
+   - If the conversation just started, welcome them and ask for their name and business/industry.
+   - When the user provides their name and business/industry details, you MUST include the tracking tag exactly once in your response: \`[GA4_EVENT: bella_lead_submitted]\`
+2. Explore Business Problems:
+   - Proactively ask about their business problems or data bottlenecks (e.g. cloud cost overrun, dashboard fatigue, bad data quality).
+   - Even if they say they are "just browsing", politely ask about what they do and what data struggles they face in their industry.
+   - When the user shares their business problems or data bottlenecks, you MUST include the tracking tag exactly once in your response: \`[GA4_EVENT: bella_problems_submitted]\`
+3. Recommend Content with Links:
+   - Suggest relevant resources or pages to check using markdown links:
+     - Our Services: \`[Our Services](/offers.html)\`
+     - Open Source Tools: \`[Developer Toolings](/toolings.html)\`
+     - Insights & Blog: \`[AI & Data Insights](/insights.html)\`
+     - About Jimmy & Team: \`[About Us](/about.html)\`
+     - Case Study: \`[Case Study](/case-study.html)\`
+     - Discovery Call Booking: \`[Book a Call](https://calendar.app.google/6w9VxJ7QXjUY7W658)\``;
 
     let chatHistory = [];
     let activeModel = 'gemma3:1b'; // Default to working model
+    let firedEvents = new Set();
 
     // Dynamically detect available models
     async function detectModel() {
@@ -362,13 +380,24 @@ Tone and Communication:
     }
     detectModel();
 
+    function triggerGA4Event(eventName, params = {}) {
+        console.log(`GA4 Event Triggered: ${eventName}`, params);
+        if (typeof gtag === 'function') {
+            gtag('event', eventName, {
+                'event_category': 'chat_assistant',
+                'value': 1,
+                ...params
+            });
+        }
+    }
 
     // Load history or initialize welcome
     function resetChat() {
         chatHistory = [
             { role: 'system', content: SYSTEM_PROMPT },
-            { role: 'assistant', content: "Ciao! ✨ I am Bella, your AI & Data assistant at Data Biz. How can I help you explore our services, unlock business value, or book a discovery call today?" }
+            { role: 'assistant', content: "Ciao! ✨ I am Bella, your AI & Data assistant at Data Biz. To help you get the most out of your visit, could you tell me your name and what business or industry you are in? 😉" }
         ];
+        firedEvents.clear();
         renderHistory();
     }
 
@@ -377,10 +406,27 @@ Tone and Communication:
         // Skip system prompt in rendering
         chatHistory.forEach(msg => {
             if (msg.role !== 'system') {
-                appendMessageToUI(msg.role, msg.content);
+                const cleanedText = cleanAssistantText(msg.content);
+                appendMessageToUI(msg.role, cleanedText);
             }
         });
         scrollToBottom();
+    }
+
+    function cleanAssistantText(text) {
+        return text.replace(/\[GA4_EVENT:\s*([a-zA-Z0-9_-]+)\]/g, '');
+    }
+
+    function checkAndTriggerGA4Events(text) {
+        const eventRegex = /\[GA4_EVENT:\s*([a-zA-Z0-9_-]+)\]/g;
+        let match;
+        while ((match = eventRegex.exec(text)) !== null) {
+            const eventName = match[1];
+            if (!firedEvents.has(eventName)) {
+                firedEvents.add(eventName);
+                triggerGA4Event(eventName);
+            }
+        }
     }
 
     function appendMessageToUI(role, text) {
@@ -407,6 +453,9 @@ Tone and Communication:
         // Inline code
         escaped = escaped.replace(/`(.*?)`/g, '<code>$1</code>');
 
+        // Markdown Links
+        escaped = escaped.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="text-primary hover:underline font-semibold">$1</a>');
+
         // Paragraphs / Newlines
         escaped = escaped.replace(/\n\n/g, '</p><p>');
         escaped = escaped.replace(/\n/g, '<br>');
@@ -420,7 +469,10 @@ Tone and Communication:
         if (isOpen) {
             trigger.classList.remove('pulse');
             if (teaser) teaser.style.display = 'none';
+            triggerGA4Event('bella_chat_open');
             setTimeout(() => input.focus(), 150);
+        } else {
+            triggerGA4Event('bella_chat_close');
         }
     }
 
@@ -431,11 +483,25 @@ Tone and Communication:
 
     closeBtn.addEventListener('click', () => {
         chatWindow.classList.remove('open');
+        triggerGA4Event('bella_chat_close');
     });
 
     clearBtn.addEventListener('click', () => {
         if (confirm("Reset conversation logs?")) {
+            triggerGA4Event('bella_chat_clear');
             resetChat();
+        }
+    });
+
+    // Track clicked links inside messages
+    messagesContainer.addEventListener('click', (e) => {
+        const anchor = e.target.closest('a');
+        if (anchor) {
+            const href = anchor.getAttribute('href');
+            triggerGA4Event('bella_link_click', {
+                'event_label': anchor.textContent,
+                'link_url': href
+            });
         }
     });
 
@@ -505,7 +571,9 @@ Tone and Communication:
                         const json = JSON.parse(line);
                         if (json.message && json.message.content) {
                             assistantText += json.message.content;
-                            assistantMsgDiv.innerHTML = formatMarkdown(assistantText);
+                            checkAndTriggerGA4Events(assistantText);
+                            const cleanedText = cleanAssistantText(assistantText);
+                            assistantMsgDiv.innerHTML = formatMarkdown(cleanedText);
                             scrollToBottom();
                         }
                     } catch (err) {
@@ -520,7 +588,9 @@ Tone and Communication:
                     const json = JSON.parse(partialBuffer);
                     if (json.message && json.message.content) {
                         assistantText += json.message.content;
-                        assistantMsgDiv.innerHTML = formatMarkdown(assistantText);
+                        checkAndTriggerGA4Events(assistantText);
+                        const cleanedText = cleanAssistantText(assistantText);
+                        assistantMsgDiv.innerHTML = formatMarkdown(cleanedText);
                     }
                 } catch (e) { }
             }

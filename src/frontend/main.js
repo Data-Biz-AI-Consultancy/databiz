@@ -450,13 +450,15 @@ Lead Capture Rules:
             { role: 'assistant', content: welcomeMessage }
         ];
 
-        // Restore past messages if any exist
+        // Restore past messages if any exist (disabled: always start a brand new session in frontpage)
+        /*
         if (visitorMemory && visitorMemory.messages && visitorMemory.messages.length > 0) {
             chatHistory = [{ role: 'system', content: systemPromptWithMemory }];
             visitorMemory.messages.forEach(msg => {
                 chatHistory.push({ role: msg.role, content: msg.content });
             });
         }
+        */
 
         firedEvents.clear();
         renderHistory();

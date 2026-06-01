@@ -4,7 +4,9 @@
   "description": "Data Biz Consulting Website",
   "main": "main.js",
   "scripts": {
-    "test": "vitest run --config=tests/frontend/vitest.config.js",
+    "test:frontend": "vitest run --config=tests/frontend/vitest.config.js",
+    "test:backend": "vitest run --config=tests/backend/vitest.config.js",
+    "test": "npm run test:frontend && npm run test:backend",
     "test:watch": "vitest --config=tests/frontend/vitest.config.js",
     "test:e2e": "playwright test --config=tests/playwright.config.js"
   },
@@ -12,6 +14,13 @@
     "@playwright/test": "^1.49.0",
     "http-server": "^14.1.1",
     "jsdom": "^26.0.0",
+    "supertest": "^7.2.2",
     "vitest": "^3.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pg": "^8.21.0"
   }
 }

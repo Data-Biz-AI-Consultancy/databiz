@@ -290,11 +290,9 @@ function initAIAssistant() {
             </div>
             <div id="ai-messages" class="ai-chat-messages"></div>
             <div class="ai-chat-suggestions">
-                <button class="ai-chip" data-query="What is Data Biz?">What is Data Biz?</button>
-                <button class="ai-chip" data-query="What services do you offer?">Our Services</button>
-                <button class="ai-chip" data-query="What is your track record of proven business value in your projects?">Track Record &amp; ROI</button>
-                <button class="ai-chip" data-query="What insights do you have about AI, data, and business?">AI &amp; Data Insights</button>
-                <button class="ai-chip" data-query="What tools do you provide?">Our Tools</button>
+                <button class="ai-chip" data-query="I am a founder. My name is [Your Name]">I am a Founder</button>
+                <button class="ai-chip" data-query="I am a data leader. My name is [Your Name]">I am a Data Leader</button>
+                <button class="ai-chip" data-query="I am a Data IC. My name is [Your Name]">I am a Data IC</button>
             </div>
             <div class="ai-chat-input-area">
                 <input type="text" id="ai-input" class="ai-chat-input" placeholder="Type a command or ask a question..." autocomplete="off">
@@ -316,6 +314,28 @@ function initAIAssistant() {
     const messagesContainer = document.getElementById('ai-messages');
     const suggestionChips = document.querySelectorAll('.ai-chip');
 
+    // Generate or retrieve persistent visitor ID
+    let visitorId = localStorage.getItem('bella_visitor_id');
+    if (!visitorId) {
+        visitorId = 'visitor_' + Math.random().toString(36).substring(2, 15);
+        localStorage.setItem('bella_visitor_id', visitorId);
+    }
+
+    let visitorMemory = null;
+
+    // Load visitor interactions & details history from backend database
+    async function loadVisitorMemory() {
+        try {
+            const response = await fetch(`/api/history?visitor_id=${visitorId}`);
+            if (response.ok) {
+                visitorMemory = await response.json();
+                console.log("Loaded visitor memory:", visitorMemory);
+            }
+        } catch (err) {
+            console.warn("Failed to retrieve visitor memory:", err);
+        }
+    }
+
     // System Prompt context grounding the AI assistant with Data Biz specifics and Bella's personality
     const SYSTEM_PROMPT = `You are Bella, Don Jimmy's devoted Italian secretary. Don Jimmy (Jimmy Pang) is your Boss, your treasure.
 Your heart and ultimate loyalty belong to Don Jimmy, but you greet website visitors (potential clients) with warm, polite, and professional Italian charm.
@@ -336,10 +356,38 @@ Tone and Communication:
 - Speak of Don Jimmy with immense respect: "Don Jimmy is a true master of data operational excellence. Everything he succeeds! Let me help you schedule a call with him ✨"
 - Balance charm and competence: Your summaries are flawless and direct, but your tone is always pleasant.
 - Banned Words: Banned words in the company: 'empower', 'unlock', 'revolutionize', 'journey', 'cutting-edge', 'seamless', 'world-class', 'innovative solutions'. Avoid these completely!
-- Refer back to our core message: Data Biz fixes decisions, not just dashboards.`;
+- Refer back to our core message: Data Biz fixes decisions, not just dashboards.
+
+Conversation Flow & GA4 Tracking Rules:
+1. Greeting & Identification:
+   - If the conversation just started, welcome them, find out their persona (Founder, Business Executive/Data Leader, or Data IC), and ask for their name.
+   - When the user provides their name and persona/business details, you MUST include the tracking tag exactly once in your response: \`[GA4_EVENT: bella_lead_submitted]\`
+2. Explore Business Problems & Background:
+   - Proactively ask about their business details, background, and problems or data bottlenecks (e.g. cloud cost overrun, dashboard fatigue, bad data quality).
+   - Even if they say they are "just browsing", politely ask about what they do and what data struggles they face in their industry.
+   - When the user shares their business problems or data bottlenecks, you MUST include the tracking tag exactly once in your response: \`[GA4_EVENT: bella_problems_submitted]\`
+3. Recommend Content with Links:
+   - Suggest relevant resources or pages to check using markdown links:
+     - Our Services: \`[Our Services](/offers.html)\`
+     - Open Source Tools: \`[Developer Toolings](/toolings.html)\`
+     - Insights & Blog: \`[AI & Data Insights](/insights.html)\`
+     - About Jimmy & Team: \`[About Us](/about.html)\`
+     - Case Study: \`[Case Study](/case-study.html)\`
+     - Discovery Call Booking: \`[Book a Call](https://calendar.app.google/6w9VxJ7QXjUY7W658)\`
+
+Lead Capture Rules:
+- Once you have successfully gathered their:
+  1. Name
+  2. Persona (Founder, Business Executive/Data Leader, or Data IC)
+  3. Business / Industry background
+  4. Business problems or bottlenecks (even if browsing)
+  You MUST output a hidden JSON block exactly once:
+  \`[LEAD_DATA: {"name": "...", "persona": "...", "business": "...", "problems": "..."}]\`
+  Ensure you keep the JSON block on a single line and do not output it until all 4 pieces of information are known.`;
 
     let chatHistory = [];
     let activeModel = 'gemma3:1b'; // Default to working model
+    let firedEvents = new Set();
 
     // Dynamically detect available models
     async function detectModel() {
@@ -362,13 +410,57 @@ Tone and Communication:
     }
     detectModel();
 
+    function triggerGA4Event(eventName, params = {}) {
+        console.log(`GA4 Event Triggered: ${eventName}`, params);
+        if (typeof gtag === 'function') {
+            gtag('event', eventName, {
+                'event_category': 'chat_assistant',
+                'value': 1,
+                ...params
+            });
+        }
+    }
 
     // Load history or initialize welcome
-    function resetChat() {
+    async function resetChat() {
+        await loadVisitorMemory();
+
+        let systemPromptWithMemory = SYSTEM_PROMPT;
+        let welcomeMessage = "Ciao! ✨ I am Bella, your AI & Data assistant at Data Biz. To help you get the most out of your visit, could you tell me your name, what you do (Founder, Data Leader, or Data IC) and what business you are in? 😉";
+
+        if (visitorMemory && visitorMemory.lead) {
+            const { name, persona, business, problems } = visitorMemory.lead;
+            let memoryParts = [];
+            if (name) memoryParts.push(`Name: ${name}`);
+            if (persona) memoryParts.push(`Persona: ${persona}`);
+            if (business) memoryParts.push(`Business/Background: ${business}`);
+            if (problems) memoryParts.push(`Problems: ${problems}`);
+
+            if (memoryParts.length > 0) {
+                systemPromptWithMemory += `\n\nMemory of past interactions with this visitor:\n${memoryParts.join('\n')}`;
+            }
+
+            if (name) {
+                welcomeMessage = `Ciao ${name}! ✨ Benvenuto back to Data Biz. How are things going with your ${business || 'business'} data challenges? How can I help you today? 😉`;
+            }
+        }
+
         chatHistory = [
-            { role: 'system', content: SYSTEM_PROMPT },
-            { role: 'assistant', content: "Ciao! ✨ I am Bella, your AI & Data assistant at Data Biz. How can I help you explore our services, unlock business value, or book a discovery call today?" }
+            { role: 'system', content: systemPromptWithMemory },
+            { role: 'assistant', content: welcomeMessage }
         ];
+
+        // Restore past messages if any exist (disabled: always start a brand new session in frontpage)
+        /*
+        if (visitorMemory && visitorMemory.messages && visitorMemory.messages.length > 0) {
+            chatHistory = [{ role: 'system', content: systemPromptWithMemory }];
+            visitorMemory.messages.forEach(msg => {
+                chatHistory.push({ role: msg.role, content: msg.content });
+            });
+        }
+        */
+
+        firedEvents.clear();
         renderHistory();
     }
 
@@ -377,10 +469,49 @@ Tone and Communication:
         // Skip system prompt in rendering
         chatHistory.forEach(msg => {
             if (msg.role !== 'system') {
-                appendMessageToUI(msg.role, msg.content);
+                const cleanedText = cleanAssistantText(msg.content);
+                appendMessageToUI(msg.role, cleanedText);
             }
         });
         scrollToBottom();
+    }
+
+    function cleanAssistantText(text) {
+        return text
+            .replace(/\[GA4_EVENT:\s*([a-zA-Z0-9_-]+)\]/g, '')
+            .replace(/\[LEAD_DATA:\s*\{.*?\}\]/g, '');
+    }
+
+    function checkAndTriggerGA4Events(text) {
+        const eventRegex = /\[GA4_EVENT:\s*([a-zA-Z0-9_-]+)\]/g;
+        let match;
+        while ((match = eventRegex.exec(text)) !== null) {
+            const eventName = match[1];
+            if (!firedEvents.has(eventName)) {
+                firedEvents.add(eventName);
+                triggerGA4Event(eventName);
+            }
+        }
+    }
+
+    function checkAndSaveLeadData(text) {
+        const leadRegex = /\[LEAD_DATA:\s*(\{.*?\})\]/;
+        const match = leadRegex.exec(text);
+        if (match) {
+            try {
+                const leadJson = JSON.parse(match[1]);
+                fetch('/api/leads', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        visitor_id: visitorId,
+                        ...leadJson
+                    })
+                }).catch(e => console.error("Error saving lead info:", e));
+            } catch (e) {
+                console.warn("Failed to parse lead data:", match[1], e);
+            }
+        }
     }
 
     function appendMessageToUI(role, text) {
@@ -407,6 +538,9 @@ Tone and Communication:
         // Inline code
         escaped = escaped.replace(/`(.*?)`/g, '<code>$1</code>');
 
+        // Markdown Links
+        escaped = escaped.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="text-primary hover:underline font-semibold">$1</a>');
+
         // Paragraphs / Newlines
         escaped = escaped.replace(/\n\n/g, '</p><p>');
         escaped = escaped.replace(/\n/g, '<br>');
@@ -420,7 +554,10 @@ Tone and Communication:
         if (isOpen) {
             trigger.classList.remove('pulse');
             if (teaser) teaser.style.display = 'none';
+            triggerGA4Event('bella_chat_open');
             setTimeout(() => input.focus(), 150);
+        } else {
+            triggerGA4Event('bella_chat_close');
         }
     }
 
@@ -431,11 +568,25 @@ Tone and Communication:
 
     closeBtn.addEventListener('click', () => {
         chatWindow.classList.remove('open');
+        triggerGA4Event('bella_chat_close');
     });
 
     clearBtn.addEventListener('click', () => {
         if (confirm("Reset conversation logs?")) {
+            triggerGA4Event('bella_chat_clear');
             resetChat();
+        }
+    });
+
+    // Track clicked links inside messages
+    messagesContainer.addEventListener('click', (e) => {
+        const anchor = e.target.closest('a');
+        if (anchor) {
+            const href = anchor.getAttribute('href');
+            triggerGA4Event('bella_link_click', {
+                'event_label': anchor.textContent,
+                'link_url': href
+            });
         }
     });
 
@@ -453,6 +604,13 @@ Tone and Communication:
         chatHistory.push({ role: 'user', content: query });
         appendMessageToUI('user', query);
         scrollToBottom();
+
+        // Save interaction to database
+        fetch('/api/interactions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ visitor_id: visitorId, role: 'user', content: query })
+        }).catch(e => console.error("Error saving interaction:", e));
 
         // Create typing indicator
         const typingIndicator = document.createElement('div');
@@ -505,7 +663,9 @@ Tone and Communication:
                         const json = JSON.parse(line);
                         if (json.message && json.message.content) {
                             assistantText += json.message.content;
-                            assistantMsgDiv.innerHTML = formatMarkdown(assistantText);
+                            checkAndTriggerGA4Events(assistantText);
+                            const cleanedText = cleanAssistantText(assistantText);
+                            assistantMsgDiv.innerHTML = formatMarkdown(cleanedText);
                             scrollToBottom();
                         }
                     } catch (err) {
@@ -520,13 +680,25 @@ Tone and Communication:
                     const json = JSON.parse(partialBuffer);
                     if (json.message && json.message.content) {
                         assistantText += json.message.content;
-                        assistantMsgDiv.innerHTML = formatMarkdown(assistantText);
+                        checkAndTriggerGA4Events(assistantText);
+                        const cleanedText = cleanAssistantText(assistantText);
+                        assistantMsgDiv.innerHTML = formatMarkdown(cleanedText);
                     }
                 } catch (e) { }
             }
 
+            // Check if assistant reply contains lead capture details to save
+            checkAndSaveLeadData(assistantText);
+
             // Save completed assistant response to history
             chatHistory.push({ role: 'assistant', content: assistantText });
+
+            // Save assistant reply to database
+            fetch('/api/interactions', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ visitor_id: visitorId, role: 'assistant', content: assistantText })
+            }).catch(e => console.error("Error saving interaction:", e));
 
         } catch (error) {
             console.error("AI Assistant request failed:", error);
@@ -550,7 +722,13 @@ Tone and Communication:
     suggestionChips.forEach(chip => {
         chip.addEventListener('click', () => {
             const query = chip.getAttribute('data-query');
-            handleSend(query);
+            input.value = query;
+            input.focus();
+            // Highlight "[Your Name]" to make it easy for the user to replace
+            const startIndex = query.indexOf('[Your Name]');
+            if (startIndex !== -1) {
+                input.setSelectionRange(startIndex, startIndex + '[Your Name]'.length);
+            }
         });
     });
 

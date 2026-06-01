@@ -111,8 +111,18 @@ describe('main.js unit tests', () => {
           ok: true,
           body: mockStream
         });
+      } else if (url.includes('/api/history')) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({ lead: null, messages: [] })
+        });
+      } else if (url.includes('/api/interactions') || url.includes('/api/leads')) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({ success: true })
+        });
       }
-      return Promise.reject(new Error('Unknown url'));
+      return Promise.reject(new Error(`Unknown url: ${url}`));
     });
   });
 
@@ -217,4 +227,99 @@ describe('main.js unit tests', () => {
     closeBtn.click();
     expect(chatWindow.classList.contains('open')).toBe(false);
   });
+
+  it('formats markdown links and strips tracking tags in chat messages', async () => {
+    // Override fetch to return text with markdown links and GA4 event tags
+    global.fetch = vi.fn().mockImplementation((url) => {
+      if (url.includes('/api/chat')) {
+        const mockStream = new ReadableStream({
+          start(controller) {
+            const encoder = new TextEncoder();
+            controller.enqueue(encoder.encode(JSON.stringify({ message: { content: 'Hello! [Our Services](/offers.html) [GA4_EVENT: bella_lead_submitted]' } }) + '\n'));
+            controller.close();
+          }
+        });
+        return Promise.resolve({ ok: true, body: mockStream });
+      } else if (url.includes('/api/history')) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve({ lead: null, messages: [] }) });
+      } else if (url.includes('/api/interactions') || url.includes('/api/leads')) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve({ success: true }) });
+      }
+      return Promise.resolve({ json: () => Promise.resolve({ models: [{ name: 'gemma3:1b' }] }) });
+    });
+
+    new Function(mainJsContent)();
+    document.dispatchEvent(new Event('DOMContentLoaded'));
+
+    // Wait for async welcome message rendering to complete
+    await new Promise(resolve => setTimeout(resolve, 50));
+
+    const input = document.getElementById('ai-input');
+    const sendBtn = document.getElementById('ai-send');
+
+    input.value = 'My name is Bob and I run a retail store.';
+    sendBtn.click();
+
+    // Wait for stream to finish processing
+    await new Promise(resolve => setTimeout(resolve, 50));
+
+    const messages = document.getElementById('ai-messages');
+    const assistantMessages = messages.querySelectorAll('.ai-chat-message.assistant');
+    const assistantMessage = assistantMessages[assistantMessages.length - 1];
+    
+    // Check that link is formatted to an anchor tag
+    const anchor = assistantMessage.querySelector('a');
+    expect(anchor).not.toBeNull();
+    expect(anchor.getAttribute('href')).toBe('/offers.html');
+    expect(anchor.textContent).toBe('Our Services');
+
+    // Check that tracking tag is stripped from text representation
+    expect(assistantMessage.innerHTML).not.toContain('[GA4_EVENT');
+
+    // Check that GA4 lead submission event was triggered
+    expect(global.gtag).toHaveBeenCalledWith('event', 'bella_lead_submitted', expect.objectContaining({
+      'event_category': 'chat_assistant'
+    }));
+  });
+
+  it('triggers GA4 events on open, close, clear, and link click actions', async () => {
+    new Function(mainJsContent)();
+    document.dispatchEvent(new Event('DOMContentLoaded'));
+
+    const trigger = document.getElementById('ai-trigger');
+    const closeBtn = document.getElementById('ai-close');
+    const clearBtn = document.getElementById('ai-clear');
+
+    // Test Open
+    trigger.click();
+    expect(global.gtag).toHaveBeenCalledWith('event', 'bella_chat_open', expect.objectContaining({
+      'event_category': 'chat_assistant'
+    }));
+
+    // Test Close
+    closeBtn.click();
+    expect(global.gtag).toHaveBeenCalledWith('event', 'bella_chat_close', expect.objectContaining({
+      'event_category': 'chat_assistant'
+    }));
+
+    // Mock confirm dialog for clear button
+    global.confirm = vi.fn().mockReturnValue(true);
+    clearBtn.click();
+    expect(global.gtag).toHaveBeenCalledWith('event', 'bella_chat_clear', expect.objectContaining({
+      'event_category': 'chat_assistant'
+    }));
+
+    // Test Link Clicks inside messages
+    const messages = document.getElementById('ai-messages');
+    messages.innerHTML = '<p><a href="/toolings.html" id="test-chat-link">Developer Toolings</a></p>';
+    const chatLink = document.getElementById('test-chat-link');
+    chatLink.click();
+
+    expect(global.gtag).toHaveBeenCalledWith('event', 'bella_link_click', expect.objectContaining({
+      'event_category': 'chat_assistant',
+      'event_label': 'Developer Toolings',
+      'link_url': '/toolings.html'
+    }));
+  });
 });
+

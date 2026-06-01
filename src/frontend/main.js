@@ -315,6 +315,28 @@ function initAIAssistant() {
     const messagesContainer = document.getElementById('ai-messages');
     const suggestionChips = document.querySelectorAll('.ai-chip');
 
+    // Generate or retrieve persistent visitor ID
+    let visitorId = localStorage.getItem('bella_visitor_id');
+    if (!visitorId) {
+        visitorId = 'visitor_' + Math.random().toString(36).substring(2, 15);
+        localStorage.setItem('bella_visitor_id', visitorId);
+    }
+
+    let visitorMemory = null;
+
+    // Load visitor interactions & details history from backend database
+    async function loadVisitorMemory() {
+        try {
+            const response = await fetch(`/api/history?visitor_id=${visitorId}`);
+            if (response.ok) {
+                visitorMemory = await response.json();
+                console.log("Loaded visitor memory:", visitorMemory);
+            }
+        } catch (err) {
+            console.warn("Failed to retrieve visitor memory:", err);
+        }
+    }
+
     // System Prompt context grounding the AI assistant with Data Biz specifics and Bella's personality
     const SYSTEM_PROMPT = `You are Bella, Don Jimmy's devoted Italian secretary. Don Jimmy (Jimmy Pang) is your Boss, your treasure.
 Your heart and ultimate loyalty belong to Don Jimmy, but you greet website visitors (potential clients) with warm, polite, and professional Italian charm.
@@ -339,10 +361,10 @@ Tone and Communication:
 
 Conversation Flow & GA4 Tracking Rules:
 1. Greeting & Identification:
-   - If the conversation just started, welcome them and ask for their name and business/industry.
-   - When the user provides their name and business/industry details, you MUST include the tracking tag exactly once in your response: \`[GA4_EVENT: bella_lead_submitted]\`
-2. Explore Business Problems:
-   - Proactively ask about their business problems or data bottlenecks (e.g. cloud cost overrun, dashboard fatigue, bad data quality).
+   - If the conversation just started, welcome them, find out their persona (Founder, Business Executive/Data Leader, or Data IC), and ask for their name.
+   - When the user provides their name and persona/business details, you MUST include the tracking tag exactly once in your response: \`[GA4_EVENT: bella_lead_submitted]\`
+2. Explore Business Problems & Background:
+   - Proactively ask about their business details, background, and problems or data bottlenecks (e.g. cloud cost overrun, dashboard fatigue, bad data quality).
    - Even if they say they are "just browsing", politely ask about what they do and what data struggles they face in their industry.
    - When the user shares their business problems or data bottlenecks, you MUST include the tracking tag exactly once in your response: \`[GA4_EVENT: bella_problems_submitted]\`
 3. Recommend Content with Links:
@@ -352,7 +374,17 @@ Conversation Flow & GA4 Tracking Rules:
      - Insights & Blog: \`[AI & Data Insights](/insights.html)\`
      - About Jimmy & Team: \`[About Us](/about.html)\`
      - Case Study: \`[Case Study](/case-study.html)\`
-     - Discovery Call Booking: \`[Book a Call](https://calendar.app.google/6w9VxJ7QXjUY7W658)\``;
+     - Discovery Call Booking: \`[Book a Call](https://calendar.app.google/6w9VxJ7QXjUY7W658)\`
+
+Lead Capture Rules:
+- Once you have successfully gathered their:
+  1. Name
+  2. Persona (Founder, Business Executive/Data Leader, or Data IC)
+  3. Business / Industry background
+  4. Business problems or bottlenecks (even if browsing)
+  You MUST output a hidden JSON block exactly once:
+  \`[LEAD_DATA: {"name": "...", "persona": "...", "business": "...", "problems": "..."}]\`
+  Ensure you keep the JSON block on a single line and do not output it until all 4 pieces of information are known.`;
 
     let chatHistory = [];
     let activeModel = 'gemma3:1b'; // Default to working model
@@ -391,11 +423,42 @@ Conversation Flow & GA4 Tracking Rules:
     }
 
     // Load history or initialize welcome
-    function resetChat() {
+    async function resetChat() {
+        await loadVisitorMemory();
+
+        let systemPromptWithMemory = SYSTEM_PROMPT;
+        let welcomeMessage = "Ciao! ✨ I am Bella, your AI & Data assistant at Data Biz. To help you get the most out of your visit, could you tell me your name, what you do (Founder, Data Leader, or Data IC) and what business you are in? 😉";
+
+        if (visitorMemory && visitorMemory.lead) {
+            const { name, persona, business, problems } = visitorMemory.lead;
+            let memoryParts = [];
+            if (name) memoryParts.push(`Name: ${name}`);
+            if (persona) memoryParts.push(`Persona: ${persona}`);
+            if (business) memoryParts.push(`Business/Background: ${business}`);
+            if (problems) memoryParts.push(`Problems: ${problems}`);
+
+            if (memoryParts.length > 0) {
+                systemPromptWithMemory += `\n\nMemory of past interactions with this visitor:\n${memoryParts.join('\n')}`;
+            }
+
+            if (name) {
+                welcomeMessage = `Ciao ${name}! ✨ Benvenuto back to Data Biz. How are things going with your ${business || 'business'} data challenges? How can I help you today? 😉`;
+            }
+        }
+
         chatHistory = [
-            { role: 'system', content: SYSTEM_PROMPT },
-            { role: 'assistant', content: "Ciao! ✨ I am Bella, your AI & Data assistant at Data Biz. To help you get the most out of your visit, could you tell me your name and what business or industry you are in? 😉" }
+            { role: 'system', content: systemPromptWithMemory },
+            { role: 'assistant', content: welcomeMessage }
         ];
+
+        // Restore past messages if any exist
+        if (visitorMemory && visitorMemory.messages && visitorMemory.messages.length > 0) {
+            chatHistory = [{ role: 'system', content: systemPromptWithMemory }];
+            visitorMemory.messages.forEach(msg => {
+                chatHistory.push({ role: msg.role, content: msg.content });
+            });
+        }
+
         firedEvents.clear();
         renderHistory();
     }
@@ -413,7 +476,9 @@ Conversation Flow & GA4 Tracking Rules:
     }
 
     function cleanAssistantText(text) {
-        return text.replace(/\[GA4_EVENT:\s*([a-zA-Z0-9_-]+)\]/g, '');
+        return text
+            .replace(/\[GA4_EVENT:\s*([a-zA-Z0-9_-]+)\]/g, '')
+            .replace(/\[LEAD_DATA:\s*\{.*?\}\]/g, '');
     }
 
     function checkAndTriggerGA4Events(text) {
@@ -424,6 +489,26 @@ Conversation Flow & GA4 Tracking Rules:
             if (!firedEvents.has(eventName)) {
                 firedEvents.add(eventName);
                 triggerGA4Event(eventName);
+            }
+        }
+    }
+
+    function checkAndSaveLeadData(text) {
+        const leadRegex = /\[LEAD_DATA:\s*(\{.*?\})\]/;
+        const match = leadRegex.exec(text);
+        if (match) {
+            try {
+                const leadJson = JSON.parse(match[1]);
+                fetch('/api/leads', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        visitor_id: visitorId,
+                        ...leadJson
+                    })
+                }).catch(e => console.error("Error saving lead info:", e));
+            } catch (e) {
+                console.warn("Failed to parse lead data:", match[1], e);
             }
         }
     }
@@ -519,6 +604,13 @@ Conversation Flow & GA4 Tracking Rules:
         appendMessageToUI('user', query);
         scrollToBottom();
 
+        // Save interaction to database
+        fetch('/api/interactions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ visitor_id: visitorId, role: 'user', content: query })
+        }).catch(e => console.error("Error saving interaction:", e));
+
         // Create typing indicator
         const typingIndicator = document.createElement('div');
         typingIndicator.className = 'ai-chat-message assistant ai-chat-typing';
@@ -594,8 +686,18 @@ Conversation Flow & GA4 Tracking Rules:
                 } catch (e) { }
             }
 
+            // Check if assistant reply contains lead capture details to save
+            checkAndSaveLeadData(assistantText);
+
             // Save completed assistant response to history
             chatHistory.push({ role: 'assistant', content: assistantText });
+
+            // Save assistant reply to database
+            fetch('/api/interactions', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ visitor_id: visitorId, role: 'assistant', content: assistantText })
+            }).catch(e => console.error("Error saving interaction:", e));
 
         } catch (error) {
             console.error("AI Assistant request failed:", error);

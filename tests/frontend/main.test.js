@@ -111,8 +111,18 @@ describe('main.js unit tests', () => {
           ok: true,
           body: mockStream
         });
+      } else if (url.includes('/api/history')) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({ lead: null, messages: [] })
+        });
+      } else if (url.includes('/api/interactions') || url.includes('/api/leads')) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({ success: true })
+        });
       }
-      return Promise.reject(new Error('Unknown url'));
+      return Promise.reject(new Error(`Unknown url: ${url}`));
     });
   });
 
@@ -230,12 +240,19 @@ describe('main.js unit tests', () => {
           }
         });
         return Promise.resolve({ ok: true, body: mockStream });
+      } else if (url.includes('/api/history')) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve({ lead: null, messages: [] }) });
+      } else if (url.includes('/api/interactions') || url.includes('/api/leads')) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve({ success: true }) });
       }
       return Promise.resolve({ json: () => Promise.resolve({ models: [{ name: 'gemma3:1b' }] }) });
     });
 
     new Function(mainJsContent)();
     document.dispatchEvent(new Event('DOMContentLoaded'));
+
+    // Wait for async welcome message rendering to complete
+    await new Promise(resolve => setTimeout(resolve, 50));
 
     const input = document.getElementById('ai-input');
     const sendBtn = document.getElementById('ai-send');

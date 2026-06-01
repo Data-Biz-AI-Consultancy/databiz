@@ -290,9 +290,9 @@ function initAIAssistant() {
             </div>
             <div id="ai-messages" class="ai-chat-messages"></div>
             <div class="ai-chat-suggestions">
-                <button class="ai-chip" data-query="I am a founder looking to solve business problems with AI and data.">I am a Founder</button>
-                <button class="ai-chip" data-query="I am a data leader looking to solve business problems with AI and data.">I am a Data Leader</button>
-                <button class="ai-chip" data-query="I am a Data IC (analyst, engineer, scientist)">I am a Data IC</button>
+                <button class="ai-chip" data-query="I am [Your Name], a founder looking to solve business problems with AI and data.">I am a Founder</button>
+                <button class="ai-chip" data-query="I am [Your Name], a data leader looking to solve business problems with AI and data.">I am a Data Leader</button>
+                <button class="ai-chip" data-query="I am [Your Name], a Data IC (analyst, engineer, scientist)">I am a Data IC</button>
             </div>
             <div class="ai-chat-input-area">
                 <input type="text" id="ai-input" class="ai-chat-input" placeholder="Type a command or ask a question..." autocomplete="off">
@@ -720,7 +720,13 @@ Lead Capture Rules:
     suggestionChips.forEach(chip => {
         chip.addEventListener('click', () => {
             const query = chip.getAttribute('data-query');
-            handleSend(query);
+            input.value = query;
+            input.focus();
+            // Highlight "[Your Name]" to make it easy for the user to replace
+            const startIndex = query.indexOf('[Your Name]');
+            if (startIndex !== -1) {
+                input.setSelectionRange(startIndex, startIndex + '[Your Name]'.length);
+            }
         });
     });
 

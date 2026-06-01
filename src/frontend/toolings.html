@@ -25,6 +25,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .filter-btn {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tool-card {
+            transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9K79821DCM"></script>
@@ -142,7 +157,7 @@
                 Open source dev toolings that <span class="text-primary">solve execution barriers</span>.
             </h1>
             <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-                We design and build customized utility modules and libraries that speed up pipeline deployment and facilitate high-trust operations.
+                The same toolings used for our AI/data consultancy, open to the community for next-level refinement — free of charge for Solo Founders and business owners of small teams. If needed, please <a href="https://calendar.app.google/6w9VxJ7QXjUY7W658" target="_blank" rel="noopener" class="text-primary hover:underline font-semibold">book a discovery call</a> to learn how to properly use these tools to scale your business & teams.
             </p>
             <div class="mt-lg">
                 <a href="https://github.com/Data-Biz-AI-Consultancy" target="_blank" rel="noopener" class="inline-flex items-center gap-sm bg-primary text-on-primary px-lg py-sm font-label-caps text-label-caps rounded-lg hover:brightness-110 active:scale-95 transition-all">
@@ -154,35 +169,93 @@
         </div>
     </section>
 
+    <!-- Persona Filter Section -->
+    <section class="pt-16 pb-4 px-container-margin max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <h2 class="font-headline-md text-headline-md font-bold mb-4">Targeted Acceleration by Role</h2>
+            <p class="text-on-surface-variant font-body-sm mb-6">
+                Filter our open-source developer assets and playbook integrations tailored to your primary focus area.
+            </p>
+            <div class="flex flex-wrap justify-center gap-sm">
+                <button id="filter-all" class="filter-btn active bg-primary text-on-primary border border-primary px-lg py-sm font-label-caps text-label-caps rounded-lg hover:brightness-110 active:scale-95 transition-all">
+                    All Toolings
+                </button>
+                <button id="filter-founders" class="filter-btn border border-outline-variant text-on-surface hover:border-primary px-lg py-sm font-label-caps text-label-caps rounded-lg hover:bg-surface-variant active:scale-95 transition-all">
+                    For Founders
+                </button>
+                <button id="filter-executives" class="filter-btn border border-outline-variant text-on-surface hover:border-primary px-lg py-sm font-label-caps text-label-caps rounded-lg hover:bg-surface-variant active:scale-95 transition-all">
+                    For Executives & Leaders
+                </button>
+                <button id="filter-ics" class="filter-btn border border-outline-variant text-on-surface hover:border-primary px-lg py-sm font-label-caps text-label-caps rounded-lg hover:bg-surface-variant active:scale-95 transition-all">
+                    For Data Contributors (ICs)
+                </button>
+            </div>
+        </div>
+
+        <!-- Dynamic Callout Card -->
+        <div id="persona-callout" class="hidden mb-12 p-lg rounded-xl glass-card border border-primary/20 max-w-4xl mx-auto animate-fade-in">
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-md justify-between">
+                <div class="space-y-sm">
+                    <span id="callout-tag" class="inline-block font-label-caps text-[10px] text-primary tracking-widest border border-primary/30 px-sm py-0.5 bg-primary/5">FOUNDERS</span>
+                    <h3 id="callout-title" class="font-headline-md text-body-lg font-bold text-on-surface">Accelerate your 0-to-1 build</h3>
+                    <p id="callout-desc" class="text-on-surface-variant font-body-sm">Boost speed & eliminate vendor lock-in. Bootstrapped with industry standard data patterns.</p>
+                </div>
+                <div class="shrink-0 pt-md md:pt-0">
+                    <a id="callout-cta" href="offers.html" class="inline-block bg-primary text-on-primary px-lg py-sm font-label-caps text-label-caps rounded-lg hover:brightness-110 active:scale-95 transition-all">
+                        EXPLORE OFFER
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Toolings Showcase -->
-    <section class="py-20 px-container-margin max-w-7xl mx-auto">
+    <section class="py-12 px-container-margin max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
             <!-- Tool 1: Ravioli -->
-            <div class="glass-card p-lg rounded-xl flex flex-col justify-between" data-vibe-reveal>
+            <div class="tool-card glass-card p-lg rounded-xl flex flex-col justify-between" data-personas="founders ics" data-vibe-reveal>
                 <div>
-                    <span class="material-symbols-outlined text-primary text-4xl mb-md">restaurant</span>
+                    <div class="flex justify-between items-start mb-md">
+                        <span class="material-symbols-outlined text-primary text-4xl">restaurant</span>
+                        <div class="flex flex-wrap gap-xs justify-end max-w-[60%]">
+                            <span class="bg-primary/5 text-primary border border-primary/20 px-sm py-0.5 rounded text-[9px] font-label-caps font-bold">FOUNDERS</span>
+                            <span class="bg-secondary/5 text-secondary border border-secondary/20 px-sm py-0.5 rounded text-[9px] font-label-caps font-bold">DATA ICS</span>
+                        </div>
+                    </div>
                     <h2 class="font-headline-md text-headline-md font-bold mb-sm">Ravioli</h2>
                     <p class="text-on-surface-variant font-body-sm mb-lg">
-                        A structured state machine library designed for highly complex dbt logic mapping and pipeline status execution checkouts. It ensures robust transactional integrity in modern data warehouses.
+                        A modern, AI-native, privacy-respecting personal data warehouse and Vibe Analytics platform built for agile teams. It combines professional data engineering with interactive notebooks, running locally on DuckDB with integrations to Ollama, Gemini, MotherDuck, and Notion.
                     </p>
                     <div class="flex flex-wrap gap-xs mb-lg">
-                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">PYTHON</span>
-                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">STATE MACHINE</span>
-                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">DBT</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">FASTAPI</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">VITE + TS</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">DUCKDB</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">AI AGENT</span>
                     </div>
                 </div>
-                <a href="https://github.com/Data-Biz-AI-Consultancy/ravioli" target="_blank" rel="noopener" class="inline-flex items-center gap-xs text-primary font-label-caps text-label-caps hover:underline">
-                    VIEW REPOSITORY <span class="material-symbols-outlined text-sm">open_in_new</span>
-                </a>
+                <div class="flex flex-wrap gap-md">
+                    <a href="https://github.com/Data-Biz-AI-Consultancy/ravioli" target="_blank" rel="noopener" class="inline-flex items-center gap-xs text-primary font-label-caps text-label-caps hover:underline">
+                        VIEW REPOSITORY <span class="material-symbols-outlined text-sm">open_in_new</span>
+                    </a>
+                    <a href="https://data-biz-ai-consultancy.github.io/ravioli/" target="_blank" rel="noopener" class="inline-flex items-center gap-xs text-secondary font-label-caps text-label-caps hover:underline">
+                        DOCUMENTATION <span class="material-symbols-outlined text-sm">open_in_new</span>
+                    </a>
+                </div>
             </div>
 
             <!-- Tool 2: MeetingMinds -->
-            <div class="glass-card p-lg rounded-xl flex flex-col justify-between" data-vibe-reveal>
+            <div class="tool-card glass-card p-lg rounded-xl flex flex-col justify-between" data-personas="founders ics" data-vibe-reveal>
                 <div>
-                    <span class="material-symbols-outlined text-secondary text-4xl mb-md">psychology</span>
+                    <div class="flex justify-between items-start mb-md">
+                        <span class="material-symbols-outlined text-secondary text-4xl">psychology</span>
+                        <div class="flex flex-wrap gap-xs justify-end max-w-[60%]">
+                            <span class="bg-primary/5 text-primary border border-primary/20 px-sm py-0.5 rounded text-[9px] font-label-caps font-bold">FOUNDERS</span>
+                            <span class="bg-secondary/5 text-secondary border border-secondary/20 px-sm py-0.5 rounded text-[9px] font-label-caps font-bold">DATA ICS</span>
+                        </div>
+                    </div>
                     <h2 class="font-headline-md text-headline-md font-bold mb-sm">MeetingMinds</h2>
                     <p class="text-on-surface-variant font-body-sm mb-lg">
-                        An AI agent orchestration package designed to sync engineering backlogs, analyze team meeting transcripts, and automatically generate clean schema specifications from natural language meetings.
+                        An AI-powered meeting notes & transcription application designed to sync engineering backlogs, analyze team meeting transcripts, and automatically generate clean schema specifications from natural language meetings.
                     </p>
                     <div class="flex flex-wrap gap-xs mb-lg">
                         <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">TYPESCRIPT</span>
@@ -196,17 +269,24 @@
             </div>
 
             <!-- Tool 3: famiglia-core -->
-            <div class="glass-card p-lg rounded-xl flex flex-col justify-between" data-vibe-reveal>
+            <div class="tool-card glass-card p-lg rounded-xl flex flex-col justify-between" data-personas="executives ics" data-vibe-reveal>
                 <div>
-                    <span class="material-symbols-outlined text-primary text-4xl mb-md">diversity_3</span>
+                    <div class="flex justify-between items-start mb-md">
+                        <span class="material-symbols-outlined text-primary text-4xl">diversity_3</span>
+                        <div class="flex flex-wrap gap-xs justify-end max-w-[60%]">
+                            <span class="bg-secondary/5 text-secondary border border-secondary/20 px-sm py-0.5 rounded text-[9px] font-label-caps font-bold">LEADERS</span>
+                            <span class="bg-secondary/5 text-secondary border border-secondary/20 px-sm py-0.5 rounded text-[9px] font-label-caps font-bold">DATA ICS</span>
+                        </div>
+                    </div>
                     <h2 class="font-headline-md text-headline-md font-bold mb-sm">famiglia-core</h2>
                     <p class="text-on-surface-variant font-body-sm mb-lg">
-                        An enterprise-grade authorization and authentication core built to handle multi-tenant data access control, fine-grained row/column masking, and prepare applications for compliant data audits.
+                        The foundational multi-agent framework that powers the entire "La Passione" ecosystem. It provides the shared intelligence, local memory management, and tooling required to orchestrate and scale autonomous AI agent families securely.
                     </p>
                     <div class="flex flex-wrap gap-xs mb-lg">
-                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">RUST</span>
-                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">AUTHN/AUTHZ</span>
-                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">SECURITY</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">REACT</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">PYTHON</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">POSTGRESQL</span>
+                        <span class="bg-surface-container p-xs px-sm rounded text-on-surface-variant font-data-mono text-[11px] border border-outline-variant/30">MULTI-AGENT</span>
                     </div>
                 </div>
                 <a href="https://github.com/Data-Biz-AI-Consultancy/famiglia-core" target="_blank" rel="noopener" class="inline-flex items-center gap-xs text-primary font-label-caps text-label-caps hover:underline">
@@ -280,6 +360,95 @@
     </div>
 </footer>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const toolCards = document.querySelectorAll('.tool-card');
+    const callout = document.getElementById('persona-callout');
+    const calloutTag = document.getElementById('callout-tag');
+    const calloutTitle = document.getElementById('callout-title');
+    const calloutDesc = document.getElementById('callout-desc');
+    const calloutCta = document.getElementById('callout-cta');
+
+    const calloutData = {
+        founders: {
+            tag: 'FOR FOUNDERS: THE 0-TO-1 AI & DATA STACK',
+            title: 'Own your data fate & accelerate from day one',
+            desc: 'Avoid vendor lock-in and high consultant bills. Our open-source repositories provide production-ready scaffolding so you can bootstrap high-integrity dbt state execution and automated operational triaging immediately.',
+            ctaLink: 'offers.html#founders',
+            ctaText: 'OWN YOUR DATA FATE'
+        },
+        executives: {
+            tag: 'FOR EXECUTIVES: FRACTIONAL CDO LEADERSHIP',
+            title: 'Mitigate AI risk and govern compliance costs',
+            desc: 'Lower compute query bills by 35-40% and secure high-integrity data infrastructure. Deploy compliant access controls, row/column masking, and auditable risk frameworks tailored for direct business value.',
+            ctaLink: 'offers.html#executives',
+            ctaText: 'REQUEST STRATEGIC AUDIT'
+        },
+        ics: {
+            tag: 'FOR CONTRIBUTORS: TECHNICAL ELEVATION',
+            title: 'Elevate your craft & accelerate local implementations',
+            desc: 'Skip career plateaus. Master advanced dbt state machine designs, TS-based AI agents, and Rust-based authentication schemas. Level up your code patterns with production-ready implementations.',
+            ctaLink: 'offers.html#ics',
+            ctaText: 'CONNECT WITH A MENTOR'
+        }
+    };
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Reset all buttons to default state
+            filterButtons.forEach(b => {
+                b.classList.remove('bg-primary', 'text-on-primary', 'border-primary', 'active');
+                b.classList.add('border-outline-variant', 'text-on-surface');
+            });
+
+            // Make current button active
+            btn.classList.add('bg-primary', 'text-on-primary', 'border-primary', 'active');
+            btn.classList.remove('border-outline-variant', 'text-on-surface');
+
+            const filter = btn.id.replace('filter-', '');
+
+            // Handle dynamic callout updates
+            if (filter === 'all') {
+                callout.classList.add('hidden');
+            } else {
+                const data = calloutData[filter];
+                if (data) {
+                    calloutTag.textContent = data.tag;
+                    calloutTitle.textContent = data.title;
+                    calloutDesc.textContent = data.desc;
+                    calloutCta.href = data.ctaLink;
+                    calloutCta.textContent = data.ctaText;
+                    
+                    // Trigger reflow for fade-in animation
+                    callout.classList.remove('hidden');
+                    callout.style.animation = 'none';
+                    callout.offsetHeight; /* trigger reflow */
+                    callout.style.animation = null;
+                    callout.classList.add('animate-fade-in');
+                }
+            }
+
+            // Filter tool cards with micro-animations
+            toolCards.forEach(card => {
+                const personas = card.getAttribute('data-personas').split(' ');
+                if (filter === 'all' || personas.includes(filter)) {
+                    card.style.display = 'flex';
+                    // Trigger fade in animation
+                    card.style.animation = 'none';
+                    card.offsetHeight;
+                    card.style.animation = null;
+                    card.classList.add('animate-fade-in');
+                    card.classList.add('visible');
+                } else {
+                    card.style.display = 'none';
+                    card.classList.remove('visible');
+                }
+            });
+        });
+    });
+});
+</script>
 <script src="main.js"></script>
 </body>
 </html>

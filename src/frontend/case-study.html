@@ -450,6 +450,27 @@
         // Set initial state on load
         document.addEventListener('DOMContentLoaded', () => {
             renderCaseStudies();
+            
+            // Check if there is a hash in the URL (e.g. #case-7)
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#case-')) {
+                const caseId = parseInt(hash.replace('#case-', ''), 10);
+                const targetCase = window.CASE_STUDIES.find(cs => cs.id === caseId);
+                if (targetCase) {
+                    // Filter by this case's category
+                    filterCases(targetCase.category);
+                    
+                    // Wait a moment for rendering/filtering to take effect, then scroll
+                    setTimeout(() => {
+                        const targetEl = document.getElementById(`case-${caseId}`);
+                        if (targetEl) {
+                            targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }, 300);
+                    return;
+                }
+            }
+            
             filterCases('all');
         });
 
@@ -754,7 +775,7 @@ LEFT JOIN default_events ON logs.delivery_area_id = default_events.delivery_area
 
                 // Assemble case card HTML
                 html += `
-                    <div class="case-card grid grid-cols-1 lg:grid-cols-12 gap-xl items-start" data-category="${cs.category}" data-vibe-reveal>
+                    <div class="case-card grid grid-cols-1 lg:grid-cols-12 gap-xl items-start" id="case-${cs.id}" data-category="${cs.category}" data-vibe-reveal>
                         <div class="lg:col-span-6 space-y-md">
                             <span class="font-label-caps text-label-caps text-primary tracking-widest block">${cs.tag}</span>
                             <h2 class="font-display-lg text-headline-md font-bold text-on-surface">${cs.title}</h2>

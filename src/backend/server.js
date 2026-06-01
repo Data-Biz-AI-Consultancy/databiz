@@ -61,8 +61,6 @@ async function initDb() {
   console.log('Database tables initialized.');
 }
 
-initDb();
-
 // Get memory/history for a visitor
 app.get('/api/history', async (req, res) => {
   const { visitor_id } = req.query;
@@ -136,6 +134,12 @@ app.post('/api/leads', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Backend server listening on port ${port}`);
-});
+if (require.main === module) {
+  initDb().then(() => {
+    app.listen(port, () => {
+      console.log(`Backend server listening on port ${port}`);
+    });
+  });
+}
+
+module.exports = { app, pool, initDb };

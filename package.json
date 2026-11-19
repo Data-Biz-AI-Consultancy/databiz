@@ -15,7 +15,7 @@
     "http-server": "^14.1.1",
     "jsdom": "^26.0.0",
     "supertest": "^7.2.2",
-    "vitest": "^3.0.0"
+    "vitest": "^4.1.0"
   },
   "dependencies": {
     "cors": "^2.8.6",
